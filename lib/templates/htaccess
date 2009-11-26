@@ -1,0 +1,31 @@
+Options +FollowSymLinks
+FileETag All
+ErrorDocument 404 /404
+
+<IfModule mod_rewrite.c>
+	RewriteEngine on
+
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*)$ index.php?/$1 [L]
+</IfModule>
+
+# Compress all static assets
+<IfModule mod_deflate.c>
+	# compress content with type html, text, and css
+  AddOutputFilterByType DEFLATE text/css text/html text/javascript application/javascript application/x-javascript text/js text/plain text/xml
+
+	<IfModule mod_headers.c>
+		# properly handle requests coming from behind proxies
+		Header append Vary User-Agent
+	</IfModule>
+</IfModule>
+
+# Cache, aggressively 
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 2 years"
+
+  # Do not cache dynamically generated pages.
+  ExpiresByType text/html "access plus 10 minutes"
+</IfModule>

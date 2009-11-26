@@ -5,5 +5,9 @@ require 'spec'
 require 'spec/autorun'
 
 Spec::Runner.configure do |config|
+  SPEC_CONTENT_PATH = "#{File.dirname(__FILE__)}/support/content"
+  Smeg::Page.path = SPEC_CONTENT_PATH
   
+  SPEC_TEMPLATE_PATH = "#{File.dirname(__FILE__)}/support/templates"
+  Smeg::Template.path = SPEC_TEMPLATE_PATH
 end
