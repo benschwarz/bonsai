@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'yaml'
 require 'mustache'
+require 'fileutils'
 
 module Smeg; end
 
