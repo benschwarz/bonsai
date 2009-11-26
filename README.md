@@ -1,8 +1,12 @@
-= smeg
+# smeg
 
-Description goes here.
+smeg is a dirty, little secret. it allows you to publish a static site using the most simple thing that could work for you.
 
-== Note on Patches/Pull Requests
+## Install
+
+    gem install smeg --source http://gemcutter.org
+
+## Note on Patches/Pull Requests
  
 * Fork the project.
 * Make your feature addition or bug fix.
