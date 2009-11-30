@@ -41,17 +41,31 @@ describe Smeg::Page do
       @page.images.should be_an_instance_of(Array)
     end
     
-    it "should have files" do
-      @page.files.should be_an_instance_of(Array)
-    end
-    
     it "should have a template" do
       @page.template.should be_an_instance_of(Smeg::Template)
     end
     
-    it "should method_missing to its variables" do
-      @page.name.should_not be_nil
-      @page.name.should == "About our history"
+    it "should to_hash to its variables" do
+      @page.content[:name].should_not be_nil
+      @page.content[:name].should == "About our history"
+    end
+    
+    describe "render" do
+      before :all do
+        @output = @page.render 
+      end
+      
+      it "should render" do
+        @output.should_not be_nil
+      end
+      
+      it "should replace moustache variables with properties from the content file" do
+        @output.should == "Hello from our template, named About our history\n\n/about-us/history/image00jpg\n"
+      end
+      
+      it "should write in images" do
+        @output.should include "image001.jpg"
+      end
     end
   end
 end

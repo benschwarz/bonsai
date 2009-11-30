@@ -18,7 +18,7 @@ module Smeg
       end
       
       def find(permalink)
-        disk_path = Dir["#{path}/#{permalink}/*.yml"]
+        disk_path = Dir["#{path}/*#{permalink}/*.yml"]
         if disk_path.any?
           new disk_path.first
         else
@@ -27,16 +27,11 @@ module Smeg
       end
     end
     
-    def initialize(path)
-      @disk_path = path
-    end
+    def initialize(path); @disk_path = path; end
+    def slug; @slug ||= permalink.split('/').pop; end
     
     def permalink
-      @permalink ||= @disk_path.gsub(self.class.path, '').split("/")[0..-2].join("/").gsub(/\d\./, '')
-    end
-    
-    def slug
-      @slug ||= permalink.split('/').pop
+      @permalink ||= web_path(directory)
     end
     
     def template
@@ -44,17 +39,29 @@ module Smeg
       @template ||= Template.find(template_path)
     end
     
-    def method_missing(sym)
-      if content.has_key? sym
-        content[sym]
-      else
-        raise PropertyNotFound
-      end
+    def images
+      Dir["#{directory}/*.{jpg,gif,png}"].map{|p| {:src => web_path(p)} }
+    end
+    
+    def render
+      Mustache.render(template.read, present!)
+    end
+    
+    def content
+      @content ||= YAML::load(File.read(@disk_path))
+    end
+    
+    def directory
+      @disk_path.split("/")[0..-2].join("/")
     end
     
     private
-    def content
-      YAML::load(File.read(@disk_path))
+    def present!
+      content.merge({:images => images})
+    end
+    
+    def web_path(path)
+      path.gsub(self.class.path, '').gsub(/^\/\d\./, '/')
     end
   end
 end
