@@ -11,6 +11,6 @@ Spec::Runner.configure do |config|
   SPEC_TEMPLATE_PATH = "#{File.dirname(__FILE__)}/support/templates"
   Smeg::Template.path = SPEC_TEMPLATE_PATH
   
-  OUTPUT_PATH = "#{File.dirname(__FILE__)}/tmp"
-  Smeg::Renderer.path = OUTPUT_PATH
+  SPEC_EXPORTER_PATH = "#{File.dirname(__FILE__)}/tmp"
+  Smeg::Exporter.path = SPEC_EXPORTER_PATH
 end
