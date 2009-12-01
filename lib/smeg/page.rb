@@ -1,10 +1,12 @@
 module Smeg
   class Page
+    @@path = "content"
+    
     class NotFound < StandardError; end;
     class PropertyNotFound < StandardError; end
     
     class << self
-      def path; @@path || "content"; end
+      def path; @@path; end
       def path=(path); @@path = path; end
       
       def all
@@ -31,7 +33,11 @@ module Smeg
     def slug; @slug ||= permalink.split('/').pop; end
     
     def permalink
-      @permalink ||= web_path(directory)
+      web_path(directory)
+    end
+    
+    def write_path
+      "#{permalink}/index.html"
     end
     
     def template
@@ -40,7 +46,12 @@ module Smeg
     end
     
     def images
-      Dir["#{directory}/*.{jpg,gif,png}"].map{|p| {:src => web_path(p)} }
+      Dir["#{directory}/*.{jpg,gif,png}"].map do |p| 
+        {
+          :name => File.basename(p),
+          :path => web_path(p)
+        }
+      end
     end
     
     def render

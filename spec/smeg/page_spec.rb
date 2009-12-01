@@ -37,8 +37,15 @@ describe Smeg::Page do
       @page.permalink.should == "/about-us/history"
     end
     
+    
+    it "should have a write_path" do
+      @page.write_path.should == "/about-us/history/index.html"
+    end
+    
     it "should have images" do
       @page.images.should be_an_instance_of(Array)
+      @page.images.first[:name].should == "image001.jpg"
+      @page.images.first[:path].should == "/about-us/history/image001.jpg"
     end
     
     it "should have a template" do
@@ -60,7 +67,7 @@ describe Smeg::Page do
       end
       
       it "should replace moustache variables with properties from the content file" do
-        @output.should == "Hello from our template, named About our history\n\n/about-us/history/image00jpg\n"
+        @output.should == "Hello from our template, named About our history\n\nimage001.jpg\n"
       end
       
       it "should write in images" do
