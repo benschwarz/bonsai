@@ -9,8 +9,8 @@ module Smeg
       def path; @@path; end
       def path=(path); @@path = path; end
       
-      def all
-        Dir["#{path}/**/*.yml"].map do |p|
+      def all(dir_path = path)
+        Dir["#{dir_path}/**/*.yml"].map do |p|
           Page.new(p) if(File.file?(p))
         end
       end
@@ -54,6 +54,33 @@ module Smeg
       end
     end
     
+    def parent
+      parent = Page.find(permalink[/^\/(.+)\/[^\/]*$/, 1])
+      (parent == self) ? nil : parent
+    end
+    
+    def siblings
+      parent.children - [self]
+    end
+    
+    def children
+      # raise self.class.path + permalink
+      Page.all(self.class.path + permalink)
+    end
+    
+    def ancestors
+      top = permalink.split('/')[0]
+      if top != permalink
+        #Page.all(top)
+      else
+        nil
+      end
+    end
+    
+    def ==(other)
+      self.permalink == other.permalink
+    end
+    
     def render
       Mustache.render(template.read, present!)
     end
@@ -70,7 +97,13 @@ module Smeg
     
     private
     def present!
-      content.merge({:images => images})
+      content.merge({
+        :images => images,
+        :parent => parent,
+        :siblings => siblings,
+        :children => children,
+        :ancestors => ancestors
+      })
     end
     
     def web_path(path)
