@@ -1,0 +1,26 @@
+require 'rubygems'
+require 'lib/smeg'
+require 'rack'
+require 'rack/rewrite'
+
+Smeg.root_dir = Dir.pwd + "/spec/support"
+
+pid = fork {
+  app = Rack::Builder.app {
+    use Rack::Rewrite do
+      
+    end
+    
+    use Rack::Static, :root => Smeg.root_dir + "/output", :urls => ["/"]
+    run lambda{|e| Rack::Response.new("Not Found", 404).finish}
+  }
+  Rack::Handler::Thin.run(app, :Port => 5000)
+}
+
+process do
+  Smeg::Exporter.publish!
+end
+
+at_exit do
+  Process.kill("QUIT", pid)
+end
