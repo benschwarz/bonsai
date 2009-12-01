@@ -24,7 +24,7 @@ module Smeg
         if disk_path.any?
           new disk_path.first
         else
-          raise NotFound, "page not found"
+          raise NotFound, "page '#{permalink}' not found"
         end
       end
     end
@@ -59,7 +59,9 @@ module Smeg
     end
     
     def content
-      @content ||= YAML::load(File.read(@disk_path))
+      @content ||= YAML::load(File.read(@disk_path)) || {}
+    rescue ArgumentError
+      Smeg.log.error "Page '#{permalink}' has badly formatted content"
     end
     
     def directory
