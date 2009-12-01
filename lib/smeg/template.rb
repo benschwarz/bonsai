@@ -6,7 +6,13 @@ module Smeg
     
     class << self
       def path; @@path; end
-      def path=(path); @@path = path; end
+      def path=(path)
+        @@path = path
+        
+        # Set mustache to automagically know where
+        # it might find the partials
+        Mustache.template_path = path + "/partials"
+      end
       
       def find(name)
         disk_path = Dir["#{path}/#{name}.mustache"]
@@ -14,7 +20,7 @@ module Smeg
         if disk_path.any? 
           new disk_path.first
         else
-          raise NotFound, "template does not exist"
+          raise NotFound, "template '#{name}' does not exist"
         end
       end
     end
