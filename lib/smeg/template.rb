@@ -1,9 +1,11 @@
 module Smeg
   class Template
+    @@path = "templates"
+    
     class NotFound < StandardError; end
     
     class << self
-      def path; @@path || "templates"; end
+      def path; @@path; end
       def path=(path); @@path = path; end
       
       def find(name)
