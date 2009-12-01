@@ -48,6 +48,46 @@ describe Smeg::Page do
       @page.images.first[:path].should == "/about-us/history/image001.jpg"
     end
     
+    it "should be equal" do
+      Smeg::Page.find("about-us").should == Smeg::Page.find("about-us")
+    end
+    
+    describe "relationships" do
+      before :all do
+        @about = Smeg::Page.find("about-us")
+        @history = Smeg::Page.find("about-us/history")   
+        @contact = Smeg::Page.find("about-us/contact")
+        @child = Smeg::Page.find("about-us/history/child")
+      end
+      
+      it "should have siblings" do
+        @history.siblings.should be_an_instance_of(Array)
+        @history.siblings.should include(@contact)
+      end
+
+      it "should have a parent" do
+        @history.parent.should == @about
+      end
+
+      it "should not have a parent" do
+        @about.parent.should == nil
+      end
+
+      it "should have children" do
+        @about.children.should be_an_instance_of(Array)
+        @about.children.size.should == 2
+        @about.children.should include(@history)
+        @about.children.should include(@contact)
+      end
+
+      it "should have ancestors" do
+        @child.ancestors.should be_an_instance_of(Array)
+        @child.ancestors.size.should == 2
+        @child.ancestors.should include(@history)
+        @child.ancestors.should include(@about)
+      end
+    end    
+    
     it "should have a template" do
       @page.template.should be_an_instance_of(Smeg::Template)
     end
