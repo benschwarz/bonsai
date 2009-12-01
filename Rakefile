@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "smeg"
-    gem.summary = %Q{A static site generator that uses tools that I want}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{A static site generator that uses the best toolset available}
+    gem.description = %Q{A static site generator that uses the best toolset available}
     gem.email = "ben.schwarz@gmail.com"
     gem.homepage = "http://github.com/benschwarz/smeg"
     gem.authors = ["Ben Schwarz"]
