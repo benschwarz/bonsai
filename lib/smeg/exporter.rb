@@ -42,7 +42,7 @@ module Smeg
       def copy_images
         Smeg.log.info "Copying images"
         Page.all.each do |page|
-          Smeg.log.info "Coping images for #{page.slug}"
+          Smeg.log.info "Copying images for #{page.slug}"
           page.images.each do |image|
             Smeg.log.info "Copying #{image[:name]} to #{path}#{page.permalink}"
             FileUtils.cp "#{page.directory}/#{image[:name]}", "#{path}#{page.permalink}"
