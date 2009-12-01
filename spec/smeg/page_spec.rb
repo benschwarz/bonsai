@@ -67,11 +67,25 @@ describe Smeg::Page do
       end
       
       it "should replace moustache variables with properties from the content file" do
-        @output.should == "Hello from our template, named About our history\n\nimage001.jpg\n"
+        @output.should == "Hello from our template, named About our history\n\nimage001.jpg\nThis content should be inserted!"
       end
       
       it "should write in images" do
         @output.should include "image001.jpg"
+      end
+    end
+    
+    describe "broken page" do
+      before do
+        Smeg::Page.path = "spec/support/broken/content"
+      end
+      
+      it "should exist" do
+        Smeg::Page.find("page").should be_an_instance_of(Smeg::Page)
+      end
+      
+      it "should error gracefully" do
+        lambda { Smeg::Page.find("page").render }.should_not raise_error(ArgumentError)
       end
     end
   end
