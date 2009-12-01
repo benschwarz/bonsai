@@ -1,6 +1,6 @@
 # smeg
 
-smeg is a dirty, little secret. it allows you to publish a static site using the most simple thing that could work for you.
+smeg is a dirty, little secret. it allows you to publish a static site using the most simple thing that could work.
 
 ## Install
 
@@ -16,6 +16,17 @@ smeg is a dirty, little secret. it allows you to publish a static site using the
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
-== Copyright
+## Notes
+
+  Page contents to be routable (including images)
+  Public contents to be routable (inc, htaccess)
+  Exporter to export pages with their paths intact
+  
+  Have a server for development
+    Process lesscss files
+    Should be like autotest
+  
+
+## Copyright
 
 Copyright (c) 2009 Ben Schwarz. See LICENSE for details.
