@@ -42,6 +42,10 @@ describe Smeg::Page do
       @page.write_path.should == "/about-us/history/index.html"
     end
     
+    it "should respond to disk path" do
+      @page.disk_path.should == "./spec/smeg/../support/content/1.about-us/history/demo-template.yml"
+    end
+    
     it "should have images" do
       @page.images.should be_an_instance_of(Array)
       @page.images.first[:name].should == "image001.jpg"
@@ -62,7 +66,9 @@ describe Smeg::Page do
       
       it "should have siblings" do
         @history.siblings.should be_an_instance_of(Array)
+        @history.siblings.size.should == 2
         @history.siblings.should include(@contact)
+        @history.siblings.should include(@history)
       end
 
       it "should have a parent" do

@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
-  s.date = %q{2009-12-01}
+  s.date = %q{2009-12-02}
   s.description = %q{A static site generator that uses the best toolset available}
   s.email = %q{ben.schwarz@gmail.com}
   s.extra_rdoc_files = [
@@ -31,19 +31,24 @@ Gem::Specification.new do |s|
      "lib/smeg/webserver.rb",
      "lib/templates/Rakefile",
      "lib/templates/htaccess",
+     "smeg.gemspec",
      "spec/smeg/exporter_spec.rb",
      "spec/smeg/page_spec.rb",
      "spec/smeg/template_spec.rb",
      "spec/smeg_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb",
+     "spec/support/broken/content/broken_page/demo-template.yml",
+     "spec/support/content/1.about-us/contact/demo-template.yml",
      "spec/support/content/1.about-us/demo-template.yml",
+     "spec/support/content/1.about-us/history/child/demo-template.yml",
      "spec/support/content/1.about-us/history/demo-template.yml",
      "spec/support/content/1.about-us/history/image001.jpg",
      "spec/support/content/index/demo-template.yml",
      "spec/support/public/htaccess",
      "spec/support/public/stylesheets/base.less",
-     "spec/support/templates/demo-template.mustache"
+     "spec/support/templates/demo-template.mustache",
+     "spec/support/templates/partials/inserted.mustache"
   ]
   s.homepage = %q{http://github.com/benschwarz/smeg}
   s.rdoc_options = ["--charset=UTF-8"]
@@ -52,6 +57,7 @@ Gem::Specification.new do |s|
   s.summary = %q{A static site generator that uses the best toolset available}
   s.test_files = [
     "spec/smeg/exporter_spec.rb",
+     "spec/smeg/navigation_spec.rb",
      "spec/smeg/page_spec.rb",
      "spec/smeg/template_spec.rb",
      "spec/smeg_spec.rb",

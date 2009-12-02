@@ -9,8 +9,8 @@ module Smeg
       def path; @@path; end
       def path=(path); @@path = path; end
       
-      def all(dir_path = path)
-        Dir["#{dir_path}/**/*.yml"].map do |p|
+      def all(dir_path = path, pattern = "*/**")
+        Dir["#{dir_path}/#{pattern}/*.yml"].map do |p|
           Page.new(p) if(File.file?(p))
         end
       end
@@ -28,6 +28,8 @@ module Smeg
         end
       end
     end
+    
+    attr_reader :disk_path
     
     def initialize(path); @disk_path = path; end
     def slug; @slug ||= permalink.split('/').pop; end
@@ -60,21 +62,22 @@ module Smeg
     end
     
     def siblings
-      parent.children - [self]
+      Page.all(File.dirname(parent.disk_path), "*")
     end
     
     def children
-      # raise self.class.path + permalink
-      Page.all(self.class.path + permalink)
+      Page.all(File.dirname(disk_path), "*") - [self]
     end
     
     def ancestors
-      top = permalink.split('/')[0]
-      if top != permalink
-        #Page.all(top)
-      else
-        nil
+      ancestors = []
+      while(parent.disk_path != self.class.path) do
+        ancestors << parent
+        parent = parent.parent
+        break if parent.nil?
       end
+
+      ancestors
     end
     
     def ==(other)
@@ -99,10 +102,7 @@ module Smeg
     def present!
       content.merge({
         :images => images,
-        :parent => parent,
-        :siblings => siblings,
-        :children => children,
-        :ancestors => ancestors
+        :navigation => Smeg::Navigation.tree
       })
     end
     
