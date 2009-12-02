@@ -57,8 +57,14 @@ module Smeg
     end
     
     def parent
-      parent = Page.find(permalink[/^\/(.+)\/[^\/]*$/, 1])
-      (parent == self) ? nil : parent
+      id = permalink[/^\/(.+)\/[^\/]*$/, 1]
+
+      parent = Page.find(id)
+      if id.nil? or parent == self
+        nil
+      else 
+        parent
+      end
     end
     
     def siblings
@@ -98,11 +104,19 @@ module Smeg
       @disk_path.split("/")[0..-2].join("/")
     end
     
+    def to_hash
+      {
+        :permalink => permalink,
+        :images => images,
+        :parent => parent.to_hash,
+        :children => children.map{|p| p.to_hash }
+      }.merge(content)
+    end
+    
     private
     def present!
-      content.merge({
-        :images => images,
-        :navigation => Smeg::Navigation.tree
+      to_hash.merge({
+        :navigation => Smeg::Navigation.tree.map{|p| p.to_hash }
       })
     end
     

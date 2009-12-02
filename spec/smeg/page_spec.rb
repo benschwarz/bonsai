@@ -58,6 +58,7 @@ describe Smeg::Page do
     
     describe "relationships" do
       before :all do
+        @index = Smeg::Page.find("index")
         @about = Smeg::Page.find("about-us")
         @history = Smeg::Page.find("about-us/history")   
         @contact = Smeg::Page.find("about-us/contact")
@@ -77,6 +78,10 @@ describe Smeg::Page do
 
       it "should not have a parent" do
         @about.parent.should == nil
+      end
+      
+      it "should not have a parent for index" do
+        @index.parent.should == nil
       end
 
       it "should have children" do
