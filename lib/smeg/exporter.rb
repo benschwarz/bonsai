@@ -13,7 +13,7 @@ module Smeg
         setup
         write_pages
         write_index
-        copy_images
+        copy_assets
         copy_public
       end
       
@@ -39,13 +39,18 @@ module Smeg
         end
       end
       
-      def copy_images
+      def copy_assets
         Smeg.log.info "Copying images"
         Page.all.each do |page|
           Smeg.log.info "Copying images for #{page.slug}"
-          page.images.each do |image|
-            Smeg.log.info "Copying #{image[:name]} to #{path}#{page.permalink}"
-            FileUtils.cp "#{page.directory}/#{image[:name]}", "#{path}#{page.permalink}"
+          page.assets.each do |asset|
+            Smeg.log.info "Copying #{asset[:name]} to #{path}#{page.permalink}"
+            
+            # Create the path to the asset by the export path of the page + File.dirname(asset permalink)
+            FileUtils.mkdir_p "#{path}#{File.dirname(asset[:path])}"
+            
+            # Copy the the asset from its disk path to File.dirname(asset permalink)
+            FileUtils.cp asset[:disk_path], "#{path}#{asset[:path]}"            
           end
         end
       end

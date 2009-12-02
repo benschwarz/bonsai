@@ -34,6 +34,10 @@ module Smeg
     def initialize(path); @disk_path = path; end
     def slug; @slug ||= permalink.split('/').pop; end
     
+    def name
+      slug.gsub(/\W/, " ").gsub(/^\w/){$&.upcase}
+    end
+    
     def permalink
       web_path(directory)
     end
@@ -48,10 +52,21 @@ module Smeg
     end
     
     def images
-      Dir["#{directory}/*.{jpg,gif,png}"].map do |p| 
+      Dir["#{directory}/**/*.{jpg,gif,png}"].map do |p| 
         {
-          :name => File.basename(p),
-          :path => web_path(p)
+          :name       => File.basename(p),
+          :path       => web_path(p),
+          :disk_path  => p
+        }
+      end
+    end
+    
+    def assets
+      Dir["#{directory}/**/*"].select{|p| !File.directory?(p) && !File.basename(p).include?("yml") }.map do |a|
+        {
+          :name       => File.basename(a),
+          :path       => web_path(a),
+          :disk_path  => a
         }
       end
     end
@@ -68,7 +83,7 @@ module Smeg
     end
     
     def siblings
-      Page.all(File.dirname(parent.disk_path), "*")
+      Page.all(File.dirname(disk_path[/(.+)\/[^\/]*$/, 1]), "*")
     end
     
     def children
@@ -92,6 +107,8 @@ module Smeg
     
     def render
       Mustache.render(template.read, present!)
+    rescue
+      raise "Issue rendering #{self.name}"
     end
     
     def content
@@ -106,10 +123,19 @@ module Smeg
     
     def to_hash
       {
-        :permalink => permalink,
-        :images => images,
-        :parent => parent.to_hash,
-        :children => children.map{|p| p.to_hash }
+        :parent     => parent.nil? ? nil : parent.to_shallow_hash,
+        :children   => children.map{|p| p.to_shallow_hash },
+        :siblings   => siblings.map{|p| p.to_shallow_hash }
+      }.merge(to_shallow_hash)
+    end
+    
+    def to_shallow_hash
+      {
+        :permalink  => permalink,
+        :slug       => slug,
+        :name       => name,
+        :images     => images,
+        :assets     => assets
       }.merge(content)
     end
     

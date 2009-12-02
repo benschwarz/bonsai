@@ -45,7 +45,6 @@ Gem::Specification.new do |s|
      "spec/support/content/1.about-us/demo-template.yml",
      "spec/support/content/1.about-us/history/child/demo-template.yml",
      "spec/support/content/1.about-us/history/demo-template.yml",
-     "spec/support/content/1.about-us/history/image001.jpg",
      "spec/support/content/2.products/demo-template.yml",
      "spec/support/content/2.products/product-a/demo-template.yml",
      "spec/support/content/2.products/product-b/demo-template.yml",

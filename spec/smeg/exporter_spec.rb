@@ -48,9 +48,17 @@ describe Smeg::Exporter do
     it "should copy the images of each page to its directory" do  
       Smeg.root_dir = "spec/support"
       
-      File.exists?("#{Smeg::Exporter.path}/about-us/history/image001.jpg").should be_false
+      File.exists?("#{Smeg::Exporter.path}/about-us/history/images/image001.jpg").should be_false
       Smeg::Exporter.publish!
-      File.exists?("#{Smeg::Exporter.path}/about-us/history/image001.jpg").should be_true
+      File.exists?("#{Smeg::Exporter.path}/about-us/history/images/image001.jpg").should be_true
+    end
+    
+    it 'should copy the assets of each page to its directory' do    
+      Smeg.root_dir = "spec/support"
+      
+      File.exists?("#{Smeg::Exporter.path}/about-us/history/a_file_asset.txt").should be_false
+      Smeg::Exporter.publish!
+      File.exists?("#{Smeg::Exporter.path}/about-us/history/a_file_asset.txt").should be_true
     end
     
     it "should copy the contents of the public directory to the root export path" do

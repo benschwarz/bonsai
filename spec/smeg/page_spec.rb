@@ -49,7 +49,13 @@ describe Smeg::Page do
     it "should have images" do
       @page.images.should be_an_instance_of(Array)
       @page.images.first[:name].should == "image001.jpg"
-      @page.images.first[:path].should == "/about-us/history/image001.jpg"
+      @page.images.first[:path].should == "/about-us/history/images/image001.jpg"
+      @page.images.first[:disk_path].should == "./spec/smeg/../support/content/1.about-us/history/images/image001.jpg"
+    end
+    
+    it "should have assets" do
+      @page.assets.should be_an_instance_of(Array)
+      @page.assets.length.should == 2
     end
     
     it "should be equal" do
@@ -118,7 +124,7 @@ describe Smeg::Page do
       end
       
       it "should replace moustache variables with properties from the content file" do
-        @output.should == "Hello from our template, named About our history\n\nimage001.jpg\nThis content should be inserted!"
+        @output.should == "Hello from our template, named About our history\n\n/about-us/history/images/image001.jpg\nThis content should be inserted!"
       end
       
       it "should write in images" do
