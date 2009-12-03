@@ -35,7 +35,7 @@ module Smeg
     def slug; @slug ||= permalink.split('/').pop; end
     
     def name
-      slug.gsub(/\W/, " ").gsub(/^\w/){$&.upcase}
+      slug.gsub(/\W/, " ").gsub(/\d\./, '').gsub(/^\w/){$&.upcase}
     end
     
     def permalink
@@ -52,7 +52,27 @@ module Smeg
     end
     
     def images
-      Dir["#{directory}/**/*.{jpg,gif,png}"].map do |p| 
+      Dir["#{directory}/images/*.{jpg,gif,png}"].map do |p| 
+        {
+          :name       => File.basename(p),
+          :path       => web_path(p),
+          :disk_path  => p
+        }
+      end
+    end
+    
+    def thumbs
+      Dir["#{directory}/thumbs/*.{jpg,gif,png}"].map do |p| 
+        {
+          :name       => File.basename(p),
+          :path       => web_path(p),
+          :disk_path  => p
+        }
+      end
+    end
+    
+    def logos
+      Dir["#{directory}/logos/*.{jpg,gif,png}"].map do |p| 
         {
           :name       => File.basename(p),
           :path       => web_path(p),
@@ -107,8 +127,8 @@ module Smeg
     
     def render
       Mustache.render(template.read, present!)
-    rescue
-      raise "Issue rendering #{self.name}"
+    rescue => stack
+      raise "Issue rendering #{self.name}\n\n#{stack}"
     end
     
     def content
@@ -124,7 +144,7 @@ module Smeg
     def to_hash
       {
         :parent     => parent.nil? ? nil : parent.to_shallow_hash,
-        :children   => children.map{|p| p.to_shallow_hash },
+        :children   => children.map{|p| p.to_hash },
         :siblings   => siblings.map{|p| p.to_shallow_hash }
       }.merge(to_shallow_hash)
     end
@@ -135,6 +155,7 @@ module Smeg
         :slug       => slug,
         :name       => name,
         :images     => images,
+        :thumbs     => thumbs,
         :assets     => assets
       }.merge(content)
     end
@@ -142,7 +163,7 @@ module Smeg
     private
     def present!
       to_hash.merge({
-        :navigation => Smeg::Navigation.tree.map{|p| p.to_hash }
+        :navigation => Smeg::Navigation.tree.map{|p| p.to_shallow_hash }
       })
     end
     

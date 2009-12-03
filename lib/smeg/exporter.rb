@@ -11,10 +11,10 @@ module Smeg
       def publish!
         teardown
         setup
-        write_pages
-        write_index
         copy_assets
         copy_public
+        write_index
+        write_pages
       end
       
       private 
@@ -29,11 +29,13 @@ module Smeg
       end
       
       def write_index
+        Smeg.log.info "Writing Index"
         File.open("#{path}/index.html", "w") {|file| file.write(Page.find("index").render)}
       end
       
       def write_pages
         Page.all.each do |page|
+          Smeg.log.info "Writing page: #{page.permalink}"
           FileUtils.mkdir_p("#{path}#{page.permalink}")
           File.open("#{path}#{page.write_path}", "w"){|file| file.write(page.render) }
         end

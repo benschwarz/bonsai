@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
-  s.date = %q{2009-12-02}
+  s.date = %q{2009-12-03}
   s.description = %q{A static site generator that uses the best toolset available}
   s.email = %q{ben.schwarz@gmail.com}
   s.extra_rdoc_files = [
@@ -43,8 +43,10 @@ Gem::Specification.new do |s|
      "spec/support/broken/content/broken_page/demo-template.yml",
      "spec/support/content/1.about-us/contact/demo-template.yml",
      "spec/support/content/1.about-us/demo-template.yml",
+     "spec/support/content/1.about-us/history/a_file_asset.txt",
      "spec/support/content/1.about-us/history/child/demo-template.yml",
      "spec/support/content/1.about-us/history/demo-template.yml",
+     "spec/support/content/1.about-us/history/images/image001.jpg",
      "spec/support/content/2.products/demo-template.yml",
      "spec/support/content/2.products/product-a/demo-template.yml",
      "spec/support/content/2.products/product-b/demo-template.yml",
@@ -62,6 +64,7 @@ Gem::Specification.new do |s|
   s.test_files = [
     "spec/smeg/exporter_spec.rb",
      "spec/smeg/navigation_spec.rb",
+     "spec/smeg/page_presenter_spec.rb",
      "spec/smeg/page_spec.rb",
      "spec/smeg/template_spec.rb",
      "spec/smeg_spec.rb",

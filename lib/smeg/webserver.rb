@@ -5,8 +5,6 @@
 
 module Smeg
   class DevelopmentServer < Sinatra::Base
-    set :public, Smeg.root_dir + "/output"
-    
     get '/' do
       @page = Page.find("index")
       @page.render
