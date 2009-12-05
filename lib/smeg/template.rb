@@ -20,7 +20,7 @@ module Smeg
         if disk_path.any? 
           new disk_path.first
         else
-          raise NotFound, "template '#{name}' does not exist"
+          raise NotFound, "template '#{name}' not found at #{path}"
         end
       end
     end
