@@ -7,7 +7,12 @@ module Smeg
     class << self
       def path; @@path; end
       def path=(path); @@path = path; end
-            
+      
+      def process!
+        copy_public
+        copy_assets
+      end
+      
       def publish!
         teardown
         setup
