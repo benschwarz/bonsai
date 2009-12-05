@@ -38,14 +38,14 @@ describe Smeg::Page do
     end
     
     it "should respond to disk path" do
-      @page.disk_path.should == "./spec/smeg/../support/content/1.about-us/history/demo-template.yml"
+      @page.disk_path.should == "#{Smeg.root_dir}/content/1.about-us/history/demo-template.yml"
     end
     
     it "should have images" do
       @page.images.should be_an_instance_of(Array)
       @page.images.first[:name].should == "image001.jpg"
       @page.images.first[:path].should == "/about-us/history/images/image001.jpg"
-      @page.images.first[:disk_path].should == "./spec/smeg/../support/content/1.about-us/history/images/image001.jpg"
+      @page.images.first[:disk_path].should == "#{Smeg.root_dir}/content/1.about-us/history/images/image001.jpg"
     end
     
     it "should have assets" do
