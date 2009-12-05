@@ -7,7 +7,7 @@ module Smeg
     class << self
       def path; @@path; end
       def path=(path); @@path = path; end
-      
+            
       def publish!
         teardown
         setup
@@ -19,23 +19,23 @@ module Smeg
       
       private 
       def teardown
-        Smeg.log.info "Removing directory: #{path}"
+        Smeg.log.debug "Removing directory: #{path}"
         FileUtils.rm_rf path
       end
 
       def setup
-        Smeg.log.info "Creating directory"
+        Smeg.log.debug "Creating directory"
         FileUtils.mkdir_p path
       end
       
       def write_index
-        Smeg.log.info "Writing Index"
+        Smeg.log.debug "Writing Index"
         File.open("#{path}/index.html", "w") {|file| file.write(Page.find("index").render)}
       end
       
       def write_pages
         Page.all.each do |page|
-          Smeg.log.info "Writing page: #{page.permalink}"
+          Smeg.log.debug "Writing page: #{page.permalink}"
           FileUtils.mkdir_p("#{path}#{page.permalink}")
           File.open("#{path}#{page.write_path}", "w"){|file| file.write(page.render) }
         end
@@ -58,7 +58,7 @@ module Smeg
       end
       
       def copy_public
-        Smeg.log.info "Copying public files"
+        Smeg.log.debug "Copying public files"
         Dir["#{Smeg.root_dir}/public/*"].each {|file| FileUtils.cp_r file, path }
       end
     end
