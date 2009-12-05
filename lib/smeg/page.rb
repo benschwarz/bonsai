@@ -109,6 +109,7 @@ module Smeg
     
     def ancestors
       ancestors = []
+      return ancestors if parent.nil?
       while(parent.disk_path != self.class.path) do
         ancestors << parent
         parent = parent.parent
