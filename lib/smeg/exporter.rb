@@ -22,7 +22,7 @@ module Smeg
         write_pages
       end
       
-      private 
+      protected 
       def teardown
         Smeg.log.debug "Removing directory: #{path}"
         FileUtils.rm_rf path
@@ -63,8 +63,19 @@ module Smeg
       end
       
       def copy_public
+        generate_css_from_less
+        
         Smeg.log.debug "Copying public files"
         Dir["#{Smeg.root_dir}/public/*"].each {|file| FileUtils.cp_r file, path }
+      end
+      
+      def generate_css_from_less
+        Dir["#{Smeg.root_dir}/public/**/*.less"].each do |lessfile|
+          css = File.open(lessfile) {|f| Less::Engine.new(f) }.to_css
+          path = "#{File.dirname(lessfile)}/#{File.basename(lessfile, ".less")}.css"
+          
+          File.open(path, "w") {|file| file.write(css) }
+        end
       end
     end
   end
