@@ -6,16 +6,10 @@ require 'spec/autorun'
 require 'fakefs/safe'
 
 Spec::Runner.configure do |config|
-  SPEC_CONTENT_PATH = "#{File.dirname(__FILE__)}/support/content" unless defined? SPEC_CONTENT_PATH
-  Smeg::Page.path = SPEC_CONTENT_PATH
+  Smeg.configure {|config| config[:enable_logging] = false }
   
-  SPEC_TEMPLATE_PATH = "#{File.dirname(__FILE__)}/support/templates" unless defined? SPEC_TEMPLATE_PATH
-  Smeg::Template.path = SPEC_TEMPLATE_PATH
-  
-  SPEC_EXPORTER_PATH = "#{File.dirname(__FILE__)}/tmp" unless defined? SPEC_EXPORTER_PATH
-  Smeg::Exporter.path = SPEC_EXPORTER_PATH
+  SMEG_PATH = "#{File.dirname(__FILE__)}/support" unless defined? SMEG_PATH
+  Smeg.root_dir = SMEG_PATH
 end
 
-Smeg.configure do |c|
-  c[:enable_logging] = false
-end
+

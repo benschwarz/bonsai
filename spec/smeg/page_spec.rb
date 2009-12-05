@@ -8,7 +8,7 @@ describe Smeg::Page do
   it "should set the path" do
     Smeg::Page.path = 'support/content/test'
     Smeg::Page.path.should == 'support/content/test'
-    Smeg::Page.path = SPEC_CONTENT_PATH
+    Smeg::Page.path = SMEG_PATH + "/content"
   end
   
   it "should respond to all" do

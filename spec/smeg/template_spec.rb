@@ -8,7 +8,7 @@ describe Smeg::Template do
   it "should set the path" do
     Smeg::Template.path = 'support/templates/test'
     Smeg::Template.path.should == 'support/templates/test'
-    Smeg::Template.path = SPEC_TEMPLATE_PATH
+    Smeg::Template.path = SMEG_PATH + "/templates"
   end
   
   it "should respond to find" do
