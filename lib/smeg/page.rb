@@ -24,7 +24,7 @@ module Smeg
         if disk_path.any?
           new disk_path.first
         else
-          raise NotFound, "page '#{permalink}' not found"
+          raise NotFound, "page '#{permalink}' not found at '#{path}'"
         end
       end
     end
