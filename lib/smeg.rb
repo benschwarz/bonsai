@@ -4,6 +4,7 @@ require 'mustache'
 require 'fileutils'
 require 'logger'
 require 'sinatra'
+require 'less'
 
 module Smeg
   @@root_dir = nil
