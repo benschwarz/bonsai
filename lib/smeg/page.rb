@@ -15,10 +15,6 @@ module Smeg
         end
       end
       
-      def index
-        @@index ||= new("#{path}/index/*.yml")
-      end
-      
       def find(permalink)
         disk_path = Dir["#{path}/*#{permalink}/*.yml"]
         if disk_path.any?

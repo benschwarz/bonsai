@@ -15,11 +15,6 @@ describe Smeg::Page do
     Smeg::Page.should respond_to :all
   end
   
-  it "should respond to index" do
-    Smeg::Page.should respond_to :index
-    Smeg::Page.index.should be_an_instance_of(Smeg::Page)
-  end
-  
   it "should contain pages" do
     Smeg::Page.all.first.should be_an_instance_of(Smeg::Page)
   end
