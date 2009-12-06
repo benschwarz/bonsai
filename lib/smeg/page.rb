@@ -104,9 +104,9 @@ module Smeg
     end
     
     def render
-      Mustache.render(template.read, present!)
+      PagePresenter.new(self).render
     rescue => stack
-      raise "Issue rendering #{self.name}\n\n#{stack}"
+      raise "Issue rendering #{permalink}\n\n#{stack}"
     end
     
     def content
