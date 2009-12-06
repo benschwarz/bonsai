@@ -17,7 +17,8 @@ module Smeg
       end
       
       def find(permalink)
-        disk_path = Dir["#{path}/*#{permalink}/*.yml"]
+        search_path = permalink.gsub("/", "/*")
+        disk_path = Dir["#{path}/*#{search_path}/*.yml"]
         if disk_path.any?
           new disk_path.first
         else
