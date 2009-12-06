@@ -71,13 +71,12 @@ module Smeg
     
     def parent
       id = permalink[/^\/(.+)\/[^\/]*$/, 1]
-
+      return nil if id.nil?
+      
       parent = Page.find(id)
-      if id.nil? or parent == self
-        nil
-      else 
-        parent
-      end
+      return nil if parent == self
+      
+      parent
     end
     
     def siblings
