@@ -6,12 +6,9 @@ module Smeg
     
     class << self
       def path; @@path; end
+      
       def path=(path)
         @@path = path
-        
-        # Set mustache to automagically know where
-        # it might find the partials
-        Mustache.template_path = path + "/partials"
       end
       
       def find(name)
@@ -30,7 +27,7 @@ module Smeg
     end
     
     def read
-      File.read(@disk_path)
+      @template ||= File.read(@disk_path)
     end
   end
 end
