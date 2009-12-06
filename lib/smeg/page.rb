@@ -6,7 +6,7 @@ module Smeg
     class << self
       def path; @@path; end
       def path=(path)
-        Smeg::log.info "Reading content from #{path}/content"
+        Smeg.log.info "Reading content from #{path}/content"
         @@path = path
       end
       
