@@ -6,10 +6,24 @@ describe Smeg::PagePresenter do
     @pp = Smeg::PagePresenter.new(@page)
   end
   
-  %w(name slug permalink).each do |prop|
-    it "should have a standard property of: #{prop}" do
-      @pp.should respond_to(prop.to_sym)
-    end
+  it "should have a name" do
+    @pp.name.should == "History"
+  end
+  
+  it "should have a permalink" do
+    @pp.permalink.should == "/about-us/history"
+  end
+  
+  it "should have a slug" do
+    @pp.slug.should == "history"
+  end
+  
+  it "should have images" do
+    @pp.images.should be_an(Array)
+  end
+  
+  it "should have assets" do
+    @pp.assets.should be_an(Array)
   end
   
   it "should have children" do
@@ -26,14 +40,6 @@ describe Smeg::PagePresenter do
   
   it "should have navigation" do
     @pp.should respond_to :navigation
-  end
-  
-  it "should have images" do
-    @pp.should respond_to :images
-  end
-  
-  it "should have assets" do
-    @pp.should respond_to :assets
   end
   
   describe "magic variables" do
