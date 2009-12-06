@@ -11,7 +11,7 @@ module Smeg
     end
     
     get '/*' do
-      Page.find(params[:splat]).render
+      Page.find(params[:splat].to_s).render
     end
   end
 end
