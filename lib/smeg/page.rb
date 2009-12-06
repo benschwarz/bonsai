@@ -11,8 +11,8 @@ module Smeg
       end
       
       def all(dir_path = path, pattern = "*/**")
-        Dir["#{dir_path}/#{pattern}/*.yml"].map do |p|
-          Page.new(p) if(File.file?(p))
+        Dir["#{dir_path}/#{pattern}/*.yml"].map do |p| 
+          Page.new p
         end
       end
       
