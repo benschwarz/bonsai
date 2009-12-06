@@ -133,20 +133,17 @@ module Smeg
         :slug       => slug,
         :name       => name,
         :images     => images,
-        :thumbs     => thumbs,
         :assets     => assets
       }.merge(content)
     end
     
     private
-    def present!
-      to_hash.merge({
-        :navigation => Smeg::Navigation.tree.map{|p| p.to_shallow_hash }
-      })
+    def template_name
+      File.basename(@disk_path, '.*')
     end
     
     def web_path(path)
-      path.gsub(self.class.path, '').gsub(/^\/\d\./, '/')
+      path.gsub(self.class.path, '').gsub(/\/\d\./, '/')
     end
   end
 end
