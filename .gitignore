@@ -20,3 +20,4 @@ pkg
 
 ## PROJECT::SPECIFIC
 spec/support/output
+spec/support/public/stylesheets/base.css
