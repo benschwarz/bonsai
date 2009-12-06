@@ -58,26 +58,6 @@ module Smeg
       end
     end
     
-    def thumbs
-      Dir["#{directory}/thumbs/*.{jpg,gif,png}"].map do |p| 
-        {
-          :name       => File.basename(p),
-          :path       => web_path(p),
-          :disk_path  => p
-        }
-      end
-    end
-    
-    def logos
-      Dir["#{directory}/logos/*.{jpg,gif,png}"].map do |p| 
-        {
-          :name       => File.basename(p),
-          :path       => web_path(p),
-          :disk_path  => p
-        }
-      end
-    end
-    
     def assets
       Dir["#{directory}/**/*"].select{|p| !File.directory?(p) && !File.basename(p).include?("yml") }.map do |a|
         {
