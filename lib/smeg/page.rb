@@ -80,11 +80,11 @@ module Smeg
     end
     
     def siblings
-      Page.all(File.dirname(disk_path[/(.+)\/[^\/]*$/, 1]), "*")
+      self.class.all(File.dirname(disk_path[/(.+)\/[^\/]*$/, 1]), "*")
     end
     
     def children
-      Page.all(File.dirname(disk_path), "*") - [self]
+      self.class.all(File.dirname(disk_path), "*") - [self]
     end
     
     def ancestors
