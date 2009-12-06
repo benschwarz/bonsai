@@ -1,16 +1,6 @@
 require "#{File.dirname(__FILE__)}/../spec_helper"
 
 describe Smeg::Page do
-  it "should have a path" do
-    Smeg::Page.path.should_not be_nil
-  end
-  
-  it "should set the path" do
-    Smeg::Page.path = 'support/content/test'
-    Smeg::Page.path.should == 'support/content/test'
-    Smeg::Page.path = SMEG_PATH + "/content"
-  end
-  
   it "should respond to all" do
     Smeg::Page.should respond_to :all
   end
@@ -26,6 +16,10 @@ describe Smeg::Page do
     
     it "should have a slug" do
       @page.slug.should == "history"
+    end
+    
+    it "should have a name" do
+      @page.name.should == "History"
     end
     
     it "should have a permalink" do
@@ -119,7 +113,7 @@ describe Smeg::Page do
       end
       
       it "should replace moustache variables with properties from the content file" do
-        @output.should == "Hello from our template, named About our history\n\n/about-us/history/images/image001.jpg\nThis content should be inserted!"
+        @output.should == "Hello from our template, named History\n\n/about-us/history/images/image001.jpg\nThis content should be inserted!"
       end
       
       it "should write in images" do
