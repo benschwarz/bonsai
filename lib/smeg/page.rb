@@ -45,8 +45,7 @@ module Smeg
     end
     
     def template
-      template_path = File.basename(@disk_path, '.*')
-      @template ||= Template.find(template_path)
+      @template ||= Template.find(template_name)
     end
     
     def images
