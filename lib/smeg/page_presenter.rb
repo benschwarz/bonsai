@@ -1,21 +1,16 @@
 module Smeg
-  class PagePresenter < Hash
+  class PagePresenter < Mustache
     def initialize(page)
-      @page = page 
+      @page = page
+      self.template = @page.template.read
     end
-
-    %w(name slug permalink images assets).each do |m|
-      define_method m do
-        @page.send(m)
-      end
-    end
-    
+        
     def navigation
-      Smeg::Navigation.tree.map{|p| p.to_hash }
+      Smeg::Navigation.tree.map{|p| p.to_shallow_hash }
     end
     
     def children
-      @page.children.map{|p| p.to_shallow_hash }
+      @page.children.map{|p| p.to_hash }
     end
     
     def siblings
@@ -25,13 +20,20 @@ module Smeg
     def parent
       @page.parent.nil? ? nil : @page.parent.to_shallow_hash
     end
-    
-    def [](name)
-      send(name)
+
+    # Catch lookups to the template for variables
+    def [](message)
+      Smeg.log.debug("catching #{message} sent to []")
+      @page.send(message)
     end
-    
+
+    # Catch anything that wasn't picked up by local methods
     def method_missing(message, *args, &block)
-      map_to_disk(message) || nil
+      Smeg.log.debug("catching #{message} sent to method_missing")
+      
+      return @page.send(message) 
+
+      #map_to_disk(message) || super
     end
     
     private
