@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
-  s.date = %q{2009-12-06}
+  s.date = %q{2009-12-07}
   s.description = %q{A static site generator that uses the best toolset available}
   s.email = %q{ben.schwarz@gmail.com}
   s.extra_rdoc_files = [
@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
      "README.md",
      "Rakefile",
      "VERSION",
+     "benchmark/associations.rb",
      "lib/smeg.rb",
      "lib/smeg/exporter.rb",
      "lib/smeg/navigation.rb",
@@ -85,15 +86,27 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rspec>, [">= 1.2.9"])
       s.add_development_dependency(%q<yard>, [">= 0"])
       s.add_development_dependency(%q<fakefs>, [">= 0"])
+      s.add_runtime_dependency(%q<mustache>, [">= 0.5.0"])
+      s.add_runtime_dependency(%q<thin>, [">= 1.0.0"])
+      s.add_runtime_dependency(%q<kicker>, [">= 2.2.0"])
+      s.add_runtime_dependency(%q<sinatra>, [">= 0.9.4"])
     else
       s.add_dependency(%q<rspec>, [">= 1.2.9"])
       s.add_dependency(%q<yard>, [">= 0"])
       s.add_dependency(%q<fakefs>, [">= 0"])
+      s.add_dependency(%q<mustache>, [">= 0.5.0"])
+      s.add_dependency(%q<thin>, [">= 1.0.0"])
+      s.add_dependency(%q<kicker>, [">= 2.2.0"])
+      s.add_dependency(%q<sinatra>, [">= 0.9.4"])
     end
   else
     s.add_dependency(%q<rspec>, [">= 1.2.9"])
     s.add_dependency(%q<yard>, [">= 0"])
     s.add_dependency(%q<fakefs>, [">= 0"])
+    s.add_dependency(%q<mustache>, [">= 0.5.0"])
+    s.add_dependency(%q<thin>, [">= 1.0.0"])
+    s.add_dependency(%q<kicker>, [">= 2.2.0"])
+    s.add_dependency(%q<sinatra>, [">= 0.9.4"])
   end
 end
 
