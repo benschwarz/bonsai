@@ -8,7 +8,7 @@ page = Smeg::Page.find("about-us/history")
 
 Benchmark.bm do |b|
   b.report "all" do
-    1000.times do
+    10_000.times do
       Smeg::Page.all
     end
   end
