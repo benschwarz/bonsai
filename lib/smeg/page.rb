@@ -4,6 +4,9 @@ module Smeg
     class PropertyNotFound < StandardError; end
     
     class << self
+      @@pages = {}
+      @@all = {}
+      
       def path; @@path; end
       def path=(path)
         Smeg.log.info "Reading content from #{path}/content"
@@ -11,18 +14,23 @@ module Smeg
       end
       
       def all(dir_path = path, pattern = "*/**")
-        Dir["#{dir_path}/#{pattern}/*.yml"].map do |p| 
+        @@all[pattern] ||= Dir["#{dir_path}/#{pattern}/*.yml"].map {|p| 
           Page.new p
-        end
+        }
       end
       
       def find(permalink)
-        search_path = permalink.gsub("/", "/*")
+        @@pages[permalink.to_sym] ||= get(permalink)
+      end
+      
+      private
+      def get(page)
+        search_path = page.gsub("/", "/*")
         disk_path = Dir["#{path}/*#{search_path}/*.yml"]
         if disk_path.any?
           new disk_path.first
         else
-          raise NotFound, "page '#{permalink}' not found at '#{path}'"
+          raise NotFound, "page '#{page}' not found at '#{path}'"
         end
       end
     end
@@ -49,7 +57,7 @@ module Smeg
     end
     
     def images
-      Dir["#{directory}/images/*.{jpg,gif,png}"].map do |p| 
+      @images ||= Dir["#{directory}/images/*.{jpg,gif,png}"].map do |p| 
         {
           :name       => File.basename(p),
           :path       => web_path(p),
@@ -59,7 +67,7 @@ module Smeg
     end
     
     def assets
-      Dir["#{directory}/**/*"].select{|p| !File.directory?(p) && !File.basename(p).include?("yml") }.map do |a|
+      @assets ||= Dir["#{directory}/**/*"].select{|p| !File.directory?(p) && !File.basename(p).include?("yml") }.map do |a|
         {
           :name       => File.basename(a),
           :path       => web_path(a),
