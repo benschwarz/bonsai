@@ -13,7 +13,7 @@ describe Smeg::Template do
   describe "instance" do
     it "should give the template source" do
       @template = Smeg::Template.find("demo-template")
-      @template.read.should == "Hello from our template, named {{name}}\n\n{{#images}}\n  {{path}}\n{{/images}}\n\n{{#children}}\n  {{permalink}}\n{{/children}}\n\n{{>inserted}}"
+      @template.read.should == "Hello from our template, named {{name}}\n\n{{#images}}\n  {{path}}\n{{/images}}\n\n{{#children}}\n  {{permalink}}\n{{/children}}\n\n{{#magic}}\n  {{path}}\n{{/magic}}\n\n{{>inserted}}"
     end
   end
 end
