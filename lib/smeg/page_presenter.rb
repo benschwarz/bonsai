@@ -4,29 +4,31 @@ module Smeg
     
     def initialize(page)
       @page = page
+            
       self.class.path = page.template.class.path + "/partials"
       self.template = page.template.read
     end
         
     def navigation
-      Smeg::Navigation.tree.map{|p| p.to_shallow_hash }
+      @navigation ||= Smeg::Navigation.tree.map{|p| p.to_shallow_hash }
     end
     
     def children
-      page.children.map{|p| p.to_hash }
+      @children ||= page.children.map{|p| p.to_hash }
     end
     
     def siblings
-      page.siblings.map{|p| p.to_shallow_hash }
+      @siblings ||= page.siblings.map{|p| p.to_shallow_hash }
     end
     
     def parent
-      page.parent.nil? ? nil : @page.parent.to_shallow_hash
+      @parent ||= page.parent.nil? ? nil : @page.parent.to_shallow_hash
     end
-
+    
     # Catch anything that wasn't picked up by local methods
     def method_missing(message, *args, &block)
       return page.send(message) if page.respond_to? message
+      return page._content[message] if page._content.has_key? message
       map_to_disk(message)
     end
     

@@ -99,8 +99,8 @@ describe Smeg::Page do
     end
     
     it "should to_hash to its variables" do
-      @page.content[:name].should_not be_nil
-      @page.content[:name].should == "About our history"
+      @page._content[:page_title].should == "About our history"
+      @page._content[:page_title].should_not be_nil
     end
     
     describe "render" do
@@ -113,7 +113,7 @@ describe Smeg::Page do
       end
       
       it "should replace moustache variables with properties from the content file" do
-        @output.should == "Hello from our template, named History\n\n/about-us/history/images/image001.jpg\n/about-us/history/child\n/about-us/history/magic/image001.jpg\n/about-us/history/magic/image002.jpg\nThis content should be inserted!"
+        @output.should == "Hello from our template, named History\n\nAbout our history\n\n/about-us/history/images/image001.jpg\n/about-us/history/child\n/about-us/history/magic/image001.jpg\n/about-us/history/magic/image002.jpg\nThis content should be inserted!"
       end
       
       it "should write in images" do

@@ -4,9 +4,6 @@ module Smeg
     class PropertyNotFound < StandardError; end
     
     class << self
-      @@pages = {}
-      @@all = {}
-      
       def path; @@path; end
       def path=(path)
         Smeg.log.info "Reading content from #{path}/content"
@@ -14,25 +11,21 @@ module Smeg
       end
       
       def all(dir_path = path, pattern = "*/**")
-        @@all[pattern] ||= Dir["#{dir_path}/#{pattern}/*.yml"].map {|p| 
+        Dir["#{dir_path}/#{pattern}/*.yml"].map {|p| 
           Page.new p
         }
       end
       
       def find(permalink)
-        @@pages[permalink.to_sym] ||= get(permalink)
-      end
-      
-      private
-      def get(page)
-        search_path = page.gsub("/", "/*")
+        search_path = permalink.gsub("/", "/*")
         disk_path = Dir["#{path}/*#{search_path}/*.yml"]
         if disk_path.any?
           new disk_path.first
         else
-          raise NotFound, "page '#{page}' not found at '#{path}'"
+          raise NotFound, "page '#{permalink}' not found at '#{path}'"
         end
       end
+      
     end
     
     attr_reader :disk_path
@@ -116,21 +109,18 @@ module Smeg
       raise "Issue rendering #{permalink}\n\n#{stack}"
     end
     
-    def content
-      @content ||= YAML::load(File.read(@disk_path)) || {}
+    def _content
+      YAML::load(File.read(@disk_path)) || {}
     rescue ArgumentError
       Smeg.log.error "Page '#{permalink}' has badly formatted content"
-    end
-    
-    def directory
-      @disk_path.split("/")[0..-2].join("/")
     end
     
     def to_hash
       {
         :parent     => parent.nil? ? nil : parent.to_shallow_hash,
         :children   => children.map{|p| p.to_hash },
-        :siblings   => siblings.map{|p| p.to_shallow_hash }
+        :siblings   => siblings.map{|p| p.to_shallow_hash },
+        :assets     => assets
       }.merge(to_shallow_hash)
     end
     
@@ -139,12 +129,15 @@ module Smeg
         :permalink  => permalink,
         :slug       => slug,
         :name       => name,
-        :images     => images,
-        :assets     => assets
-      }.merge(content)
+        :images     => images
+      }.merge(_content)
     end
     
     private
+    def directory
+      @disk_path.split("/")[0..-2].join("/")
+    end
+    
     def template_name
       File.basename(@disk_path, '.*')
     end

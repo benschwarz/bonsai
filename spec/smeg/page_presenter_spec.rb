@@ -42,6 +42,10 @@ describe Smeg::PagePresenter do
     @pp.should respond_to :navigation
   end
   
+  it "should have the pages' content" do
+    @pp._content.should == @page._content
+  end
+  
   describe "magic variables" do
     it "should map its folders to magic variables" do
       @pp.magic.should be_an_instance_of(Array)
