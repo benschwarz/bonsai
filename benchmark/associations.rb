@@ -37,6 +37,12 @@ Benchmark.bm do |b|
     end
   end
   
+  b.report "ancestors" do
+    10_000.times do
+      page.ancestors
+    end
+  end
+  
   b.report "rendering" do
     10_000.times do
       page.render
