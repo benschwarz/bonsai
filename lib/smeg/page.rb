@@ -4,6 +4,8 @@ module Smeg
     class PropertyNotFound < StandardError; end
     
     class << self
+      @@pages = {}
+      
       def path; @@path; end
       def path=(path)
         Smeg.log.info "Reading content from #{path}/content"
@@ -11,7 +13,7 @@ module Smeg
       end
       
       def all(dir_path = path, pattern = "*/**")
-        Dir["#{dir_path}/#{pattern}/*.yml"].map {|p| 
+        @@pages[dir_path + pattern] ||= Dir["#{dir_path}/#{pattern}/*.yml"].map {|p| 
           Page.new p
         }
       end
