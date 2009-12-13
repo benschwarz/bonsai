@@ -49,10 +49,8 @@ module Smeg
       def copy_assets
         Smeg.log.info "Copying images"
         Page.all.each do |page|
-          Smeg.log.info "Copying images for #{page.slug}"
-          page.assets.each do |asset|
-            Smeg.log.info "Copying #{asset[:name]} to #{path}#{page.permalink}"
-            
+          Smeg.log.info "Copying images for #{page.permalink}"
+          page.assets.each do |asset|      
             # Create the path to the asset by the export path of the page + File.dirname(asset permalink)
             FileUtils.mkdir_p "#{path}#{File.dirname(asset[:path])}"
             
