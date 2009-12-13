@@ -89,14 +89,16 @@ module Smeg
     
     def ancestors
       ancestors = []
-      return ancestors if parent.nil?
-      while(parent.disk_path != self.class.path) do
-        ancestors << parent
-        parent = parent.parent
-        break if parent.nil?
+      # Remove leading slash
+      page_ref = permalink.gsub(/^\//, '')
+      
+      # Find pages up the permalink tree if possible
+      while(page_ref) do
+        page_ref = page_ref[/(.+)\/[^\/]*$/, 1]
+        ancestors << self.class.find(page_ref) rescue nil
       end
-
-      ancestors
+      
+      ancestors.compact.reverse
     end
     
     def ==(other)

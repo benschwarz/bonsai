@@ -92,6 +92,11 @@ describe Smeg::Page do
         @child.ancestors.should include(@history)
         @child.ancestors.should include(@about)
       end
+      
+      it "should have the ancestors in a top down order" do
+        @child.ancestors.first.should == @about
+        @child.ancestors.last.should == @history
+      end
     end    
     
     it "should have a template" do
