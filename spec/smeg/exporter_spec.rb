@@ -32,6 +32,8 @@ describe Smeg::Exporter do
       it "should be processed with less" do
         File.read("#{Smeg::Exporter.path}/stylesheets/base.css").should == ".mymixin, #content { display: block; }\n"
       end
+      
+      it "should log an error when badly formatted less is supplied (and not raise an exception)"
     end
     
     describe "process!" do
