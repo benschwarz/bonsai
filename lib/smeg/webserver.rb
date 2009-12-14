@@ -1,9 +1,12 @@
-# require 'rack/bug'
-# require 'rack/bug/panels/mustache_panel'
-# use Rack::Bug::MustachePanel
-# use Rack::Bug
-
 module Smeg
+  class StaticPassThrough < Rack::Static
+    def call(env)
+      result = super
+      return result unless result[0] == 404 || result[0] == "404"
+      @app.call(env)
+    end
+  end
+  
   class DevelopmentServer < Sinatra::Base
     get '/' do
       @page = Page.find("index")
