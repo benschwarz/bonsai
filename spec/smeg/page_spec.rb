@@ -47,7 +47,7 @@ describe Smeg::Page do
     
     it "should have assets" do
       @page.assets.should be_an_instance_of(Array)
-      @page.assets.length.should == 5
+      @page.assets.length.should == 6
     end
     
     it "should be equal" do

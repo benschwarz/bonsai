@@ -61,6 +61,7 @@ module Smeg
       end
     end
     
+    # This method is used for the exporter to copy assets
     def assets
       @assets ||= Dir["#{directory}/**/*"].select{|p| !File.directory?(p) && !File.basename(p).include?("yml") }.map do |a|
         {
