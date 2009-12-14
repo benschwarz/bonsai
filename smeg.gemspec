@@ -9,9 +9,11 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
-  s.date = %q{2009-12-07}
+  s.date = %q{2009-12-14}
+  s.default_executable = %q{smeg}
   s.description = %q{A static site generator that uses the best toolset available}
   s.email = %q{ben.schwarz@gmail.com}
+  s.executables = ["smeg"]
   s.extra_rdoc_files = [
     "LICENSE",
      "README.md"
@@ -32,8 +34,6 @@ Gem::Specification.new do |s|
      "lib/smeg/page_presenter.rb",
      "lib/smeg/template.rb",
      "lib/smeg/webserver.rb",
-     "lib/templates/Rakefile",
-     "lib/templates/htaccess",
      "smeg.gemspec",
      "spec/smeg/exporter_spec.rb",
      "spec/smeg/navigation_spec.rb",
@@ -54,12 +54,15 @@ Gem::Specification.new do |s|
      "spec/support/content/1.about-us/history/images/image001.jpg",
      "spec/support/content/1.about-us/history/magic/image001.jpg",
      "spec/support/content/1.about-us/history/magic/image002.jpg",
+     "spec/support/content/10.many-pages/demo-template.yml",
      "spec/support/content/2.products/1.product-a/demo-template.yml",
      "spec/support/content/2.products/2.product-b/demo-template.yml",
      "spec/support/content/2.products/demo-template.yml",
      "spec/support/content/index/demo-template.yml",
      "spec/support/public/htaccess",
      "spec/support/public/stylesheets/base.less",
+     "spec/support/public/stylesheets/broken.css",
+     "spec/support/public/stylesheets/broken.less",
      "spec/support/templates/demo-template.mustache",
      "spec/support/templates/partials/inserted.mustache"
   ]
@@ -70,6 +73,7 @@ Gem::Specification.new do |s|
   s.summary = %q{A static site generator that uses the best toolset available}
   s.test_files = [
     "spec/smeg/exporter_spec.rb",
+     "spec/smeg/generate_spec.rb",
      "spec/smeg/navigation_spec.rb",
      "spec/smeg/page_presenter_spec.rb",
      "spec/smeg/page_spec.rb",
