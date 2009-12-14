@@ -6,6 +6,10 @@ smeg is a dirty, little secret. it allows you to publish a static site using the
 
     gem install smeg --source http://gemcutter.org
 
+## Generate a new site
+
+    smeg your/new/site
+
 ## Kicker file
 
     https://gist.github.com/e06ca841f4e4ee278c96
