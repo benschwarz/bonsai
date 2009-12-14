@@ -1,7 +1,7 @@
 require 'fileutils'
 
 module Smeg
-  module Exporter
+  class Exporter
     @@path = "output"
     
     class << self
