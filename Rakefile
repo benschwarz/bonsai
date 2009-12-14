@@ -10,6 +10,7 @@ begin
     gem.email = "ben.schwarz@gmail.com"
     gem.homepage = "http://github.com/benschwarz/smeg"
     gem.authors = ["Ben Schwarz"]
+    gem.executables = ['smeg']
     gem.add_development_dependency "rspec", ">= 1.2.9"
     gem.add_development_dependency "yard", ">= 0"
     gem.add_development_dependency "fakefs"
