@@ -147,7 +147,7 @@ module Smeg
     end
     
     def web_path(path)
-      path.gsub(self.class.path, '').gsub(/\/\d\./, '/')
+      path.gsub(self.class.path, '').gsub(/\/\d+\./, '/')
     end
   end
 end

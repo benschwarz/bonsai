@@ -26,6 +26,9 @@ describe Smeg::Page do
       @page.permalink.should == "/about-us/history"
     end
     
+    it "should remove numbers over 10 from the permalink" do
+      Smeg::Page.find("many-pages").permalink.should == "/many-pages"
+    end
     
     it "should have a write_path" do
       @page.write_path.should == "/about-us/history/index.html"

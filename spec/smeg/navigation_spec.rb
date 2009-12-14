@@ -13,7 +13,7 @@ describe Smeg::Navigation do
   
   it "should contain 2 items" do
     @tree.should be_an_instance_of(Array)
-    @tree.size.should == 2
+    @tree.size.should == 3
   end
   
   it "should contain about and products" do
