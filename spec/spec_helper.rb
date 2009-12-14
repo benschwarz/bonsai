@@ -6,7 +6,7 @@ require 'spec/autorun'
 require 'fakefs/safe'
 
 Spec::Runner.configure do |config|
-  # Smeg.configure {|config| config[:enable_logging] = false }
+  Smeg.configure {|config| config[:enable_logging] = false }
   
   SMEG_PATH = "#{File.dirname(__FILE__)}/support" unless defined? SMEG_PATH
   Smeg.root_dir = SMEG_PATH
