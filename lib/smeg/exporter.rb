@@ -74,6 +74,8 @@ module Smeg
           
           File.open(path, "w") {|file| file.write(css) }
         end
+      rescue Less::SyntaxError => exception
+        Smeg.log.error "LessCSS Syntax error\n\n#{exception.message}"
       end
     end
   end

@@ -33,7 +33,10 @@ describe Smeg::Exporter do
         File.read("#{Smeg::Exporter.path}/stylesheets/base.css").should == ".mymixin, #content { display: block; }\n"
       end
       
-      it "should log an error when badly formatted less is supplied (and not raise an exception)"
+      it "should log an error when badly formatted less is supplied (and not raise an exception)" do
+        Smeg.log.should_receive(:error)
+        lambda { Smeg::Exporter.send(:generate_css_from_less) }.should_not raise_error(Less::SyntaxError)
+      end
     end
     
     describe "process!" do
