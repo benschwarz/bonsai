@@ -1,0 +1,9 @@
+require 'smeg'
+Smeg.root_dir = Dir.pwd
+
+namespace :smeg do  
+  desc "Exports the site ready for upload"
+  task :export do
+    Smeg::Exporter.publish!
+  end
+end
