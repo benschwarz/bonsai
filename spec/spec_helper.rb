@@ -3,7 +3,6 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'smeg'
 require 'spec'
 require 'spec/autorun'
-require 'fakefs/safe'
 
 Spec::Runner.configure do |config|
   Smeg.configure {|config| config[:enable_logging] = false }
