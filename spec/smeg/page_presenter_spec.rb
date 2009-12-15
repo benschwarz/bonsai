@@ -52,5 +52,11 @@ describe Smeg::PagePresenter do
       @pp.magic.first.should be_an_instance_of(Hash)
       @pp.magic.size.should == 2
     end
+    
+    describe "boolean" do
+      it "should have a magic? method to tell if there are any magic files for this page"
+      it "should be true"
+      it "should be false"
+    end
   end
 end
