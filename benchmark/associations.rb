@@ -44,7 +44,7 @@ Benchmark.bm do |b|
   end
   
   b.report "rendering" do
-    10_000.times do
+    1000.times do
       page.render
     end
   end
