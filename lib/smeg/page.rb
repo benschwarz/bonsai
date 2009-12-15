@@ -5,6 +5,7 @@ module Smeg
     
     class << self
       @@pages = {}
+      @@page = {}
       
       def path; @@path; end
       def path=(path)
@@ -19,15 +20,19 @@ module Smeg
       end
       
       def find(permalink)
+        @@page[permalink] ||= find!(permalink)
+      end
+      
+      private
+      def find!(permalink)
         search_path = permalink.gsub("/", "/*")
         disk_path = Dir["#{path}/*#{search_path}/*.yml"]
         if disk_path.any?
-          new disk_path.first
+          return new disk_path.first
         else
           raise NotFound, "page '#{permalink}' not found at '#{path}'"
         end
       end
-      
     end
     
     attr_reader :disk_path
@@ -91,17 +96,7 @@ module Smeg
     end
     
     def ancestors
-      ancestors = []
-      # Remove leading slash
-      page_ref = permalink.gsub(/^\//, '')
-      
-      # Find pages up the permalink tree if possible
-      while(page_ref) do
-        page_ref = page_ref[/(.+)\/[^\/]*$/, 1]
-        ancestors << self.class.find(page_ref) rescue nil
-      end
-      
-      ancestors.compact.reverse
+      @ancestors ||= ancestors!
     end
     
     def ==(other)
@@ -115,18 +110,13 @@ module Smeg
     end
     
     def _content
-      YAML::load(File.read(@disk_path)) || {}
+      @_content ||= _content!
     rescue ArgumentError
       Smeg.log.error "Page '#{permalink}' has badly formatted content"
     end
     
     def to_hash
-      {
-        :parent     => parent.nil? ? nil : parent.to_shallow_hash,
-        :children   => children.map{|p| p.to_hash },
-        :siblings   => siblings.map{|p| p.to_shallow_hash },
-        :assets     => assets
-      }.merge(to_shallow_hash)
+      @to_hash ||= to_hash!
     end
     
     def to_shallow_hash
@@ -139,6 +129,33 @@ module Smeg
     end
     
     private
+    def ancestors!
+      ancestors = []
+      # Remove leading slash
+      page_ref = permalink.gsub(/^\//, '')
+      
+      # Find pages up the permalink tree if possible
+      while(page_ref) do
+        page_ref = page_ref[/(.+)\/[^\/]*$/, 1]
+        ancestors << self.class.find(page_ref) rescue nil
+      end
+      
+      ancestors.compact.reverse
+    end
+    
+    def to_hash!
+      {
+        :parent     => parent.nil? ? nil : parent.to_shallow_hash,
+        :children   => children.map{|p| p.to_hash },
+        :siblings   => siblings.map{|p| p.to_shallow_hash },
+        :assets     => assets
+      }.merge(to_shallow_hash)
+    end
+    
+    def _content!
+      YAML::load(File.read(@disk_path)) || {}
+    end
+    
     def directory
       @disk_path.split("/")[0..-2].join("/")
     end
