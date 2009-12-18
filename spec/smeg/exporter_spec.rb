@@ -1,12 +1,8 @@
 require "#{File.dirname(__FILE__)}/../spec_helper"
 
 describe Smeg::Exporter do
-  before :all do
-#    FakeFS.activate!
-  end
-  
-  after :all do
-#    FakeFS.deactivate!
+  after :suite do
+    FileUtils.rm_rf Smeg::Exporter.path
   end
   
   it "should have a path" do
