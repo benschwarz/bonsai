@@ -9,6 +9,7 @@ module Smeg
       def path=(path); @@path = path; end
       
       def process!
+        setup
         copy_public
         copy_assets
       end
