@@ -41,17 +41,16 @@ module Smeg
       end
       
       def write_pages
+        Smeg.log.info "Writing pages..."
         Page.all.each do |page|
-          Smeg.log.debug "Writing page: #{page.permalink}"
           FileUtils.mkdir_p("#{path}#{page.permalink}")
           File.open("#{path}#{page.write_path}", "w"){|file| file.write(page.render) }
         end
       end
       
       def copy_assets
-        Smeg.log.info "Copying images"
+        Smeg.log.info "Copying images..."
         Page.all.each do |page|
-          Smeg.log.info "Copying images for #{page.permalink}"
           page.assets.each do |asset|      
             # Create the path to the asset by the export path of the page + File.dirname(asset permalink)
             FileUtils.mkdir_p "#{path}#{File.dirname(asset[:path])}"
