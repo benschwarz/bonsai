@@ -18,6 +18,7 @@ module Smeg
         setup
         copy_assets
         copy_public
+        compress_assets
         write_index
         write_pages
       end
@@ -65,6 +66,15 @@ module Smeg
         
         Smeg.log.debug "Copying public files"
         Dir["#{Smeg.root_dir}/public/*"].each {|file| FileUtils.cp_r file, path }
+      end
+      
+      def compress_assets
+        yui_compressor = File.expand_path("#{File.dirname(__FILE__)}/../../vendor/yui-compressor/yuicompressor-2.4.2.jar")
+        
+        Smeg.log.info "Compressing javascript and stylesheets..."
+        Dir["#{path}/**/*.{js,css}"].each do |asset|
+          system "java -jar #{yui_compressor} #{File.expand_path(asset)} -o #{File.expand_path(asset)}"
+        end
       end
       
       def generate_css_from_less
