@@ -9,8 +9,7 @@ module Smeg
   
   class DevelopmentServer < Sinatra::Base
     get '/' do
-      @page = Page.find("index")
-      @page.render
+      Page.find("index").render
     end
     
     get '/*' do
