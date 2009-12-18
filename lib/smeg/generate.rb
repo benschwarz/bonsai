@@ -19,7 +19,7 @@ module Smeg
     end
   
     def copy_templates
-      FileUtils.cp("#{templates}/base.less", File.join(@path, "docs", "css"))
+      FileUtils.cp("#{templates}/base.less", File.join(@path, "public", "docs", "css"))
       FileUtils.cp("#{templates}/.htaccess", File.join(@path, "public"))
     end
   end

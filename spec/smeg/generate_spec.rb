@@ -8,7 +8,7 @@ describe Smeg::Generate do
     
     it "should create base directories" do
       %w(content templates templates/partials public public/docs public/docs/css public/docs/js).each do |dir|
-        File.directory?("#{@path}#{dir}").should be_true
+        File.directory?("#{@path}/#{dir}").should be_true
       end
     end
     
@@ -17,7 +17,7 @@ describe Smeg::Generate do
     end
     
     it "should copy the base.less file" do
-      File.exists?("#{@path}/docs/css/base.less").should be_true
+      File.exists?("#{@path}/public/docs/css/base.less").should be_true
     end
   end
 end
