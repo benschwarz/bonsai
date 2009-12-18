@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
-  s.date = %q{2009-12-14}
+  s.date = %q{2009-12-18}
   s.default_executable = %q{smeg}
   s.description = %q{A static site generator that uses the best toolset available}
   s.email = %q{ben.schwarz@gmail.com}
@@ -27,15 +27,21 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "benchmark/associations.rb",
+     "bin/smeg",
      "lib/smeg.rb",
      "lib/smeg/exporter.rb",
+     "lib/smeg/generate.rb",
      "lib/smeg/navigation.rb",
      "lib/smeg/page.rb",
      "lib/smeg/page_presenter.rb",
      "lib/smeg/template.rb",
+     "lib/smeg/templates/.htaccess",
+     "lib/smeg/templates/Rakefile",
+     "lib/smeg/templates/base.less",
      "lib/smeg/webserver.rb",
      "smeg.gemspec",
      "spec/smeg/exporter_spec.rb",
+     "spec/smeg/generate_spec.rb",
      "spec/smeg/navigation_spec.rb",
      "spec/smeg/page_presenter_spec.rb",
      "spec/smeg/page_spec.rb",
@@ -64,7 +70,8 @@ Gem::Specification.new do |s|
      "spec/support/public/stylesheets/broken.css",
      "spec/support/public/stylesheets/broken.less",
      "spec/support/templates/demo-template.mustache",
-     "spec/support/templates/partials/inserted.mustache"
+     "spec/support/templates/partials/inserted.mustache",
+     "vendor/yui-compressor/yuicompressor-2.4.2.jar"
   ]
   s.homepage = %q{http://github.com/benschwarz/smeg}
   s.rdoc_options = ["--charset=UTF-8"]
