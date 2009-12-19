@@ -4,16 +4,16 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{smeg}
+  s.name = %q{bonsai}
   s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
-  s.date = %q{2009-12-18}
-  s.default_executable = %q{smeg}
+  s.date = %q{2009-12-19}
+  s.default_executable = %q{bonsai}
   s.description = %q{A static site generator that uses the best toolset available}
   s.email = %q{ben.schwarz@gmail.com}
-  s.executables = ["smeg"]
+  s.executables = ["bonsai"]
   s.extra_rdoc_files = [
     "LICENSE",
      "README.md"
@@ -27,26 +27,6 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "benchmark/associations.rb",
-     "bin/smeg",
-     "lib/smeg.rb",
-     "lib/smeg/exporter.rb",
-     "lib/smeg/generate.rb",
-     "lib/smeg/navigation.rb",
-     "lib/smeg/page.rb",
-     "lib/smeg/page_presenter.rb",
-     "lib/smeg/template.rb",
-     "lib/smeg/templates/.htaccess",
-     "lib/smeg/templates/Rakefile",
-     "lib/smeg/templates/base.less",
-     "lib/smeg/webserver.rb",
-     "smeg.gemspec",
-     "spec/smeg/exporter_spec.rb",
-     "spec/smeg/generate_spec.rb",
-     "spec/smeg/navigation_spec.rb",
-     "spec/smeg/page_presenter_spec.rb",
-     "spec/smeg/page_spec.rb",
-     "spec/smeg/template_spec.rb",
-     "spec/smeg_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb",
      "spec/support/broken/content/broken_page/demo-template.yml",
@@ -66,26 +46,29 @@ Gem::Specification.new do |s|
      "spec/support/content/2.products/demo-template.yml",
      "spec/support/content/index/demo-template.yml",
      "spec/support/public/htaccess",
+     "spec/support/public/js/script.js",
      "spec/support/public/stylesheets/base.less",
      "spec/support/public/stylesheets/broken.css",
      "spec/support/public/stylesheets/broken.less",
      "spec/support/templates/demo-template.mustache",
      "spec/support/templates/partials/inserted.mustache",
+     "spec/tmp/public/.htaccess",
+     "spec/tmp/public/docs/css/base.less",
      "vendor/yui-compressor/yuicompressor-2.4.2.jar"
   ]
-  s.homepage = %q{http://github.com/benschwarz/smeg}
+  s.homepage = %q{http://github.com/benschwarz/bonsai}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}
   s.summary = %q{A static site generator that uses the best toolset available}
   s.test_files = [
-    "spec/smeg/exporter_spec.rb",
-     "spec/smeg/generate_spec.rb",
-     "spec/smeg/navigation_spec.rb",
-     "spec/smeg/page_presenter_spec.rb",
-     "spec/smeg/page_spec.rb",
-     "spec/smeg/template_spec.rb",
-     "spec/smeg_spec.rb",
+    "spec/bonsai/exporter_spec.rb",
+     "spec/bonsai/generate_spec.rb",
+     "spec/bonsai/navigation_spec.rb",
+     "spec/bonsai/page_presenter_spec.rb",
+     "spec/bonsai/page_spec.rb",
+     "spec/bonsai/template_spec.rb",
+     "spec/bonsai_spec.rb",
      "spec/spec_helper.rb"
   ]
 

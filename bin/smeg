@@ -1,4 +1,0 @@
-#!/usr/bin/env ruby
-require 'smeg'
-
-Smeg::Generate.new("#{Dir.pwd}/#{ARGV[0]}")

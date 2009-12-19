@@ -1,21 +1,21 @@
-require 'lib/smeg'
+require 'lib/bonsai'
 require 'benchmark'
 
-Smeg.root_dir = File.dirname(__FILE__) + "/../spec/support"
-Smeg.configure {|config| config[:enable_logging] = false }
+Bonsai.root_dir = File.dirname(__FILE__) + "/../spec/support"
+Bonsai.configure {|config| config[:enable_logging] = false }
 
-page = Smeg::Page.find("about-us/history")
+page = Bonsai::Page.find("about-us/history")
 
 Benchmark.bm do |b|
   b.report "all" do
     10_000.times do
-      Smeg::Page.all
+      Bonsai::Page.all
     end
   end
   
   b.report "find" do
     10_000.times do
-      Smeg::Page.find("about-us/history")
+      Bonsai::Page.find("about-us/history")
     end
   end
   

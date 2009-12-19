@@ -1,14 +1,14 @@
 require "#{File.dirname(__FILE__)}/../spec_helper"
 
-describe Smeg::Navigation do
+describe Bonsai::Navigation do
   it "should respond to tree" do
-    Smeg::Navigation.should respond_to :tree
+    Bonsai::Navigation.should respond_to :tree
   end
   
   before do
-    @tree = Smeg::Navigation.tree
-    @about = Smeg::Page.find("about-us")
-    @products = Smeg::Page.find("products")
+    @tree = Bonsai::Navigation.tree
+    @about = Bonsai::Page.find("about-us")
+    @products = Bonsai::Page.find("products")
   end
   
   it "should contain 2 items" do

@@ -1,9 +1,9 @@
 require "#{File.dirname(__FILE__)}/../spec_helper"
-describe Smeg::Generate do
+describe Bonsai::Generate do
   describe "generator" do
     before :all do
       @path = File.expand_path("spec/tmp/")
-      Smeg::Generate.new(@path)
+      Bonsai::Generate.new(@path)
     end
     
     it "should create base directories" do

@@ -1,4 +1,4 @@
-module Smeg
+module Bonsai
   class Template
     @@path = "templates"
     

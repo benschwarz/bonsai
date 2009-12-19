@@ -1,14 +1,14 @@
-# smeg
+# bonsai
 
-smeg is a dirty, little secret. it allows you to publish a static site using the most simple thing that could work.
+bonsai is a dirty, little secret. it allows you to publish a static site using the most simple thing that could work.
 
 ## Install
 
-    gem install smeg --source http://gemcutter.org
+    gem install bonsai --source http://gemcutter.org
 
 ## Generate a new site
 
-    smeg your/new/site
+    bonsai your/new/site
 
 ## Kicker file
 

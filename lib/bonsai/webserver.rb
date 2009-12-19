@@ -1,4 +1,4 @@
-module Smeg
+module Bonsai
   class StaticPassThrough < Rack::Static
     def call(env)
       result = super

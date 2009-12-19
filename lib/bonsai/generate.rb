@@ -1,4 +1,4 @@
-module Smeg
+module Bonsai
   class Generate  
     def initialize(path)
       @path = path

@@ -4,13 +4,13 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "smeg"
+    gem.name = "bonsai"
     gem.summary = %Q{A static site generator that uses the best toolset available}
     gem.description = %Q{A static site generator that uses the best toolset available}
     gem.email = "ben.schwarz@gmail.com"
-    gem.homepage = "http://github.com/benschwarz/smeg"
+    gem.homepage = "http://github.com/benschwarz/bonsai"
     gem.authors = ["Ben Schwarz"]
-    gem.executables = ['smeg']
+    gem.executables = ['bonsai']
     gem.add_development_dependency "rspec", ">= 1.2.9"
     gem.add_development_dependency "yard", ">= 0"
     gem.add_development_dependency "fakefs"
