@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+require 'optparse'
+require 'bonsai'
+
+opts = OptionParser.new do |opts|
+  opts.banner <<-BANNER
+  bonsai is a static site generator that kicks ass
+  
+  
+  BANNER
+  
+  opts.on("create") do
+    Bonsai::Generate.new("#{Dir.pwd}/#{ARGV[0]}")
+  end
+end
+
