@@ -1,3 +1,4 @@
+$KCODE = "U"
 require 'rubygems'
 require 'rake'
 
@@ -18,6 +19,17 @@ begin
     gem.add_dependency "thin", ">= 1.0.0"
     gem.add_dependency "kicker", ">= 2.2.0"
     gem.add_dependency "sinatra", ">= 0.9.4"
+    
+    gem.post_install_message = %q{
+
+      盆栽
+      bonsai, tiny and beautiful
+      
+      
+      
+      type `bonsai --help` to get started
+    }
+    
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
