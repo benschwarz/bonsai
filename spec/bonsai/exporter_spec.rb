@@ -21,7 +21,7 @@ describe Bonsai::Exporter do
     end
         
     it "should log an error when badly formatted less is supplied (and not raise an exception)" do
-      Bonsai.log.should_receive(:error)
+      Bonsai.should_receive(:log)
       lambda { Bonsai::Exporter.send(:generate_css_from_less) }.should_not raise_error(Less::SyntaxError)
     end
   end
