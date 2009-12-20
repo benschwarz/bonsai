@@ -9,4 +9,8 @@ describe Bonsai do
     Bonsai.root_dir = "spec/support"
     Bonsai.root_dir.should == "spec/support"
   end
+  
+  it "should know the version" do
+    Bonsai.version.should =~ /\d+.\d+.\d+/
+  end
 end

@@ -41,6 +41,10 @@ module Bonsai
     def configure(&block)
       yield @@config
     end
+    
+    def version
+      File.read("#{File.dirname(__FILE__)}/../VERSION")
+    end
   end
 end
 
