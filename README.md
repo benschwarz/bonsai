@@ -2,9 +2,21 @@
 
 Bonsai is a static web site generator, it uses the best tools available for site construction and adheres to best web practices.
 
+## Getting started
+
+  * Install bonsai 
+  
+    `gem install bonsai --source http://gemcutter.org`
+  
+  * Run the generator
+    
+    `bonsai --plant [NAME]`
+    
+Type `bonsai --help` for any help with commands
+
 ## Development server
 
-Unlike other static generators, bonsai provides you with a built in web server. Once you've generated the necessary files (generator included) you can simply start developing. Type `kicker` in the root of the generated site, a web server (rack, with thin) will start up. 
+Unlike other static generators, bonsai provides you with a built in web server. Once you've generated the necessary files (generator included) you can simply start developing. Type `bonsai --cultivate` in the root of the generated site, a web server (rack, with thin) will start up. 
 
 It will also watch for when you save files - taking care of processing your [lesscss](http://lesscss.org/) files - kind of like [autotest](http://www.zenspider.com/ZSS/Products/ZenTest/).
 
@@ -30,13 +42,6 @@ Yes. I built (and content filled) a web site with around 160 pages in 5 days.
 
 When I found something that didn't quite work, was too slow or perhaps not even possible I wrote a spec and implemented it later. Better software from real requirements. (I used every feature I implemented)
 
-## Install
-
-    gem install bonsai --source http://gemcutter.org
-
-## Generate a new site
-
-    bonsai your/new/site
 
 ## Thanks
   
