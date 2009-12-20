@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bonsai}
-  s.version = "0.0.1"
+  s.version = "1.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
-  s.date = %q{2009-12-19}
+  s.date = %q{2009-12-21}
   s.default_executable = %q{bonsai}
   s.description = %q{A static site generator that uses the best toolset available}
   s.email = %q{ben.schwarz@gmail.com}
@@ -27,6 +27,26 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "benchmark/associations.rb",
+     "bin/bonsai",
+     "bonsai.gemspec",
+     "lib/bonsai.rb",
+     "lib/bonsai/exporter.rb",
+     "lib/bonsai/generate.rb",
+     "lib/bonsai/navigation.rb",
+     "lib/bonsai/page.rb",
+     "lib/bonsai/page_presenter.rb",
+     "lib/bonsai/template.rb",
+     "lib/bonsai/templates/.htaccess",
+     "lib/bonsai/templates/Rakefile",
+     "lib/bonsai/templates/base.less",
+     "lib/bonsai/webserver.rb",
+     "spec/bonsai/exporter_spec.rb",
+     "spec/bonsai/generate_spec.rb",
+     "spec/bonsai/navigation_spec.rb",
+     "spec/bonsai/page_presenter_spec.rb",
+     "spec/bonsai/page_spec.rb",
+     "spec/bonsai/template_spec.rb",
+     "spec/bonsai_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb",
      "spec/support/broken/content/broken_page/demo-template.yml",
