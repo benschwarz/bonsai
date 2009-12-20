@@ -28,6 +28,7 @@ opts = OptionParser.new do |opts|
     
     # Man who watch over bonsai (This will never get old)
     sensei = DirectoryWatcher.new(Bonsai.root_dir, :glob => "./{content,public,templates}/**/*")
+    sensei.interval = 60
     sensei.add_observer { Bonsai::Exporter.process! }
     sensei.start
     
