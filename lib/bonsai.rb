@@ -17,21 +17,15 @@ module Bonsai
   
     def root_dir=(path)
       @@root_dir = path
-      log.info "Exporting to #{path}/output"
+      log "Exporting to #{path}/output"
       
       Exporter.path = "#{path}/output"
       Page.path = "#{path}/content"
       Template.path = "#{path}/templates"
     end
-  
-    # Log for info, debug, error and warn with:
-    # 
-    #   Bonsai.log.info "message"
-    #   Bonsai.log.debug "message"
-    #   Bonsai.log.error "message"
-    #   Bonsai.log.warn "message"
-    def log
-      @@log ||= Logger.new(config[:enable_logging] ? $stdout : "/dev/null")
+    
+    def log(message)
+      puts message if @@config[:enable_logging]
     end
   
     def config

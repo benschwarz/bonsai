@@ -26,22 +26,20 @@ module Bonsai
       
       protected 
       def teardown
-        Bonsai.log.debug "Removing directory: #{path}"
         FileUtils.rm_rf path
       end
 
       def setup
-        Bonsai.log.debug "Creating directory"
         FileUtils.mkdir_p path
       end
       
       def write_index
-        Bonsai.log.debug "Writing Index"
+        Bonsai.log "Writing Index"
         File.open("#{path}/index.html", "w") {|file| file.write(Page.find("index").render)}
       end
       
       def write_pages
-        Bonsai.log.info "Writing pages..."
+        Bonsai.log "Writing pages"
         Page.all.each do |page|
           FileUtils.mkdir_p("#{path}#{page.permalink}")
           File.open("#{path}#{page.write_path}", "w"){|file| file.write(page.render) }
@@ -49,7 +47,7 @@ module Bonsai
       end
       
       def copy_assets
-        Bonsai.log.info "Copying images..."
+        Bonsai.log "Copying images"
         Page.all.each do |page|
           page.assets.each do |asset|      
             # Create the path to the asset by the export path of the page + File.dirname(asset permalink)
@@ -64,14 +62,14 @@ module Bonsai
       def copy_public
         generate_css_from_less
         
-        Bonsai.log.debug "Copying public files"
+        Bonsai.log "Copying public files"
         Dir["#{Bonsai.root_dir}/public/*"].each {|file| FileUtils.cp_r file, path }
       end
       
       def compress_assets
         yui_compressor = File.expand_path("#{File.dirname(__FILE__)}/../../vendor/yui-compressor/yuicompressor-2.4.2.jar")
         
-        Bonsai.log.info "Compressing javascript and stylesheets..."
+        Bonsai.log "Compressing javascript and stylesheets..."
         Dir["#{path}/**/*.{js,css}"].each do |asset|
           system "java -jar #{yui_compressor} #{File.expand_path(asset)} -o #{File.expand_path(asset)}"
         end
@@ -85,7 +83,7 @@ module Bonsai
           File.open(path, "w") {|file| file.write(css) }
         end
       rescue Less::SyntaxError => exception
-        Bonsai.log.error "LessCSS Syntax error\n\n#{exception.message}"
+        Bonsai.log "LessCSS Syntax error\n\n#{exception.message}"
       end
     end
   end
