@@ -77,6 +77,15 @@ Gem::Specification.new do |s|
      "vendor/yui-compressor/yuicompressor-2.4.2.jar"
   ]
   s.homepage = %q{http://github.com/benschwarz/bonsai}
+  s.post_install_message = %q{
+
+      盆栽
+      bonsai, tiny and beautiful
+      
+      
+      
+      type `bonsai --help` to get started
+    }
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}
