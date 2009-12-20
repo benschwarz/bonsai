@@ -1,0 +1,61 @@
+#!/usr/bin/env ruby -KU
+
+require 'optparse'
+require 'directory_watcher'
+require 'bonsai'
+
+banner = %q{
+  
+  盆栽
+  bonsai, tiny and beautiful
+  
+}
+
+opts = OptionParser.new do |opts|
+  opts.banner = banner
+  
+  opts.on("--plant [NAME]", "creates the directory structure for your site") do |name|
+    Bonsai::Generate.new("#{Dir.pwd}/#{name}")
+  end
+  
+  opts.on("--repot", "export your site to #{Dir.pwd}/output") do
+    Bonsai.root_dir = Dir.pwd
+    Bonsai::Exporter.publish!
+  end
+  
+  opts.on("--cultivate", "run a local web server and process your files on save") do
+    Bonsai.root_dir = Dir.pwd
+    
+    # Man who watch over bonsai (This will never get old)
+    sensei = DirectoryWatcher.new(Bonsai.root_dir, :glob => "./{content,public,templates}/**/*")
+    sensei.interval = 60
+    sensei.add_observer { Bonsai::Exporter.process! }
+    sensei.start
+    
+    process = fork {
+      app = Rack::Builder.app {
+        use Bonsai::StaticPassThrough, :root => Bonsai.root_dir + "/output", :urls => ["/"]
+        run Bonsai::DevelopmentServer
+      }
+      Rack::Handler::Thin.run(app, :Port => 5000)
+    }
+    
+    trap("SIGINT") do
+      Process.kill("QUIT", process)
+      exit
+    end
+    
+    loop { sleep 3600 }
+  end
+  
+  opts.on("--version") do
+    Bonsai.log "Version: #{Bonsai.version}"
+  end
+end
+
+if ARGV.size == 0
+  puts "grow a tiny tree. \ntype --help for a command list"
+  exit 1
+end
+
+opts.parse!

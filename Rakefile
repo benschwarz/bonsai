@@ -1,16 +1,17 @@
+$KCODE = "U"
 require 'rubygems'
 require 'rake'
 
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "smeg"
+    gem.name = "bonsai"
     gem.summary = %Q{A static site generator that uses the best toolset available}
     gem.description = %Q{A static site generator that uses the best toolset available}
     gem.email = "ben.schwarz@gmail.com"
-    gem.homepage = "http://github.com/benschwarz/smeg"
+    gem.homepage = "http://github.com/benschwarz/bonsai"
     gem.authors = ["Ben Schwarz"]
-    gem.executables = ['smeg']
+    gem.executables = ['bonsai']
     gem.add_development_dependency "rspec", ">= 1.2.9"
     gem.add_development_dependency "yard", ">= 0"
     gem.add_development_dependency "fakefs"
@@ -18,6 +19,17 @@ begin
     gem.add_dependency "thin", ">= 1.0.0"
     gem.add_dependency "kicker", ">= 2.2.0"
     gem.add_dependency "sinatra", ">= 0.9.4"
+    
+    gem.post_install_message = %q{
+
+      盆栽
+      bonsai, tiny and beautiful
+      
+      
+      
+      type `bonsai --help` to get started
+    }
+    
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new

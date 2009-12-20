@@ -1,6 +1,6 @@
 require 'fileutils'
 
-module Smeg
+module Bonsai
   class Exporter
     @@path = "output"
     
@@ -26,22 +26,20 @@ module Smeg
       
       protected 
       def teardown
-        Smeg.log.debug "Removing directory: #{path}"
         FileUtils.rm_rf path
       end
 
       def setup
-        Smeg.log.debug "Creating directory"
         FileUtils.mkdir_p path
       end
       
       def write_index
-        Smeg.log.debug "Writing Index"
+        Bonsai.log "Writing Index"
         File.open("#{path}/index.html", "w") {|file| file.write(Page.find("index").render)}
       end
       
       def write_pages
-        Smeg.log.info "Writing pages..."
+        Bonsai.log "Writing pages"
         Page.all.each do |page|
           FileUtils.mkdir_p("#{path}#{page.permalink}")
           File.open("#{path}#{page.write_path}", "w"){|file| file.write(page.render) }
@@ -49,7 +47,7 @@ module Smeg
       end
       
       def copy_assets
-        Smeg.log.info "Copying images..."
+        Bonsai.log "Copying images"
         Page.all.each do |page|
           page.assets.each do |asset|      
             # Create the path to the asset by the export path of the page + File.dirname(asset permalink)
@@ -64,28 +62,28 @@ module Smeg
       def copy_public
         generate_css_from_less
         
-        Smeg.log.debug "Copying public files"
-        Dir["#{Smeg.root_dir}/public/*"].each {|file| FileUtils.cp_r file, path }
+        Bonsai.log "Copying public files"
+        Dir["#{Bonsai.root_dir}/public/*"].each {|file| FileUtils.cp_r file, path }
       end
       
       def compress_assets
         yui_compressor = File.expand_path("#{File.dirname(__FILE__)}/../../vendor/yui-compressor/yuicompressor-2.4.2.jar")
         
-        Smeg.log.info "Compressing javascript and stylesheets..."
+        Bonsai.log "Compressing javascript and stylesheets..."
         Dir["#{path}/**/*.{js,css}"].each do |asset|
           system "java -jar #{yui_compressor} #{File.expand_path(asset)} -o #{File.expand_path(asset)}"
         end
       end
       
       def generate_css_from_less
-        Dir["#{Smeg.root_dir}/public/**/*.less"].each do |lessfile|
+        Dir["#{Bonsai.root_dir}/public/**/*.less"].each do |lessfile|
           css = File.open(lessfile) {|f| Less::Engine.new(f) }.to_css
           path = "#{File.dirname(lessfile)}/#{File.basename(lessfile, ".less")}.css"
           
           File.open(path, "w") {|file| file.write(css) }
         end
       rescue Less::SyntaxError => exception
-        Smeg.log.error "LessCSS Syntax error\n\n#{exception.message}"
+        Bonsai.log "LessCSS Syntax error\n\n#{exception.message}"
       end
     end
   end

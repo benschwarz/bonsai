@@ -1,9 +1,9 @@
 require "#{File.dirname(__FILE__)}/../spec_helper"
 
-describe Smeg::PagePresenter do
+describe Bonsai::PagePresenter do
   before :all do
-    @page = Smeg::Page.find("about-us/history")
-    @pp = Smeg::PagePresenter.new(@page)
+    @page = Bonsai::Page.find("about-us/history")
+    @pp = Bonsai::PagePresenter.new(@page)
   end
   
   it "should have a name" do

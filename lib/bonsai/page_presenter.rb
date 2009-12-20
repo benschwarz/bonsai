@@ -1,4 +1,4 @@
-module Smeg
+module Bonsai
   class PagePresenter < Mustache
     attr_reader :page
     
@@ -10,7 +10,7 @@ module Smeg
     end
         
     def navigation
-      @navigation ||= Smeg::Navigation.tree.map{|p| p.to_shallow_hash }
+      @navigation ||= Bonsai::Navigation.tree.map{|p| p.to_shallow_hash }
     end
     
     def children

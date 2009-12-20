@@ -6,7 +6,7 @@ require 'logger'
 require 'sinatra'
 require 'less'
 
-module Smeg
+module Bonsai
   @@root_dir = nil
   @@config = { :enable_logging => true }
 
@@ -17,21 +17,15 @@ module Smeg
   
     def root_dir=(path)
       @@root_dir = path
-      log.info "Exporting to #{path}/output"
+      log "Exporting to #{path}/output"
       
       Exporter.path = "#{path}/output"
       Page.path = "#{path}/content"
       Template.path = "#{path}/templates"
     end
-  
-    # Log for info, debug, error and warn with:
-    # 
-    #   Smeg.log.info "message"
-    #   Smeg.log.debug "message"
-    #   Smeg.log.error "message"
-    #   Smeg.log.warn "message"
-    def log
-      @@log ||= Logger.new(config[:enable_logging] ? $stdout : "/dev/null")
+    
+    def log(message)
+      puts message if @@config[:enable_logging]
     end
   
     def config
@@ -41,7 +35,11 @@ module Smeg
     def configure(&block)
       yield @@config
     end
+    
+    def version
+      File.read("#{File.dirname(__FILE__)}/../VERSION")
+    end
   end
 end
 
-Dir["#{File.dirname(__FILE__)}/smeg/*.rb"].each {|f| require f }
+Dir["#{File.dirname(__FILE__)}/bonsai/*.rb"].each {|f| require f }

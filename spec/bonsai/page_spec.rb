@@ -1,17 +1,17 @@
 require "#{File.dirname(__FILE__)}/../spec_helper"
 
-describe Smeg::Page do
+describe Bonsai::Page do
   it "should respond to all" do
-    Smeg::Page.should respond_to :all
+    Bonsai::Page.should respond_to :all
   end
   
   it "should contain pages" do
-    Smeg::Page.all.first.should be_an_instance_of(Smeg::Page)
+    Bonsai::Page.all.first.should be_an_instance_of(Bonsai::Page)
   end
   
   describe "instance" do
     before :all do
-      @page = Smeg::Page.find("about-us/history")
+      @page = Bonsai::Page.find("about-us/history")
     end
     
     it "should have a slug" do
@@ -27,7 +27,7 @@ describe Smeg::Page do
     end
     
     it "should remove numbers over 10 from the permalink" do
-      Smeg::Page.find("many-pages").permalink.should == "/many-pages"
+      Bonsai::Page.find("many-pages").permalink.should == "/many-pages"
     end
     
     it "should have a write_path" do
@@ -35,14 +35,14 @@ describe Smeg::Page do
     end
     
     it "should respond to disk path" do
-      @page.disk_path.should == "#{Smeg.root_dir}/content/1.about-us/history/demo-template.yml"
+      @page.disk_path.should == "#{Bonsai.root_dir}/content/1.about-us/history/demo-template.yml"
     end
     
     it "should have images" do
       @page.images.should be_an_instance_of(Array)
       @page.images.first[:name].should == "image001.jpg"
       @page.images.first[:path].should == "/about-us/history/images/image001.jpg"
-      @page.images.first[:disk_path].should == "#{Smeg.root_dir}/content/1.about-us/history/images/image001.jpg"
+      @page.images.first[:disk_path].should == "#{Bonsai.root_dir}/content/1.about-us/history/images/image001.jpg"
     end
     
     it "should have assets" do
@@ -51,16 +51,16 @@ describe Smeg::Page do
     end
     
     it "should be equal" do
-      Smeg::Page.find("about-us").should == Smeg::Page.find("about-us")
+      Bonsai::Page.find("about-us").should == Bonsai::Page.find("about-us")
     end
     
     describe "relationships" do
       before :all do
-        @index = Smeg::Page.find("index")
-        @about = Smeg::Page.find("about-us")
-        @history = Smeg::Page.find("about-us/history")   
-        @contact = Smeg::Page.find("about-us/contact")
-        @child = Smeg::Page.find("about-us/history/child")
+        @index = Bonsai::Page.find("index")
+        @about = Bonsai::Page.find("about-us")
+        @history = Bonsai::Page.find("about-us/history")   
+        @contact = Bonsai::Page.find("about-us/contact")
+        @child = Bonsai::Page.find("about-us/history/child")
       end
       
       it "should have siblings" do
@@ -103,7 +103,7 @@ describe Smeg::Page do
     end    
     
     it "should have a template" do
-      @page.template.should be_an_instance_of(Smeg::Template)
+      @page.template.should be_an_instance_of(Bonsai::Template)
     end
     
     it "should to_hash to its variables" do
@@ -131,15 +131,15 @@ describe Smeg::Page do
     
     describe "broken page" do
       before do
-        Smeg::Page.path = "spec/support/broken/content"
+        Bonsai::Page.path = "spec/support/broken/content"
       end
       
       it "should exist" do
-        Smeg::Page.find("page").should be_an_instance_of(Smeg::Page)
+        Bonsai::Page.find("page").should be_an_instance_of(Bonsai::Page)
       end
       
       it "should error gracefully" do
-        lambda { Smeg::Page.find("page").render }.should_not raise_error(ArgumentError)
+        lambda { Bonsai::Page.find("page").render }.should_not raise_error(ArgumentError)
       end
     end
   end

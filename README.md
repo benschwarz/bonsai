@@ -1,21 +1,21 @@
-# smeg
+# bonsai
 
-Smeg is a static web site generator, it uses the best tools available for site construction and adheres to best web practices.
+Bonsai is a static web site generator, it uses the best tools available for site construction and adheres to best web practices.
 
 ## Development server
 
-Unlike other static generators, smeg provides you with a built in web server. Once you've generated the necessary files (generator included) you can simply start developing. Type `kicker` in the root of the generated site, a web server (rack, with thin) will start up. 
+Unlike other static generators, bonsai provides you with a built in web server. Once you've generated the necessary files (generator included) you can simply start developing. Type `kicker` in the root of the generated site, a web server (rack, with thin) will start up. 
 
 It will also watch for when you save files - taking care of processing your [lesscss](http://lesscss.org/) files - kind of like [autotest](http://www.zenspider.com/ZSS/Products/ZenTest/).
 
 ## Production server
 
-This is the cool part. Drop a smeg generated site under pretty much anything. Apache, Nginx, Lighttpd - I don't care.
+This is the cool part. Drop a bonsai generated site under pretty much anything. Apache, Nginx, Lighttpd - I don't care.
 
 The generator will provide you with a .htaccess file that will turn on gzip/deflate compression for static assets as well as set long standing http caching timestamps and etags.
 
 ### Deployment
-  * Run `rake smeg:export`
+  * Run `bonsai --repot`
   * Upload the contents of `site-root/output` to your producton server
 
 ## Technology used to make your site better
@@ -32,15 +32,11 @@ When I found something that didn't quite work, was too slow or perhaps not even 
 
 ## Install
 
-    gem install smeg --source http://gemcutter.org
+    gem install bonsai --source http://gemcutter.org
 
 ## Generate a new site
 
-    smeg your/new/site
-
-## Kicker file
-
-    https://gist.github.com/e06ca841f4e4ee278c96
+    bonsai your/new/site
 
 ## Thanks
   

@@ -1,4 +1,4 @@
-module Smeg
+module Bonsai
   class Page    
     class NotFound < StandardError; end;
     class PropertyNotFound < StandardError; end
@@ -9,7 +9,7 @@ module Smeg
       
       def path; @@path; end
       def path=(path)
-        Smeg.log.info "Reading content from #{path}/content"
+        Bonsai.log "Reading content from #{path}"
         @@path = path
       end
       
@@ -112,7 +112,7 @@ module Smeg
     def _content
       @_content ||= _content!
     rescue ArgumentError
-      Smeg.log.error "Page '#{permalink}' has badly formatted content"
+      Bonsai.log "Page '#{permalink}' has badly formatted content"
     end
     
     def to_hash
