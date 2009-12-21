@@ -1,14 +1,11 @@
 require 'yaml'
 
 module Bonsai
-  class Page    
+  class Page
     class NotFound < StandardError; end;
     class PropertyNotFound < StandardError; end
     
-    class << self
-      @@pages = {}
-      @@page = {}
-      
+    class << self    
       def path; @@path; end
       def path=(path)
         Bonsai.log "Reading content from #{path}"
@@ -16,17 +13,10 @@ module Bonsai
       end
       
       def all(dir_path = path, pattern = "*/**")
-        @@pages[dir_path + pattern] ||= Dir["#{dir_path}/#{pattern}/*.yml"].map {|p| 
-          Page.new p
-        }
+        Dir["#{dir_path}/#{pattern}/*.yml"].map {|p| Page.new p }
       end
       
       def find(permalink)
-        @@page[permalink] ||= find!(permalink)
-      end
-      
-      private
-      def find!(permalink)
         search_path = permalink.gsub("/", "/*")
         disk_path = Dir["#{path}/*#{search_path}/*.yml"]
         if disk_path.any?
@@ -39,8 +29,13 @@ module Bonsai
     
     attr_reader :disk_path
     
-    def initialize(path); @disk_path = path; end
-    def slug; @slug ||= permalink.split('/').pop; end
+    def initialize(path)
+      @disk_path = path
+    end
+    
+    def slug
+      permalink.split('/').pop
+    end
     
     def name
       slug.gsub(/\W/, " ").gsub(/\d\./, '').gsub(/^\w/){$&.upcase}
@@ -55,11 +50,11 @@ module Bonsai
     end
     
     def template
-      @template ||= Template.find(template_name)
+      Template.find(template_name)
     end
     
     def images
-      @images ||= Dir["#{directory}/images/*.{jpg,gif,png}"].map do |p| 
+      Dir["#{directory}/images/*.{jpg,gif,png}"].map do |p| 
         {
           :name       => File.basename(p),
           :path       => web_path(p),
@@ -70,7 +65,7 @@ module Bonsai
     
     # This method is used for the exporter to copy assets
     def assets
-      @assets ||= Dir["#{directory}/**/*"].select{|p| !File.directory?(p) && !File.basename(p).include?("yml") }.map do |a|
+      Dir["#{directory}/**/*"].select{|p| !File.directory?(p) && !File.basename(p).include?("yml") }.map do |a|
         {
           :name       => File.basename(a),
           :path       => web_path(a),
@@ -98,40 +93,6 @@ module Bonsai
     end
     
     def ancestors
-      @ancestors ||= ancestors!
-    end
-    
-    def ==(other)
-      self.permalink == other.permalink
-    end
-    
-    def render
-      PagePresenter.new(self).render
-    rescue => stack
-      raise "Issue rendering #{permalink}\n\n#{stack}"
-    end
-    
-    def _content
-      @_content ||= _content!
-    rescue ArgumentError
-      Bonsai.log "Page '#{permalink}' has badly formatted content"
-    end
-    
-    def to_hash
-      @to_hash ||= to_hash!
-    end
-    
-    def to_shallow_hash
-      {
-        :permalink  => permalink,
-        :slug       => slug,
-        :name       => name,
-        :images     => images
-      }.merge(_content)
-    end
-    
-    private
-    def ancestors!
       ancestors = []
       # Remove leading slash
       page_ref = permalink.gsub(/^\//, '')
@@ -145,7 +106,23 @@ module Bonsai
       ancestors.compact.reverse
     end
     
-    def to_hash!
+    def ==(other)
+      self.permalink == other.permalink
+    end
+    
+    def render
+      PagePresenter.new(self).render
+    rescue => stack
+      raise "Issue rendering #{permalink}\n\n#{stack}"
+    end
+    
+    def _content
+      YAML::load(File.read(@disk_path)) || {}
+    rescue ArgumentError
+      Bonsai.log "Page '#{permalink}' has badly formatted content"
+    end
+    
+    def to_hash
       {
         :parent     => parent.nil? ? nil : parent.to_shallow_hash,
         :children   => children.map{|p| p.to_hash },
@@ -154,10 +131,16 @@ module Bonsai
       }.merge(to_shallow_hash)
     end
     
-    def _content!
-      YAML::load(File.read(@disk_path)) || {}
+    def to_shallow_hash
+      {
+        :permalink  => permalink,
+        :slug       => slug,
+        :name       => name,
+        :images     => images
+      }.merge(_content)
     end
     
+    private
     def directory
       @disk_path.split("/")[0..-2].join("/")
     end

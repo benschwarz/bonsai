@@ -12,19 +12,19 @@ module Bonsai
     end
         
     def navigation
-      @navigation ||= Bonsai::Navigation.tree.map{|p| p.to_shallow_hash }
+      Bonsai::Navigation.tree.map{|p| p.to_shallow_hash }
     end
     
     def children
-      @children ||= page.children.map{|p| p.to_hash }
+      page.children.map{|p| p.to_hash }
     end
     
     def siblings
-      @siblings ||= page.siblings.map{|p| p.to_shallow_hash }
+      page.siblings.map{|p| p.to_shallow_hash }
     end
     
     def parent
-      @parent ||= page.parent.nil? ? nil : @page.parent.to_shallow_hash
+      page.parent.nil? ? nil : @page.parent.to_shallow_hash
     end
     
     # Catch anything that wasn't picked up by local methods

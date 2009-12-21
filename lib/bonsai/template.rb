@@ -27,7 +27,7 @@ module Bonsai
     end
     
     def read
-      @template ||= File.read(@disk_path)
+      File.read(@disk_path)
     end
   end
 end
