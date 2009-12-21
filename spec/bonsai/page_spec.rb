@@ -141,9 +141,13 @@ describe Bonsai::Page do
       end
 
       describe "boolean" do
-        it "should have a magic? method to tell if there are any magic files for this page"
-        it "should be true"
-        it "should be false"
+        it "should be true" do
+          @page.magic?.should be_true
+        end
+        
+        it "should be false" do
+          @page.wizardly?.should be_false
+        end
       end
     end
     

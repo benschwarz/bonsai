@@ -142,6 +142,7 @@ module Bonsai
       
     def method_missing(message)
       return content[message] if content.has_key? message
+      return on_disk?(message.to_s.gsub(/\?$/, '')) if message.to_s =~ /\?$/
       map_to_disk(message)
     end
     
@@ -156,6 +157,10 @@ module Bonsai
     
     def web_path(path)
       path.gsub(self.class.path, '').gsub(/\/\d+\./, '/')
+    end
+    
+    def on_disk?(path)
+      Dir.glob("#{File.dirname(disk_path)}/#{path}/*").any?
     end
     
     def map_to_disk(path)
