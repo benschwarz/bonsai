@@ -35,13 +35,14 @@ module Bonsai
       end
       
       def write_index
-        Bonsai.log "Writing Index"
+        Bonsai.log "Writing index"
         File.open("#{path}/index.html", "w") {|file| file.write(Page.find("index").render)}
       end
       
       def write_pages
         Bonsai.log "Writing pages"
         Page.all.each do |page|
+          Bonsai.log "\t Writing page - #{page.permalink}"
           FileUtils.mkdir_p("#{path}#{page.permalink}")
           File.open("#{path}#{page.write_path}", "w"){|file| file.write(page.render) }
         end
