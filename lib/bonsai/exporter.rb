@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'less'
 
 module Bonsai
   class Exporter

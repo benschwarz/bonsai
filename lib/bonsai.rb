@@ -1,10 +1,8 @@
 require 'rubygems'
-require 'yaml'
-require 'mustache'
 require 'fileutils'
 require 'logger'
-require 'sinatra'
-require 'less'
+
+$LOAD_PATH << "#{File.dirname(__FILE__)}/bonsai"
 
 module Bonsai
   @@root_dir = nil
@@ -40,6 +38,13 @@ module Bonsai
       File.read("#{File.dirname(__FILE__)}/../VERSION")
     end
   end
+  
+  autoload :Page,               "page"
+  autoload :Exporter,           "exporter"
+  autoload :Template,           "template"
+  autoload :Generate,           "generate"
+  autoload :Navigation,         "navigation"
+  autoload :PagePresenter,      "page_presenter"
+  autoload :StaticPassThrough,  "webserver"
+  autoload :DevelopmentServer,  "webserver"
 end
-
-Dir["#{File.dirname(__FILE__)}/bonsai/*.rb"].each {|f| require f }

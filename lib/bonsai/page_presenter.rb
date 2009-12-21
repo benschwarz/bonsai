@@ -1,3 +1,5 @@
+require 'mustache'
+
 module Bonsai
   class PagePresenter < Mustache
     attr_reader :page

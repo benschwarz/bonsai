@@ -1,3 +1,5 @@
+require 'yaml'
+
 module Bonsai
   class Page    
     class NotFound < StandardError; end;
