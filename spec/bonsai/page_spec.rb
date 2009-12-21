@@ -107,8 +107,8 @@ describe Bonsai::Page do
     end
     
     it "should to_hash to its variables" do
-      @page._content[:page_title].should == "About our history"
-      @page._content[:page_title].should_not be_nil
+      @page.content[:page_title].should == "About our history"
+      @page.content[:page_title].should_not be_nil
     end
     
     describe "render" do
@@ -126,6 +126,24 @@ describe Bonsai::Page do
       
       it "should write in images" do
         @output.should include "image001.jpg"
+      end
+    end
+    
+    describe "method_missing magic" do
+      before :all do
+        @page = Bonsai::Page.find("about-us/history")
+      end
+      
+      it "should map its folders to magic variables" do
+        @page.magic.should be_an_instance_of(Array)
+        @page.magic.first.should be_an_instance_of(Hash)
+        @page.magic.size.should == 2
+      end
+
+      describe "boolean" do
+        it "should have a magic? method to tell if there are any magic files for this page"
+        it "should be true"
+        it "should be false"
       end
     end
     

@@ -43,20 +43,12 @@ describe Bonsai::PagePresenter do
   end
   
   it "should have the pages' content" do
-    @pp._content.should == @page._content
+    @pp.content.should == @page.content
   end
   
   describe "magic variables" do
-    it "should map its folders to magic variables" do
-      @pp.magic.should be_an_instance_of(Array)
-      @pp.magic.first.should be_an_instance_of(Hash)
-      @pp.magic.size.should == 2
-    end
-    
-    describe "boolean" do
-      it "should have a magic? method to tell if there are any magic files for this page"
-      it "should be true"
-      it "should be false"
+    it "should respond to magic" do
+      @pp.should respond_to :magic
     end
   end
 end

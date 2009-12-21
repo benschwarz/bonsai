@@ -116,7 +116,7 @@ module Bonsai
       raise "Issue rendering #{permalink}\n\n#{stack}"
     end
     
-    def _content
+    def content
       YAML::load(File.read(@disk_path)) || {}
     rescue ArgumentError
       Bonsai.log "Page '#{permalink}' has badly formatted content"
@@ -137,7 +137,12 @@ module Bonsai
         :slug       => slug,
         :name       => name,
         :images     => images
-      }.merge(_content)
+      }.merge(content)
+    end
+      
+    def method_missing(message)
+      return content[message] if content.has_key? message
+      map_to_disk(message)
     end
     
     private
@@ -151,6 +156,16 @@ module Bonsai
     
     def web_path(path)
       path.gsub(self.class.path, '').gsub(/\/\d+\./, '/')
+    end
+    
+    def map_to_disk(path)
+      Dir.glob("#{File.dirname(disk_path)}/#{path}/*").map do |path|
+        {
+          :name       => File.basename(path),
+          :path       => web_path(path),
+          :disk_path  => path
+        }
+      end
     end
   end
 end

@@ -29,9 +29,7 @@ module Bonsai
     
     # Catch anything that wasn't picked up by local methods
     def method_missing(message, *args, &block)
-      return page.send(message) if page.respond_to? message
-      return page._content[message] if page._content.has_key? message
-      map_to_disk(message)
+      return page.send(message)
     end
     
     # Hack to make the PagePresenter class believe that it really
@@ -40,17 +38,6 @@ module Bonsai
     # if nothing can be found.
     def respond_to?(message)
       true
-    end
-    
-    private
-    def map_to_disk(path)
-      Dir.glob("#{File.dirname(@page.disk_path)}/#{path}/*").map do |path|
-        {
-          :name       => File.basename(path),
-          :path       => @page.send(:web_path, path),
-          :disk_path  => path
-        }
-      end
     end
   end
 end
