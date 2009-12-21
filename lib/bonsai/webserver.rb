@@ -1,5 +1,3 @@
-require 'sinatra'
-
 module Bonsai
   class StaticPassThrough < Rack::Static
     def call(env)

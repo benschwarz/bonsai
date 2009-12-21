@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby -KU
 
 require 'optparse'
-require 'directory_watcher'
 require 'bonsai'
 
 banner = %q{
@@ -24,6 +23,10 @@ opts = OptionParser.new do |opts|
   end
   
   opts.on("--cultivate", "run a local web server and process your files on save") do
+    require 'rack'
+    require 'sinatra'
+    require 'directory_watcher'
+    
     Bonsai.root_dir = Dir.pwd
     
     # Man who watch over bonsai (This will never get old)
