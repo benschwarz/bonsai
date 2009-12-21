@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
      "bin/bonsai",
      "bonsai.gemspec",
      "lib/bonsai.rb",
+     "lib/bonsai/console.rb",
      "lib/bonsai/exporter.rb",
      "lib/bonsai/generate.rb",
      "lib/bonsai/navigation.rb",
@@ -40,6 +41,7 @@ Gem::Specification.new do |s|
      "lib/bonsai/templates/Rakefile",
      "lib/bonsai/templates/base.less",
      "lib/bonsai/webserver.rb",
+     "spec/bonsai/console_spec.rb",
      "spec/bonsai/exporter_spec.rb",
      "spec/bonsai/generate_spec.rb",
      "spec/bonsai/navigation_spec.rb",
@@ -91,7 +93,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.5}
   s.summary = %q{A static site generator that uses the best toolset available}
   s.test_files = [
-    "spec/bonsai/exporter_spec.rb",
+    "spec/bonsai/console_spec.rb",
+     "spec/bonsai/exporter_spec.rb",
      "spec/bonsai/generate_spec.rb",
      "spec/bonsai/navigation_spec.rb",
      "spec/bonsai/page_presenter_spec.rb",
@@ -113,6 +116,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<thin>, [">= 1.0.0"])
       s.add_runtime_dependency(%q<kicker>, [">= 2.2.0"])
       s.add_runtime_dependency(%q<sinatra>, [">= 0.9.4"])
+      s.add_runtime_dependency(%q<directory_watcher>, [">= 1.3.1"])
     else
       s.add_dependency(%q<rspec>, [">= 1.2.9"])
       s.add_dependency(%q<yard>, [">= 0"])
@@ -121,6 +125,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<thin>, [">= 1.0.0"])
       s.add_dependency(%q<kicker>, [">= 2.2.0"])
       s.add_dependency(%q<sinatra>, [">= 0.9.4"])
+      s.add_dependency(%q<directory_watcher>, [">= 1.3.1"])
     end
   else
     s.add_dependency(%q<rspec>, [">= 1.2.9"])
@@ -130,6 +135,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<thin>, [">= 1.0.0"])
     s.add_dependency(%q<kicker>, [">= 2.2.0"])
     s.add_dependency(%q<sinatra>, [">= 0.9.4"])
+    s.add_dependency(%q<directory_watcher>, [">= 1.3.1"])
   end
 end
 
