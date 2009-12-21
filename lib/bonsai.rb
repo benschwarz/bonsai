@@ -40,6 +40,7 @@ module Bonsai
   end
   
   autoload :Page,               "page"
+  autoload :Console,            "console"
   autoload :Exporter,           "exporter"
   autoload :Template,           "template"
   autoload :Generate,           "generate"
