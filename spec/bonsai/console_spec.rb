@@ -6,7 +6,7 @@ describe Bonsai::Console do
   end
   
   it "should start a new IRB session" do
-    IRB.should_receive(:new)
+    IRB.should_receive(:start)
     Bonsai::Console.new
   end
 end
