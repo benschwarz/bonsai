@@ -51,6 +51,11 @@ opts = OptionParser.new do |opts|
   opts.on("--version") do
     Bonsai.log "Version: #{Bonsai.version}"
   end
+  
+  opts.on("--console", "start an IRB console session giving you access to your bonsai environment") do
+    Bonsai.root_dir = Dir.pwd
+    Bonsai::Console.new
+  end
 end
 
 if ARGV.size == 0
