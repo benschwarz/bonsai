@@ -82,6 +82,8 @@ module Bonsai
       return nil if parent == self
       
       parent
+    rescue NotFound
+      nil
     end
     
     def siblings

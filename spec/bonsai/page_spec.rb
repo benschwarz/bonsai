@@ -131,6 +131,13 @@ describe Bonsai::Page do
       it "should write in images" do
         @output.should include "image001.jpg"
       end
+      
+      # Pages that use a structure yet have no parent page should still render
+      describe "page without parent" do
+        it "should render successfully" do
+          lambda { Bonsai::Page.find("legals/terms-and-conditions").render }.should_not raise_error
+        end
+      end
     end
     
     describe "to hash" do
