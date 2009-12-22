@@ -49,7 +49,7 @@ module Bonsai
       end
       
       def copy_assets
-        Bonsai.log "Copying images"
+        Bonsai.log "Copying page assets"
         Page.all.each do |page|
           page.assets.each do |asset|      
             # Create the path to the asset by the export path of the page + File.dirname(asset permalink)
