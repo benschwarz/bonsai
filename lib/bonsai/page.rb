@@ -4,6 +4,7 @@ module Bonsai
   class Page
     class NotFound < StandardError; end;
     class PropertyNotFound < StandardError; end
+    @@pages = {}
     
     class << self    
       def path; @@path; end
@@ -16,7 +17,12 @@ module Bonsai
         Dir["#{dir_path}/#{pattern}/*.yml"].map {|p| Page.new p }
       end
       
-      def find(permalink)
+      def find(permalink)        
+        @@pages[permalink] ||= find!(permalink)
+      end
+      
+      private
+      def find!(permalink)
         search_path = permalink.gsub("/", "/*")
         disk_path = Dir["#{path}/*#{search_path}/*.yml"]
         if disk_path.any?
@@ -53,16 +59,6 @@ module Bonsai
       Template.find(template_name)
     end
     
-    def images
-      Dir["#{directory}/images/*.{jpg,gif,png}"].map do |p| 
-        {
-          :name       => File.basename(p),
-          :path       => web_path(p),
-          :disk_path  => p
-        }
-      end
-    end
-    
     # This method is used for the exporter to copy assets
     def assets
       Dir["#{directory}/**/*"].select{|p| !File.directory?(p) && !File.basename(p).include?("yml") }.map do |a|
@@ -72,6 +68,10 @@ module Bonsai
           :disk_path  => a
         }
       end
+    end
+    
+    def floating?
+      !!(File.dirname(disk_path) =~ /\/[a-zA-z][\w-]+$/)
     end
     
     def parent
@@ -85,11 +85,11 @@ module Bonsai
     end
     
     def siblings
-      self.class.all(File.dirname(disk_path[/(.+)\/[^\/]*$/, 1]), "*")
+      self.class.all(File.dirname(disk_path[/(.+)\/[^\/]*$/, 1]), "*").delete_if{|p| p == self}
     end
     
     def children
-      self.class.all(File.dirname(disk_path), "*") - [self]
+      self.class.all(File.dirname(disk_path), "*").delete_if{|p| p.floating? }
     end
     
     def ancestors
@@ -122,31 +122,48 @@ module Bonsai
       Bonsai.log "Page '#{permalink}' has badly formatted content"
     end
     
+    # This hash is available to all templates, it will map common properties, 
+    # content file results, as well as any "magic" hashes for file 
+    # system contents
     def to_hash
       {
-        :parent     => parent.nil? ? nil : parent.to_shallow_hash,
-        :children   => children.map{|p| p.to_hash },
-        :siblings   => siblings.map{|p| p.to_shallow_hash },
-        :assets     => assets
-      }.merge(to_shallow_hash)
-    end
-    
-    def to_shallow_hash
-      {
-        :permalink  => permalink,
-        :slug       => slug,
-        :name       => name,
-        :images     => images
-      }.merge(content)
-    end
-      
-    def method_missing(message)
-      return content[message] if content.has_key? message
-      return on_disk?(message.to_s.gsub(/\?$/, '')) if message.to_s =~ /\?$/
-      map_to_disk(message)
+        :slug         => slug, 
+        :permalink    => permalink, 
+        :name         => name, 
+        :floating?    => floating?,
+        :children     => children.map,
+        :siblings     => siblings,
+        :parent       => parent, 
+        :ancestors    => ancestors
+      }.merge(content).merge(disk_assets)
     end
     
     private
+    # Creates methods for each sub-folder within the page's folder
+    # that isn't a sub-page (a page object)
+    def disk_assets
+      assets = {}
+      Dir["#{File.dirname(disk_path)}/**"].select{|p| File.directory?(p)}.reject {|p|
+        Dir.entries(p).any?{|e| e.include? "yml"}
+      }.each{|asset_path| assets.merge!(map_to_disk(asset_path)) }
+
+      assets
+    end
+    
+    def map_to_disk(path)
+      name = File.basename(path)
+      
+      {
+        name.to_sym => Dir["#{path}/*"].map do |file|
+          {
+            :name       => File.basename(file),
+            :path       => web_path(file),
+            :disk_path  => file
+          }  
+        end
+      }
+    end
+    
     def directory
       @disk_path.split("/")[0..-2].join("/")
     end
@@ -157,20 +174,6 @@ module Bonsai
     
     def web_path(path)
       path.gsub(self.class.path, '').gsub(/\/\d+\./, '/')
-    end
-    
-    def on_disk?(path)
-      Dir.glob("#{File.dirname(disk_path)}/#{path}/*").any?
-    end
-    
-    def map_to_disk(path)
-      Dir.glob("#{File.dirname(disk_path)}/#{path}/*").map do |path|
-        {
-          :name       => File.basename(path),
-          :path       => web_path(path),
-          :disk_path  => path
-        }
-      end
     end
   end
 end
