@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
-  s.date = %q{2009-12-21}
+  s.date = %q{2009-12-23}
   s.default_executable = %q{bonsai}
   s.description = %q{A static site generator that uses the best toolset available}
   s.email = %q{ben.schwarz@gmail.com}
@@ -38,8 +38,9 @@ Gem::Specification.new do |s|
      "lib/bonsai/page_presenter.rb",
      "lib/bonsai/template.rb",
      "lib/bonsai/templates/.htaccess",
-     "lib/bonsai/templates/Rakefile",
      "lib/bonsai/templates/base.less",
+     "lib/bonsai/templates/default.mustache",
+     "lib/bonsai/templates/default.yml",
      "lib/bonsai/webserver.rb",
      "spec/bonsai/console_spec.rb",
      "spec/bonsai/exporter_spec.rb",
@@ -52,7 +53,12 @@ Gem::Specification.new do |s|
      "spec/spec.opts",
      "spec/spec_helper.rb",
      "spec/support/broken/content/broken_page/demo-template.yml",
-     "spec/support/content/1.about-us/contact/demo-template.yml",
+     "spec/support/content/1.about-us/1.contact/1.child/a_file_asset.txt",
+     "spec/support/content/1.about-us/1.contact/1.child/demo-template.yml",
+     "spec/support/content/1.about-us/1.contact/demo-template.yml",
+     "spec/support/content/1.about-us/1.contact/images/image001.jpg",
+     "spec/support/content/1.about-us/1.contact/magic/image001.jpg",
+     "spec/support/content/1.about-us/1.contact/magic/image002.jpg",
      "spec/support/content/1.about-us/demo-template.yml",
      "spec/support/content/1.about-us/history/a_file_asset.txt",
      "spec/support/content/1.about-us/history/child/a_file_asset.txt",
@@ -67,6 +73,7 @@ Gem::Specification.new do |s|
      "spec/support/content/2.products/2.product-b/demo-template.yml",
      "spec/support/content/2.products/demo-template.yml",
      "spec/support/content/index/demo-template.yml",
+     "spec/support/content/legals/terms-and-conditions/demo-template.yml",
      "spec/support/public/htaccess",
      "spec/support/public/js/script.js",
      "spec/support/public/stylesheets/base.less",
