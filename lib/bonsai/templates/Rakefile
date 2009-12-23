@@ -1,9 +1,0 @@
-require 'bonsai'
-Bonsai.root_dir = Dir.pwd
-
-namespace :bonsai do  
-  desc "Exports the site ready for upload"
-  task :export do
-    Bonsai::Exporter.publish!
-  end
-end
