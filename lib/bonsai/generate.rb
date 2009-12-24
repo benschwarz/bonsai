@@ -21,10 +21,7 @@ module Bonsai
     end
   
     def copy_templates
-      FileUtils.cp("#{templates}/base.less", File.join(@path, "public", "docs", "css"))
-      FileUtils.cp("#{templates}/.htaccess", File.join(@path, "public"))
-      FileUtils.cp("#{templates}/default.yml", File.join(@path, "content", "index"))
-      FileUtils.cp("#{templates}/default.mustache", File.join(@path, "templates"))
+      FileUtils.cp_r("#{templates}", File.join(@path))
     end
   end
 end
