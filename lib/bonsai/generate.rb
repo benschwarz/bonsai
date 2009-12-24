@@ -14,7 +14,7 @@ module Bonsai
     end
   
     def create_directories
-      %w(content public/docs/css public/docs/js templates/partials).each do |dir|
+      %w(content content/index public/docs/css public/docs/js templates/partials).each do |dir|
         Bonsai.log "\tcreate\t#{dir}"
         FileUtils.mkdir_p(File.join(@path, dir))
       end
@@ -23,6 +23,8 @@ module Bonsai
     def copy_templates
       FileUtils.cp("#{templates}/base.less", File.join(@path, "public", "docs", "css"))
       FileUtils.cp("#{templates}/.htaccess", File.join(@path, "public"))
+      FileUtils.cp("#{templates}/default.yml", File.join(@path, "content", "index"))
+      FileUtils.cp("#{templates}/default.mustache", File.join(@path, "templates"))
     end
   end
 end

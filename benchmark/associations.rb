@@ -8,7 +8,7 @@ page = Bonsai::Page.find("about-us/history")
 
 Benchmark.bm do |b|
   b.report "all" do
-    10_000.times do
+    1_000.times do
       Bonsai::Page.all
     end
   end

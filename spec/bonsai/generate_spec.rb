@@ -7,7 +7,7 @@ describe Bonsai::Generate do
     end
     
     it "should create base directories" do
-      %w(content templates templates/partials public public/docs public/docs/css public/docs/js).each do |dir|
+      %w(content content/index templates templates/partials public public/docs public/docs/css public/docs/js).each do |dir|
         File.directory?("#{@path}/#{dir}").should be_true
       end
     end
@@ -18,6 +18,14 @@ describe Bonsai::Generate do
     
     it "should copy the base.less file" do
       File.exists?("#{@path}/public/docs/css/base.less").should be_true
+    end
+    
+    it "should copy an index page" do
+      File.exists?("#{@path}/content/index/default.yml").should be_true
+    end
+    
+    it "should copy a default template" do
+      File.exists?("#{@path}/templates/default.mustache").should be_true
     end
   end
 end

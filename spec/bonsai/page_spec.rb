@@ -37,14 +37,7 @@ describe Bonsai::Page do
     it "should respond to disk path" do
       @page.disk_path.should == "#{Bonsai.root_dir}/content/1.about-us/history/demo-template.yml"
     end
-    
-    it "should have images" do
-      @page.images.should be_an_instance_of(Array)
-      @page.images.first[:name].should == "image001.jpg"
-      @page.images.first[:path].should == "/about-us/history/images/image001.jpg"
-      @page.images.first[:disk_path].should == "#{Bonsai.root_dir}/content/1.about-us/history/images/image001.jpg"
-    end
-    
+        
     it "should have assets" do
       @page.assets.should be_an_instance_of(Array)
       @page.assets.length.should == 6
@@ -65,9 +58,9 @@ describe Bonsai::Page do
       
       it "should have siblings" do
         @history.siblings.should be_an_instance_of(Array)
-        @history.siblings.size.should == 2
+        @history.siblings.size.should == 1
         @history.siblings.should include(@contact)
-        @history.siblings.should include(@history)
+        @history.siblings.should_not include(@history)
       end
 
       it "should have a parent" do
@@ -84,9 +77,12 @@ describe Bonsai::Page do
 
       it "should have children" do
         @about.children.should be_an_instance_of(Array)
-        @about.children.size.should == 2
-        @about.children.should include(@history)
+        @about.children.size.should == 1
         @about.children.should include(@contact)
+      end
+      
+      it "should not have floating pages in the children array" do
+        @about.children.should_not include(@history)
       end
 
       it "should have ancestors" do
@@ -100,7 +96,15 @@ describe Bonsai::Page do
         @child.ancestors.first.should == @about
         @child.ancestors.last.should == @history
       end
-    end    
+      
+      it "index should be a floating page" do
+        @index.floating?.should be_true
+      end
+
+      it "about should not be a floating page" do
+        @about.floating?.should be_false
+      end
+    end
     
     it "should have a template" do
       @page.template.should be_an_instance_of(Bonsai::Template)
@@ -113,7 +117,7 @@ describe Bonsai::Page do
     
     describe "render" do
       before :all do
-        @output = @page.render 
+        @output = Bonsai::Page.find("about-us/contact").render 
       end
       
       it "should render" do
@@ -121,39 +125,78 @@ describe Bonsai::Page do
       end
       
       it "should replace moustache variables with properties from the content file" do
-        @output.should == "Hello from our template, named History\n\nAbout our history\n\n/about-us/history/images/image001.jpg\n/about-us/history/child\n/about-us/history/magic/image001.jpg\n/about-us/history/magic/image002.jpg\nThis content should be inserted!"
+        @output.should == "Hello from our template, named Contact\n\nGet in touch\n\n/about-us/contact/images/image001.jpg\n/about-us/contact/child\n/about-us/contact/magic/image001.jpg\n/about-us/contact/magic/image002.jpg\nThis content should be inserted!"
       end
       
       it "should write in images" do
         @output.should include "image001.jpg"
       end
+      
+      # Pages that use a structure yet have no parent page should still render
+      describe "page without parent" do
+        it "should render successfully" do
+          lambda { Bonsai::Page.find("legals/terms-and-conditions").render }.should_not raise_error
+        end
+      end
     end
     
-    describe "method_missing magic" do
+    describe "to hash" do
       before :all do
         @page = Bonsai::Page.find("about-us/history")
       end
       
-      it "should map its folders to magic variables" do
-        @page.magic.should be_an_instance_of(Array)
-        @page.magic.first.should be_an_instance_of(Hash)
-        @page.magic.size.should == 2
+      it "should respond to to_hash" do
+        @page.should respond_to(:to_hash)
       end
-
-      describe "boolean" do
-        it "should be true" do
-          @page.magic?.should be_true
+      
+      %w(slug permalink name page_title floating? children siblings parent ancestors magic).each do |key|
+        it "should have a to_hash key for #{key}" do
+          @page.to_hash.keys.should include(key.to_sym)
+        end
+      end
+      
+      describe "disk_assets" do
+        before :all do
+          @vars = @page.to_hash
         end
         
-        it "should be false" do
-          @page.wizardly?.should be_false
+        describe "enum" do
+          it "should not have a child" do
+            @vars.should_not have_key(:child)
+          end
+
+          it "should have magic" do
+            @vars.should have_key(:magic)
+          end
+
+          it "it should be a an array of hashes" do
+            @vars[:magic].should be_an_instance_of(Array)
+            @vars[:magic].first.should be_an_instance_of(Hash)
+            @vars[:magic].size.should == 2
+          end
+        end
+        
+        describe "boolean" do
+          it "should be false" do
+            pending
+            @vars[:child?].should be_false
+          end
+          
+          it "should be true" do
+            pending
+            @vars[:magic?].should be_true
+          end
         end
       end
     end
     
     describe "broken page" do
-      before do
+      before :all do
         Bonsai::Page.path = "spec/support/broken/content"
+      end
+      
+      after :all do
+        Bonsai::Page.path = "spec/support/content"
       end
       
       it "should exist" do
