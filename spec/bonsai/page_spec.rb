@@ -125,7 +125,7 @@ describe Bonsai::Page do
       end
       
       it "should replace moustache variables with properties from the content file" do
-        @output.should == "Hello from our template, named Contact\n\nGet in touch\n\n/about-us/contact/images/image001.jpg\n/about-us/contact/child\n/about-us/contact/magic/image001.jpg\n/about-us/contact/magic/image002.jpg\nThis content should be inserted!"
+        @output.should == "Hello from our template, named Contact\n\nGet in touch\n\n/about-us/contact/images/image001.jpg\n/about-us/contact/child\n/about-us/contact/magic/image001.jpg\n/about-us/contact/magic/image002.jpg\nThis content should be inserted!\n\n<p>&ldquo;A designer knows he has achieved perfection\nnot when there is nothing left to add,\nbut when there is nothing left to take away.&rdquo;</p>\n\n<p>– Antoine de Saint-Exupery</p>\n"
       end
       
       it "should write in images" do
@@ -136,6 +136,20 @@ describe Bonsai::Page do
       describe "page without parent" do
         it "should render successfully" do
           lambda { Bonsai::Page.find("legals/terms-and-conditions").render }.should_not raise_error
+        end
+      end
+      
+      describe "markdown" do
+        it "should not use markdown for single line content" do
+          @output.should =~ /\nGet in touch\n/
+        end
+        
+        it "should use markdown for multiple line content" do
+          @output.should =~ /<p>&ldquo;A designer knows he/
+        end
+        
+        it "should use smartypants" do
+          @output.should =~ /&rdquo;/
         end
       end
     end

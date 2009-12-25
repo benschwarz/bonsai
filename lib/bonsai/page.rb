@@ -1,4 +1,5 @@
 require 'yaml'
+require 'rdiscount'
 
 module Bonsai
   class Page
@@ -137,10 +138,22 @@ module Bonsai
         :siblings     => siblings,
         :parent       => parent, 
         :ancestors    => ancestors
-      }.merge(content).merge(disk_assets)
+      }.merge(formatted_content).merge(disk_assets)
     end
     
     private
+    def formatted_content
+      formatted_content = content
+      
+      formatted_content.each do |k,v|
+        if v.is_a?(String) and v =~ /\n/
+          formatted_content[k] = RDiscount.new(v, :smart).to_html
+        end
+      end
+      
+      formatted_content
+    end
+    
     # Creates methods for each sub-folder within the page's folder
     # that isn't a sub-page (a page object)
     def disk_assets

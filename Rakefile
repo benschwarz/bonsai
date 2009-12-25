@@ -20,6 +20,7 @@ begin
     gem.add_dependency "kicker", ">= 2.2.0"
     gem.add_dependency "sinatra", ">= 0.9.4"
     gem.add_dependency "directory_watcher", ">= 1.3.1"
+    gem.add_dependency "rdiscount", ">= 1.5.5"
     
     gem.post_install_message = %q{
 
