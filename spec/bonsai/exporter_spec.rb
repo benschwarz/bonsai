@@ -100,6 +100,8 @@ describe Bonsai::Exporter do
         File.exists?("#{Bonsai::Exporter.path}/index.html").should be_true
       end
       
+      it "should write a readme file to explain how the site was generated"
+      
       describe "asset compression" do
         it "should compress the css file" do
           File.read("#{Bonsai::Exporter.path}/stylesheets/base.css").should == ".mymixin,#content{display:block;}"
