@@ -14,6 +14,8 @@ module Bonsai
     end
   
     def root_dir=(path)
+      raise "no bonsai site found - are you in the right directory?" unless is_a_bonsai?(path)
+      
       @@root_dir = path
       log "Exporting to #{path}/output"
       
@@ -36,6 +38,11 @@ module Bonsai
     
     def version
       File.read("#{File.dirname(__FILE__)}/../VERSION")
+    end
+    
+    private
+    def is_a_bonsai?(path)
+      File.directory?("#{path}/content") && File.directory?("#{path}/public") && File.directory?("#{path}/templates")
     end
   end
   

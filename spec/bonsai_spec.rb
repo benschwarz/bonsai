@@ -10,6 +10,11 @@ describe Bonsai do
     Bonsai.root_dir.should == "spec/support"
   end
   
+  it "should throw an exception if it doesn't look like a bonsai site" do
+    lambda { Bonsai.root_dir = "spec" }.should raise_error
+    lambda { Bonsai.root_dir = "spec/support" }.should_not raise_error
+  end
+  
   it "should know the version" do
     Bonsai.version.should =~ /\d+.\d+.\d+/
   end
