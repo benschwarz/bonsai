@@ -14,7 +14,10 @@ module Bonsai
     end
   
     def root_dir=(path)
-      raise "no bonsai site found - are you in the right directory?" unless is_a_bonsai?(path)
+      unless is_a_bonsai?(path)
+        log "no bonsai site found - are you in the right directory?" 
+        exit 0
+      end
       
       @@root_dir = path
       log "Exporting to #{path}/output"
