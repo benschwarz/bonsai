@@ -65,7 +65,8 @@ module Bonsai
         generate_css_from_less
         
         Bonsai.log "Copying public files"
-        Dir["#{Bonsai.root_dir}/public/*"].each {|file| FileUtils.cp_r file, path }
+        # Using system call because fileutils is inadequate
+        system("cp -fR '#{Bonsai.root_dir}/public/' '#{path}'")
       end
       
       def compress_assets

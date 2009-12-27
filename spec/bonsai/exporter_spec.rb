@@ -93,7 +93,7 @@ describe Bonsai::Exporter do
       end
 
       it "should copy the contents of the public directory to the root export path" do
-        File.exists?("#{Bonsai::Exporter.path}/htaccess").should be_true
+        File.exists?("#{Bonsai::Exporter.path}/.htaccess").should be_true
       end
 
       it "should write the index file to output/index.html" do
