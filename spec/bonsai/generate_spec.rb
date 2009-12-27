@@ -2,7 +2,8 @@ require "#{File.dirname(__FILE__)}/../spec_helper"
 describe Bonsai::Generate do
   describe "generator" do
     before :all do
-      @path = File.expand_path("spec/tmp/")
+      @path = File.expand_path("spec/tmp-generator")
+      FileUtils.rm_rf @path
       Bonsai::Generate.new(@path)
     end
     
