@@ -40,6 +40,10 @@ describe Bonsai::Exporter do
         File.read("#{Bonsai::Exporter.path}/stylesheets/base.css").should == ".mymixin, #content { display: block; }\n"
       end
       
+      it "should not write the base.css file to the public directory" do
+        File.exists?("#{Bonsai.root_dir}/public/base.css").should_not be_true
+      end
+      
     end
     
     describe "expectations" do
@@ -73,6 +77,10 @@ describe Bonsai::Exporter do
       # Compressed CSS
       it "should be processed with less" do
         File.read("#{Bonsai::Exporter.path}/stylesheets/base.css").should == ".mymixin,#content{display:block;}"
+      end
+      
+      it "should not export the base.less file" do
+        File.exists?("#{Bonsai::Exporter.path}/stylesheets/base.less").should be_false
       end
 
       it "should create the output directory" do
