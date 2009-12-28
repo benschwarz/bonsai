@@ -10,7 +10,7 @@ module Bonsai
   
     private  
     def create_directories
-      %w(content content/index public/docs/css public/docs/js templates/partials).each do |dir|
+      %w(content content/index public/docs/css public/docs/js).each do |dir|
         Bonsai.log "\tcreate\t#{dir}"
         FileUtils.mkdir_p(File.join(@path, dir))
       end

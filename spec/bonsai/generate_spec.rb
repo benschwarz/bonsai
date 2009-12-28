@@ -8,7 +8,7 @@ describe Bonsai::Generate do
     end
     
     it "should create base directories" do
-      %w(content content/index templates templates/partials public public/docs public/docs/css public/docs/js).each do |dir|
+      %w(content content/index templates public public/docs public/docs/css public/docs/js).each do |dir|
         File.directory?("#{@path}/#{dir}").should be_true
       end
     end
