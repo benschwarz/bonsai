@@ -28,5 +28,13 @@ describe Bonsai::Generate do
     it "should copy a default template" do
       File.exists?("#{@path}/templates/default.mustache").should be_true
     end
+    
+    it "should generate 4 files" do
+      Dir.glob("#{@path}/**/*", File::FNM_DOTMATCH).select{|f| File.file?(f) }.size.should == 4
+    end
+    
+    it "should generate 7 directories" do
+      Dir.glob("#{@path}/**/*").select{|f| File.directory?(f) }.size.should == 7
+    end
   end
 end
