@@ -1,5 +1,6 @@
 require 'yaml'
 require 'rdiscount'
+require 'tilt'
 
 module Bonsai
   class Page
@@ -114,7 +115,7 @@ module Bonsai
     end
     
     def render
-      PagePresenter.new(self).render
+      Tilt.new(template.path, :path => template.class.path).render(self, to_hash)
     rescue => stack
       raise "Issue rendering #{permalink}\n\n#{stack}"
     end
@@ -133,8 +134,7 @@ module Bonsai
         :slug         => slug, 
         :permalink    => permalink, 
         :name         => name, 
-        :floating?    => floating?,
-        :children     => children.map,
+        :children     => children,
         :siblings     => siblings,
         :parent       => parent, 
         :ancestors    => ancestors

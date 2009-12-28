@@ -15,6 +15,7 @@ begin
     gem.add_development_dependency "rspec", ">= 1.2.9"
     gem.add_development_dependency "yard", ">= 0"
     gem.add_development_dependency "fakefs"
+    gem.add_dependency "tilt", ">= 0.4"
     gem.add_dependency "mustache", ">= 0.5.0"
     gem.add_dependency "thin", ">= 1.0.0"
     gem.add_dependency "kicker", ">= 2.2.0"

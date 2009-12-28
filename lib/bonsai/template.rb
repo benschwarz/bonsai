@@ -12,7 +12,7 @@ module Bonsai
       end
       
       def find(name)
-        disk_path = Dir["#{path}/#{name}.mustache"]
+        disk_path = Dir["#{path}/#{name}.*"]
         
         if disk_path.any? 
           new disk_path.first
@@ -22,12 +22,10 @@ module Bonsai
       end
     end
     
-    def initialize(path)
-      @disk_path = path
-    end
+    attr_reader :path
     
-    def read
-      File.read(@disk_path)
+    def initialize(path)
+      @path = path
     end
   end
 end
