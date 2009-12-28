@@ -14,6 +14,10 @@ opts = OptionParser.new do |opts|
   opts.banner = banner
   
   opts.on("--plant [NAME]", "creates the directory structure for your site") do |name|
+    if name.nil?
+      Bonsai.log "no site name given check `bonsai --help` for details" 
+      exit 0
+    end
     Bonsai::Generate.new("#{Dir.pwd}/#{name}")
   end
   
