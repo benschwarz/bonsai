@@ -163,7 +163,7 @@ describe Bonsai::Page do
         @page.should respond_to(:to_hash)
       end
       
-      %w(slug permalink name page_title children siblings parent ancestors magic).each do |key|
+      %w(slug permalink name page_title children siblings parent ancestors magic navigation).each do |key|
         it "should have a to_hash key for #{key}" do
           @page.to_hash.keys.should include(key.to_sym)
         end
