@@ -13,6 +13,7 @@ module Bonsai
         setup
         copy_public
         copy_assets
+        cleanup
       end
       
       def publish!
@@ -23,6 +24,7 @@ module Bonsai
         compress_assets
         write_index
         write_pages
+        cleanup
       end
       
       protected 
@@ -32,6 +34,10 @@ module Bonsai
 
       def setup
         FileUtils.mkdir_p path
+      end
+      
+      def cleanup
+        remove_less_from_public
       end
       
       def write_index
@@ -65,7 +71,8 @@ module Bonsai
         generate_css_from_less
         
         Bonsai.log "Copying public files"
-        Dir["#{Bonsai.root_dir}/public/*"].each {|file| FileUtils.cp_r file, path }
+        # Using system call because fileutils is inadequate
+        system("cp -fR '#{Bonsai.root_dir}/public/' '#{path}'")
       end
       
       def compress_assets
@@ -86,6 +93,10 @@ module Bonsai
         end
       rescue Less::SyntaxError => exception
         Bonsai.log "LessCSS Syntax error\n\n#{exception.message}"
+      end
+      
+      def remove_less_from_public
+        Dir["#{path}/**/*.less"].each{|f| FileUtils.rm(f) }
       end
     end
   end

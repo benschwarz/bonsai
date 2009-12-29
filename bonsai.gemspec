@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
-  s.date = %q{2009-12-23}
+  s.date = %q{2009-12-25}
   s.default_executable = %q{bonsai}
   s.description = %q{A static site generator that uses the best toolset available}
   s.email = %q{ben.schwarz@gmail.com}
@@ -37,10 +37,10 @@ Gem::Specification.new do |s|
      "lib/bonsai/page.rb",
      "lib/bonsai/page_presenter.rb",
      "lib/bonsai/template.rb",
-     "lib/bonsai/templates/.htaccess",
-     "lib/bonsai/templates/base.less",
-     "lib/bonsai/templates/default.mustache",
-     "lib/bonsai/templates/default.yml",
+     "lib/bonsai/templates/content/index/default.yml",
+     "lib/bonsai/templates/public/.htaccess",
+     "lib/bonsai/templates/public/docs/base.less",
+     "lib/bonsai/templates/templates/default.mustache",
      "lib/bonsai/webserver.rb",
      "spec/bonsai/console_spec.rb",
      "spec/bonsai/exporter_spec.rb",
@@ -119,30 +119,36 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rspec>, [">= 1.2.9"])
       s.add_development_dependency(%q<yard>, [">= 0"])
       s.add_development_dependency(%q<fakefs>, [">= 0"])
+      s.add_runtime_dependency(%q<tilt>, [">= 0.4"])
       s.add_runtime_dependency(%q<mustache>, [">= 0.5.0"])
       s.add_runtime_dependency(%q<thin>, [">= 1.0.0"])
       s.add_runtime_dependency(%q<kicker>, [">= 2.2.0"])
       s.add_runtime_dependency(%q<sinatra>, [">= 0.9.4"])
       s.add_runtime_dependency(%q<directory_watcher>, [">= 1.3.1"])
+      s.add_runtime_dependency(%q<rdiscount>, [">= 1.5.5"])
     else
       s.add_dependency(%q<rspec>, [">= 1.2.9"])
       s.add_dependency(%q<yard>, [">= 0"])
       s.add_dependency(%q<fakefs>, [">= 0"])
+      s.add_dependency(%q<tilt>, [">= 0.4"])
       s.add_dependency(%q<mustache>, [">= 0.5.0"])
       s.add_dependency(%q<thin>, [">= 1.0.0"])
       s.add_dependency(%q<kicker>, [">= 2.2.0"])
       s.add_dependency(%q<sinatra>, [">= 0.9.4"])
       s.add_dependency(%q<directory_watcher>, [">= 1.3.1"])
+      s.add_dependency(%q<rdiscount>, [">= 1.5.5"])
     end
   else
     s.add_dependency(%q<rspec>, [">= 1.2.9"])
     s.add_dependency(%q<yard>, [">= 0"])
     s.add_dependency(%q<fakefs>, [">= 0"])
+    s.add_dependency(%q<tilt>, [">= 0.4"])
     s.add_dependency(%q<mustache>, [">= 0.5.0"])
     s.add_dependency(%q<thin>, [">= 1.0.0"])
     s.add_dependency(%q<kicker>, [">= 2.2.0"])
     s.add_dependency(%q<sinatra>, [">= 0.9.4"])
     s.add_dependency(%q<directory_watcher>, [">= 1.3.1"])
+    s.add_dependency(%q<rdiscount>, [">= 1.5.5"])
   end
 end
 

@@ -13,7 +13,7 @@ describe Bonsai::Template do
   describe "instance" do
     it "should give the template source" do
       @template = Bonsai::Template.find("demo-template")
-      @template.read.should == "Hello from our template, named {{name}}\n\n{{page_title}}\n\n{{#images}}\n  {{path}}\n{{/images}}\n\n{{#children}}\n  {{permalink}}\n{{/children}}\n\n{{#magic}}\n  {{path}}\n{{/magic}}\n\n{{>inserted}}"
+      File.read(@template.path).should == "Hello from our template, named {{name}}\n\n{{page_title}}\n\n{{#images}}\n  {{path}}\n{{/images}}\n\n{{#children}}\n  {{permalink}}\n{{/children}}\n\n{{#magic}}\n  {{path}}\n{{/magic}}\n\n{{>partials/inserted}}\n\n{{{body}}}"
     end
   end
 end
