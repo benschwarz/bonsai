@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
-  s.date = %q{2009-12-25}
+  s.date = %q{2009-12-28}
   s.default_executable = %q{bonsai}
   s.description = %q{A static site generator that uses the best toolset available}
   s.email = %q{ben.schwarz@gmail.com}
@@ -35,18 +35,16 @@ Gem::Specification.new do |s|
      "lib/bonsai/generate.rb",
      "lib/bonsai/navigation.rb",
      "lib/bonsai/page.rb",
-     "lib/bonsai/page_presenter.rb",
      "lib/bonsai/template.rb",
      "lib/bonsai/templates/content/index/default.yml",
      "lib/bonsai/templates/public/.htaccess",
-     "lib/bonsai/templates/public/docs/base.less",
+     "lib/bonsai/templates/public/docs/css/base.less",
      "lib/bonsai/templates/templates/default.mustache",
      "lib/bonsai/webserver.rb",
      "spec/bonsai/console_spec.rb",
      "spec/bonsai/exporter_spec.rb",
      "spec/bonsai/generate_spec.rb",
      "spec/bonsai/navigation_spec.rb",
-     "spec/bonsai/page_presenter_spec.rb",
      "spec/bonsai/page_spec.rb",
      "spec/bonsai/template_spec.rb",
      "spec/bonsai_spec.rb",
@@ -74,15 +72,12 @@ Gem::Specification.new do |s|
      "spec/support/content/2.products/demo-template.yml",
      "spec/support/content/index/demo-template.yml",
      "spec/support/content/legals/terms-and-conditions/demo-template.yml",
-     "spec/support/public/htaccess",
+     "spec/support/public/.htaccess",
      "spec/support/public/js/script.js",
      "spec/support/public/stylesheets/base.less",
-     "spec/support/public/stylesheets/broken.css",
      "spec/support/public/stylesheets/broken.less",
      "spec/support/templates/demo-template.mustache",
      "spec/support/templates/partials/inserted.mustache",
-     "spec/tmp/public/.htaccess",
-     "spec/tmp/public/docs/css/base.less",
      "vendor/yui-compressor/yuicompressor-2.4.2.jar"
   ]
   s.homepage = %q{http://github.com/benschwarz/bonsai}
@@ -104,7 +99,6 @@ Gem::Specification.new do |s|
      "spec/bonsai/exporter_spec.rb",
      "spec/bonsai/generate_spec.rb",
      "spec/bonsai/navigation_spec.rb",
-     "spec/bonsai/page_presenter_spec.rb",
      "spec/bonsai/page_spec.rb",
      "spec/bonsai/template_spec.rb",
      "spec/bonsai_spec.rb",
@@ -118,36 +112,30 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rspec>, [">= 1.2.9"])
       s.add_development_dependency(%q<yard>, [">= 0"])
-      s.add_development_dependency(%q<fakefs>, [">= 0"])
       s.add_runtime_dependency(%q<tilt>, [">= 0.4"])
       s.add_runtime_dependency(%q<mustache>, [">= 0.5.0"])
       s.add_runtime_dependency(%q<thin>, [">= 1.0.0"])
       s.add_runtime_dependency(%q<kicker>, [">= 2.2.0"])
       s.add_runtime_dependency(%q<sinatra>, [">= 0.9.4"])
-      s.add_runtime_dependency(%q<directory_watcher>, [">= 1.3.1"])
       s.add_runtime_dependency(%q<rdiscount>, [">= 1.5.5"])
     else
       s.add_dependency(%q<rspec>, [">= 1.2.9"])
       s.add_dependency(%q<yard>, [">= 0"])
-      s.add_dependency(%q<fakefs>, [">= 0"])
       s.add_dependency(%q<tilt>, [">= 0.4"])
       s.add_dependency(%q<mustache>, [">= 0.5.0"])
       s.add_dependency(%q<thin>, [">= 1.0.0"])
       s.add_dependency(%q<kicker>, [">= 2.2.0"])
       s.add_dependency(%q<sinatra>, [">= 0.9.4"])
-      s.add_dependency(%q<directory_watcher>, [">= 1.3.1"])
       s.add_dependency(%q<rdiscount>, [">= 1.5.5"])
     end
   else
     s.add_dependency(%q<rspec>, [">= 1.2.9"])
     s.add_dependency(%q<yard>, [">= 0"])
-    s.add_dependency(%q<fakefs>, [">= 0"])
     s.add_dependency(%q<tilt>, [">= 0.4"])
     s.add_dependency(%q<mustache>, [">= 0.5.0"])
     s.add_dependency(%q<thin>, [">= 1.0.0"])
     s.add_dependency(%q<kicker>, [">= 2.2.0"])
     s.add_dependency(%q<sinatra>, [">= 0.9.4"])
-    s.add_dependency(%q<directory_watcher>, [">= 1.3.1"])
     s.add_dependency(%q<rdiscount>, [">= 1.5.5"])
   end
 end

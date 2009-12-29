@@ -137,7 +137,8 @@ module Bonsai
         :children     => children,
         :siblings     => siblings,
         :parent       => parent, 
-        :ancestors    => ancestors
+        :ancestors    => ancestors,
+        :navigation   => Bonsai::Navigation.tree
       }.merge(formatted_content).merge(disk_assets)
     end
     
