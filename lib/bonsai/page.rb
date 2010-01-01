@@ -10,10 +10,7 @@ module Bonsai
     
     class << self    
       def path; @@path; end
-      def path=(path)
-        Bonsai.log "Reading content from #{path}"
-        @@path = path
-      end
+      def path=(path); @@path = path; end
       
       def all(dir_path = path, pattern = "*/**")
         Dir["#{dir_path}/#{pattern}/*.yml"].map {|p| Page.new p }
