@@ -20,7 +20,6 @@ module Bonsai
       end
       
       @@root_dir = path
-      log "Exporting to #{path}/output"
       
       Exporter.path = "#{path}/output"
       Page.path = "#{path}/content"
