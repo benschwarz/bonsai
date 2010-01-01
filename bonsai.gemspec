@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
-  s.date = %q{2009-12-28}
+  s.date = %q{2010-01-01}
   s.default_executable = %q{bonsai}
   s.description = %q{A static site generator that uses the best toolset available}
   s.email = %q{ben.schwarz@gmail.com}
@@ -115,7 +115,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<tilt>, [">= 0.4"])
       s.add_runtime_dependency(%q<mustache>, [">= 0.5.0"])
       s.add_runtime_dependency(%q<thin>, [">= 1.0.0"])
-      s.add_runtime_dependency(%q<kicker>, [">= 2.2.0"])
+      s.add_runtime_dependency(%q<watch>, [">= 0.1.0"])
       s.add_runtime_dependency(%q<sinatra>, [">= 0.9.4"])
       s.add_runtime_dependency(%q<rdiscount>, [">= 1.5.5"])
     else
@@ -124,7 +124,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<tilt>, [">= 0.4"])
       s.add_dependency(%q<mustache>, [">= 0.5.0"])
       s.add_dependency(%q<thin>, [">= 1.0.0"])
-      s.add_dependency(%q<kicker>, [">= 2.2.0"])
+      s.add_dependency(%q<watch>, [">= 0.1.0"])
       s.add_dependency(%q<sinatra>, [">= 0.9.4"])
       s.add_dependency(%q<rdiscount>, [">= 1.5.5"])
     end
@@ -134,7 +134,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<tilt>, [">= 0.4"])
     s.add_dependency(%q<mustache>, [">= 0.5.0"])
     s.add_dependency(%q<thin>, [">= 1.0.0"])
-    s.add_dependency(%q<kicker>, [">= 2.2.0"])
+    s.add_dependency(%q<watch>, [">= 0.1.0"])
     s.add_dependency(%q<sinatra>, [">= 0.9.4"])
     s.add_dependency(%q<rdiscount>, [">= 1.5.5"])
   end
