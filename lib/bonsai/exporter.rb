@@ -78,7 +78,7 @@ module Bonsai
       def compress_assets
         yui_compressor = File.expand_path("#{File.dirname(__FILE__)}/../../vendor/yui-compressor/yuicompressor-2.4.2.jar")
         
-        Bonsai.log "Compressing javascript and stylesheets..."
+        Bonsai.log "Compressing javascript and stylesheets"
         Dir["#{path}/**/*.{js,css}"].each do |asset|
           system "java -jar #{yui_compressor} #{File.expand_path(asset)} -o #{File.expand_path(asset)}"
         end
