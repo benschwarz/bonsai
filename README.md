@@ -29,10 +29,11 @@ The generator will provide you with a .htaccess file that will turn on gzip/defl
 ### Deployment
   * Run `bonsai --repot`
   * Upload the contents of `site-root/output` to your producton server
+    * For example: `rsync -ave ssh ./output/ tinytree.info:/var/www/tinytree.info`
 
 ## Technology used to make your site better
 
-  * [Mustache](http://github.com/defunkt/mustache)
+  * [Tilt](http://github.com/rtomayko/tilt) - defaulting to [Mustache](http://github.com/defunkt/mustache)
   * [Less CSS](http://lesscss.org/)
   * [YUI CSS/Javascript compressor](http://developer.yahoo.com/yui/compressor/)
   
