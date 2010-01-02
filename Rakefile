@@ -1,4 +1,5 @@
-$KCODE = "U"
+# coding: utf-8
+
 require 'rubygems'
 require 'rake'
 
