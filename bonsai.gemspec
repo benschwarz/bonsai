@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bonsai}
-  s.version = "1.0.0"
+  s.version = "1.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
-  s.date = %q{2010-01-01}
+  s.date = %q{2010-01-02}
   s.default_executable = %q{bonsai}
   s.description = %q{A static site generator that uses the best toolset available}
   s.email = %q{ben.schwarz@gmail.com}
@@ -118,6 +118,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<watch>, [">= 0.1.0"])
       s.add_runtime_dependency(%q<sinatra>, [">= 0.9.4"])
       s.add_runtime_dependency(%q<rdiscount>, [">= 1.5.5"])
+      s.add_runtime_dependency(%q<less>, [">= 1.2.17"])
     else
       s.add_dependency(%q<rspec>, [">= 1.2.9"])
       s.add_dependency(%q<yard>, [">= 0"])
@@ -127,6 +128,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<watch>, [">= 0.1.0"])
       s.add_dependency(%q<sinatra>, [">= 0.9.4"])
       s.add_dependency(%q<rdiscount>, [">= 1.5.5"])
+      s.add_dependency(%q<less>, [">= 1.2.17"])
     end
   else
     s.add_dependency(%q<rspec>, [">= 1.2.9"])
@@ -137,6 +139,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<watch>, [">= 0.1.0"])
     s.add_dependency(%q<sinatra>, [">= 0.9.4"])
     s.add_dependency(%q<rdiscount>, [">= 1.5.5"])
+    s.add_dependency(%q<less>, [">= 1.2.17"])
   end
 end
 

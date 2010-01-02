@@ -20,6 +20,7 @@ begin
     gem.add_dependency "watch", ">= 0.1.0"
     gem.add_dependency "sinatra", ">= 0.9.4"
     gem.add_dependency "rdiscount", ">= 1.5.5"
+    gem.add_dependency "less", ">= 1.2.17"
     
     gem.post_install_message = %q{
 
