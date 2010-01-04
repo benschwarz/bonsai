@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
-  s.date = %q{2010-01-02}
+  s.date = %q{2010-01-05}
   s.default_executable = %q{bonsai}
   s.description = %q{A static site generator that uses the best toolset available}
   s.email = %q{ben.schwarz@gmail.com}
@@ -39,6 +39,7 @@ Gem::Specification.new do |s|
      "lib/bonsai/templates/content/index/default.yml",
      "lib/bonsai/templates/public/.htaccess",
      "lib/bonsai/templates/public/docs/css/base.less",
+     "lib/bonsai/templates/public/robots.txt",
      "lib/bonsai/templates/templates/default.mustache",
      "lib/bonsai/webserver.rb",
      "spec/bonsai/console_spec.rb",

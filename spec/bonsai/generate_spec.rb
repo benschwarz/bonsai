@@ -29,8 +29,12 @@ describe Bonsai::Generate do
       File.exists?("#{@path}/templates/default.mustache").should be_true
     end
     
+    it "should create a robots.txt" do
+      File.exists?("#{@path}/public/robots.txt").should be_true
+    end
+    
     it "should generate 4 files" do
-      Dir.glob("#{@path}/**/*", File::FNM_DOTMATCH).select{|f| File.file?(f) }.size.should == 4
+      Dir.glob("#{@path}/**/*", File::FNM_DOTMATCH).select{|f| File.file?(f) }.size.should == 5
     end
     
     it "should generate 7 directories" do
