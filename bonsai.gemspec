@@ -49,6 +49,7 @@ Gem::Specification.new do |s|
      "spec/bonsai/generate_spec.rb",
      "spec/bonsai/navigation_spec.rb",
      "spec/bonsai/page_spec.rb",
+     "spec/bonsai/sitemap_spec.rb",
      "spec/bonsai/template_spec.rb",
      "spec/bonsai_spec.rb",
      "spec/spec.opts",
