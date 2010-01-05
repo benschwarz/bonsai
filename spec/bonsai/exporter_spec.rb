@@ -108,6 +108,10 @@ describe Bonsai::Exporter do
         File.exists?("#{Bonsai::Exporter.path}/index.html").should be_true
       end
       
+      it "should write a sitemap.xml" do
+        File.exists?("#{Bonsai::Exporter.path}/sitemap.xml").should be_true
+      end
+      
       it "should write a readme file to explain how the site was generated"
       
       describe "asset compression" do

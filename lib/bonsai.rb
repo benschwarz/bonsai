@@ -56,6 +56,7 @@ module Bonsai
   
   autoload :Page,               "page"
   autoload :Console,            "console"
+  autoload :Sitemap,            "sitemap"
   autoload :Exporter,           "exporter"
   autoload :Template,           "template"
   autoload :Generate,           "generate"

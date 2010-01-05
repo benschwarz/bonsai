@@ -24,6 +24,7 @@ module Bonsai
         compress_assets
         write_index
         write_pages
+        write_sitemap
         cleanup
       end
       
@@ -52,6 +53,11 @@ module Bonsai
           FileUtils.mkdir_p("#{path}#{page.permalink}")
           File.open("#{path}#{page.write_path}", "w"){|file| file.write(page.render) }
         end
+      end
+      
+      def write_sitemap
+        Bonsai.log "Writing sitemap"
+        File.open("#{path}/sitemap.xml", "w") {|file| file.write(Bonsai::Sitemap.generate) }
       end
       
       def copy_assets
