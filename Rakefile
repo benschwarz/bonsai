@@ -17,6 +17,7 @@ begin
     gem.add_development_dependency "yard", ">= 0"
     gem.add_dependency "tilt", ">= 0.4"
     gem.add_dependency "mustache", ">= 0.5.0"
+    gem.add_dependency "builder", ">= 2.1.2"
     gem.add_dependency "thin", ">= 1.0.0"
     gem.add_dependency "watch", ">= 0.1.0"
     gem.add_dependency "sinatra", ">= 0.9.4"
