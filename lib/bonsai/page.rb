@@ -50,6 +50,9 @@ module Bonsai
       web_path(directory)
     end
     
+    def ctime; File.ctime(disk_path); end
+    def mtime; File.mtime(disk_path); end
+    
     def write_path
       "#{permalink}/index.html"
     end
