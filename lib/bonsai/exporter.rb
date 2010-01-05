@@ -25,6 +25,7 @@ module Bonsai
         write_index
         write_pages
         write_sitemap
+        write_readme
         cleanup
       end
       
@@ -58,6 +59,19 @@ module Bonsai
       def write_sitemap
         Bonsai.log "Writing sitemap"
         File.open("#{path}/sitemap.xml", "w") {|file| file.write(Bonsai::Sitemap.generate) }
+      end
+      
+      def write_readme
+        Bonsai.log "Writing ABOUT-THIS-SITE"
+        
+        readme = <<-README
+          This site was built using Bonsai (http://tinytree.info)
+          
+          To make changes to the site you will require the original source files.
+          Please contact the author of your site for details.
+        README
+        
+        File.open("#{path}/ABOUT-THIS-SITE", "w") {|file| file.write(readme) }
       end
       
       def copy_assets
