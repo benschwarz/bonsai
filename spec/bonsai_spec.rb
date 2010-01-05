@@ -18,4 +18,32 @@ describe Bonsai do
   it "should know the version" do
     Bonsai.version.should =~ /\d+.\d+.\d+/
   end
+  
+  
+  describe "site yml" do
+    describe "working" do
+      it "should respond to site" do
+        Bonsai.should respond_to(:site)
+      end
+
+      it "should contain the contents of the site yml" do
+        Bonsai.site.should == YAML.load(File.read("#{Bonsai.root_dir}/site.yml"))
+      end
+    end
+    
+    describe "broken" do
+      before :all do
+        Bonsai.root_dir = "spec/support/broken"
+      end
+      
+      after :all do
+        Bonsai.root_dir = "spec/support"
+      end 
+      
+      it "should log rather than raising exception with badly formatted yml" do
+        Bonsai.should_receive(:log).with("Badly formatted site.yml")
+        lambda { Bonsai.site }.should_not raise_error
+      end
+    end
+  end
 end

@@ -42,6 +42,12 @@ module Bonsai
       File.read("#{File.dirname(__FILE__)}/../VERSION")
     end
     
+    def site
+      YAML::load(File.read("#{Bonsai.root_dir}/site.yml")) || {}
+    rescue ArgumentError
+      Bonsai.log "Badly formatted site.yml"
+    end
+    
     private
     def is_a_bonsai?(path)
       File.directory?("#{path}/content") && File.directory?("#{path}/public") && File.directory?("#{path}/templates")
