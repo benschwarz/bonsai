@@ -5,7 +5,6 @@ require 'tilt'
 module Bonsai
   class Page
     class NotFound < StandardError; end;
-    class PropertyNotFound < StandardError; end
     @@pages = {}
     
     class << self    
@@ -22,7 +21,7 @@ module Bonsai
       
       private
       def find!(permalink)
-        search_path = permalink.gsub("/", "/*")
+        search_path = permalink.gsub(/\//, "/*")
         disk_path = Dir["#{path}/*#{search_path}/*.yml"]
         if disk_path.any?
           return new disk_path.first
@@ -121,7 +120,7 @@ module Bonsai
     end
     
     def content
-      YAML::load(File.read(@disk_path)) || {}
+      YAML::load(File.read(disk_path)) || {}
     rescue ArgumentError
       Bonsai.log "Page '#{permalink}' has badly formatted content"
     end
@@ -181,15 +180,15 @@ module Bonsai
     end
     
     def directory
-      @disk_path.split("/")[0..-2].join("/")
+      disk_path.split("/")[0..-2].join("/")
     end
     
     def template_name
-      File.basename(@disk_path, '.*')
+      File.basename(disk_path, '.*')
     end
     
     def web_path(path)
-      path.gsub(self.class.path, '').gsub(/\/\d+\./, '/')
+      path.gsub(@@path, '').gsub(/\/\d+\./, '/')
     end
   end
 end

@@ -8,12 +8,19 @@ module Bonsai
   end
   
   class DevelopmentServer < Sinatra::Base
+    set :views, "#{File.dirname(__FILE__)}/webserver"
+    
     get '/' do
       Page.find("index").render
     end
     
     get '/*' do
-      Page.find(params[:splat].to_s).render
+      begin
+        Page.find(params[:splat].to_s).render
+      rescue Bonsai::Page::NotFound => e
+        @error = e
+        erb :error
+      end
     end
   end
 end
