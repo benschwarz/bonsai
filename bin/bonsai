@@ -36,7 +36,7 @@ opts = OptionParser.new do |opts|
         use Bonsai::StaticPassThrough, :root => Bonsai.root_dir + "/output", :urls => ["/"]
         run Bonsai::DevelopmentServer
       }
-      Rack::Handler::Thin.run(app, :Port => 5000)
+      Rack::Handler.default.run(app, :Port => 5000)
     }
     
     trap("SIGINT") do
