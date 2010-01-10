@@ -103,7 +103,7 @@ module Bonsai
       # Find pages up the permalink tree if possible
       while(page_ref) do
         page_ref = page_ref[/(.+)\/[^\/]*$/, 1]
-        ancestors << self.class.find(page_ref) rescue nil
+        ancestors << self.class.find(page_ref) rescue NotFound
       end
       
       ancestors.compact.reverse
