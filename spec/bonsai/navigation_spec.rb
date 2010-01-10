@@ -7,11 +7,12 @@ describe Bonsai::Navigation do
   
   before do
     @tree = Bonsai::Navigation.tree
+    @index = Bonsai::Page.find("index")
     @about = Bonsai::Page.find("about-us")
     @products = Bonsai::Page.find("products")
   end
   
-  it "should contain 2 items" do
+  it "should contain 3 items" do
     @tree.should be_an_instance_of(Array)
     @tree.size.should == 3
   end
@@ -19,6 +20,10 @@ describe Bonsai::Navigation do
   it "should contain about and products" do
     @tree.should include @about
     @tree.should include @products
+  end
+  
+  it "should not contain index" do
+    @tree.should_not include @index
   end
   
   it "should be ordered" do
