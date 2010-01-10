@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bonsai}
-  s.version = "1.1.0"
+  s.version = "1.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
-  s.date = %q{2010-01-05}
+  s.date = %q{2010-01-10}
   s.default_executable = %q{bonsai}
   s.description = %q{A static site generator that uses the best toolset available}
   s.email = %q{ben.schwarz@gmail.com}
@@ -37,13 +37,29 @@ Gem::Specification.new do |s|
      "lib/bonsai/page.rb",
      "lib/bonsai/sitemap.rb",
      "lib/bonsai/template.rb",
+     "lib/bonsai/templates/content/1.varieties/1.fig/default.yml",
+     "lib/bonsai/templates/content/1.varieties/2.maple/default.yml",
+     "lib/bonsai/templates/content/1.varieties/products.yml",
+     "lib/bonsai/templates/content/2.cultivation/default.yml",
+     "lib/bonsai/templates/content/3.history/default.yml",
      "lib/bonsai/templates/content/index/default.yml",
+     "lib/bonsai/templates/output/.htaccess",
+     "lib/bonsai/templates/output/docs/css/base.css",
+     "lib/bonsai/templates/output/robots.txt",
      "lib/bonsai/templates/public/.htaccess",
+     "lib/bonsai/templates/public/docs/css/base.css",
      "lib/bonsai/templates/public/docs/css/base.less",
      "lib/bonsai/templates/public/robots.txt",
      "lib/bonsai/templates/site.yml",
      "lib/bonsai/templates/templates/default.mustache",
+     "lib/bonsai/templates/templates/products.mustache",
+     "lib/bonsai/templates/templates/shared/breadcrumbs.mustache",
+     "lib/bonsai/templates/templates/shared/footer.mustache",
+     "lib/bonsai/templates/templates/shared/head.mustache",
+     "lib/bonsai/templates/templates/shared/header.mustache",
+     "lib/bonsai/templates/templates/shared/nav.mustache",
      "lib/bonsai/webserver.rb",
+     "lib/bonsai/webserver/error.erb",
      "spec/bonsai/console_spec.rb",
      "spec/bonsai/exporter_spec.rb",
      "spec/bonsai/generate_spec.rb",
@@ -127,22 +143,24 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<tilt>, [">= 0.4"])
       s.add_runtime_dependency(%q<mustache>, [">= 0.5.0"])
       s.add_runtime_dependency(%q<builder>, [">= 2.1.2"])
-      s.add_runtime_dependency(%q<thin>, [">= 1.0.0"])
       s.add_runtime_dependency(%q<watch>, [">= 0.1.0"])
       s.add_runtime_dependency(%q<sinatra>, [">= 0.9.4"])
       s.add_runtime_dependency(%q<rdiscount>, [">= 1.5.5"])
       s.add_runtime_dependency(%q<less>, [">= 1.2.17"])
+      s.add_runtime_dependency(%q<rack>, [">= 1.1.0"])
+      s.add_runtime_dependency(%q<launchy>, [">= 0.3.3"])
     else
       s.add_dependency(%q<rspec>, [">= 1.2.9"])
       s.add_dependency(%q<yard>, [">= 0"])
       s.add_dependency(%q<tilt>, [">= 0.4"])
       s.add_dependency(%q<mustache>, [">= 0.5.0"])
       s.add_dependency(%q<builder>, [">= 2.1.2"])
-      s.add_dependency(%q<thin>, [">= 1.0.0"])
       s.add_dependency(%q<watch>, [">= 0.1.0"])
       s.add_dependency(%q<sinatra>, [">= 0.9.4"])
       s.add_dependency(%q<rdiscount>, [">= 1.5.5"])
       s.add_dependency(%q<less>, [">= 1.2.17"])
+      s.add_dependency(%q<rack>, [">= 1.1.0"])
+      s.add_dependency(%q<launchy>, [">= 0.3.3"])
     end
   else
     s.add_dependency(%q<rspec>, [">= 1.2.9"])
@@ -150,11 +168,12 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<tilt>, [">= 0.4"])
     s.add_dependency(%q<mustache>, [">= 0.5.0"])
     s.add_dependency(%q<builder>, [">= 2.1.2"])
-    s.add_dependency(%q<thin>, [">= 1.0.0"])
     s.add_dependency(%q<watch>, [">= 0.1.0"])
     s.add_dependency(%q<sinatra>, [">= 0.9.4"])
     s.add_dependency(%q<rdiscount>, [">= 1.5.5"])
     s.add_dependency(%q<less>, [">= 1.2.17"])
+    s.add_dependency(%q<rack>, [">= 1.1.0"])
+    s.add_dependency(%q<launchy>, [">= 0.3.3"])
   end
 end
 
