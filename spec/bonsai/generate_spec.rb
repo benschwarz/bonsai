@@ -37,12 +37,12 @@ describe Bonsai::Generate do
       File.exists?("#{@path}/site.yml").should be_true
     end
     
-    it "should generate 6 files" do
-      Dir.glob("#{@path}/**/*", File::FNM_DOTMATCH).select{|f| File.file?(f) }.size.should == 6
+    it "should generate 21 files" do
+      Dir.glob("#{@path}/**/*", File::FNM_DOTMATCH).select{|f| File.file?(f) }.size.should == 21
     end
     
-    it "should generate 7 directories" do
-      Dir.glob("#{@path}/**/*").select{|f| File.directory?(f) }.size.should == 7
+    it "should generate 16 directories" do
+      Dir.glob("#{@path}/**/*").select{|f| File.directory?(f) }.size.should == 16
     end
   end
 end

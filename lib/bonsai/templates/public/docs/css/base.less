@@ -1,1 +1,44 @@
+/* HTML resets */
+h1, h2, h3, h4, h5, h6, p, ol, ul { margin: 0; padding: 0; font-weight: normal; }
+
+/* HTML5 block elements */
+header, section, article, footer, aside, nav { display: block; }
+
+
+
+
+
 /* Put your styles here */
+#wrapper { margin: 0 auto; width: 660px; }
+
+header { 
+	position: relative; margin-top: 5em;
+	
+	span { display: block; }
+	
+	#logo { 
+		width: 145px; height: 145px; -moz-border-radius: 72px; -webkit-border-radius: 72px; border-radius: 72px; background-color: black; color: white; position: relative; margin: 0 auto;
+		a { color: white; text-decoration: none; position: absolute; margin: 1em 0 0 1.5em; text-align: center; text-transform: lowercase; }
+	}
+	
+	#navigation {
+		margin: 5em 0; text-transform: lowercase; text-align: center;  font-style: italic; font-size: 0.8em;
+		
+		li:not(:last-child):after { content: " /"; }
+		a { color: black; text-decoration: none; }
+		a:hover { text-decoration: underline; }
+	}
+}
+
+nav li { display: inline; list-style-type: none; }
+
+#breadcrumbs, footer { color: #666; font-size: 0.7em; }
+
+#breadcrumbs {
+	margin: 3em 0 0 0;
+	li:not(:last-child):after { content: " →"; }
+	a { color: inherit; }
+}
+
+nav, footer { margin: 1em 0; }
+h1, h2, h3, h4, h5, h6 { margin: 1.25em 0; }
