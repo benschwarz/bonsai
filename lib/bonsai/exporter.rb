@@ -92,7 +92,7 @@ module Bonsai
         
         Bonsai.log "Copying public files"
         # Using system call because fileutils is inadequate
-        system("cp -fR '#{Bonsai.root_dir}/public/' '#{path}'")
+        system("cp -fR '#{Bonsai.root_dir}/public/.' '#{path}/.'")
       end
       
       def compress_assets
