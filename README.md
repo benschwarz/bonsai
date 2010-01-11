@@ -48,6 +48,9 @@ When I found something that didn't quite work, was too slow or perhaps not even 
   
   * [Anthony Kolber](http://github.com/kolber) for writing, then rewriting [Stacey](http://github.com/kolber/stacey) from scratch. We spent many hours talking about best practice and software UX.
   * [Lincoln Stoll](http://github.com/lstoll) for reminding me to use the tools that I know best
+  
+## Credits
+  * [Rohit Arondekar][http://github.com/rohit] for figuring out an annoying Ubuntu filesystem issue
 
 
 ## Note on Patches/Pull Requests
