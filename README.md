@@ -30,6 +30,15 @@ The generator will provide you with a .htaccess file that will turn on gzip/defl
   * Run `bonsai --repot`
   * Upload the contents of `site-root/output` to your producton server
     * For example: `rsync -ave ssh ./output/ tinytree.info:/var/www/tinytree.info`
+    
+## Ruby implementations
+
+Bonsai runs under a number of Ruby implementations:
+  
+  * 1.8.7 (MRI)
+  * 1.9.1 (MRI)
+  * JRuby
+  * MacRuby
 
 ## Technology used to make your site better
 
