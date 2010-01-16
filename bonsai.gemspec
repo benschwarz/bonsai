@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bonsai}
-  s.version = "1.1.1"
+  s.version = "1.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
-  s.date = %q{2010-01-10}
+  s.date = %q{2010-01-16}
   s.default_executable = %q{bonsai}
   s.description = %q{A static site generator that uses the best toolset available}
   s.email = %q{ben.schwarz@gmail.com}
@@ -100,8 +100,12 @@ Gem::Specification.new do |s|
      "spec/support/content/legals/terms-and-conditions/demo-template.yml",
      "spec/support/public/.htaccess",
      "spec/support/public/js/script.js",
-     "spec/support/public/stylesheets/base.less",
-     "spec/support/public/stylesheets/broken.less",
+     "spec/support/public/stylesheets/brokenless.less",
+     "spec/support/public/stylesheets/brokensass.sass",
+     "spec/support/public/stylesheets/lesscss.css",
+     "spec/support/public/stylesheets/lesscss.less",
+     "spec/support/public/stylesheets/sassy.css",
+     "spec/support/public/stylesheets/sassy.sass",
      "spec/support/site.yml",
      "spec/support/templates/demo-template.mustache",
      "spec/support/templates/partials/inserted.mustache",
@@ -140,24 +144,24 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rspec>, [">= 1.2.9"])
       s.add_development_dependency(%q<yard>, [">= 0"])
-      s.add_runtime_dependency(%q<tilt>, [">= 0.4"])
+      s.add_runtime_dependency(%q<tilt>, [">= 0.5"])
       s.add_runtime_dependency(%q<mustache>, [">= 0.5.0"])
       s.add_runtime_dependency(%q<builder>, [">= 2.1.2"])
       s.add_runtime_dependency(%q<watch>, [">= 0.1.0"])
       s.add_runtime_dependency(%q<sinatra>, [">= 0.9.4"])
-      s.add_runtime_dependency(%q<rdiscount>, [">= 1.5.5"])
+      s.add_runtime_dependency(%q<maruku>, [">= 0.6.0"])
       s.add_runtime_dependency(%q<less>, [">= 1.2.17"])
       s.add_runtime_dependency(%q<rack>, [">= 1.1.0"])
       s.add_runtime_dependency(%q<launchy>, [">= 0.3.3"])
     else
       s.add_dependency(%q<rspec>, [">= 1.2.9"])
       s.add_dependency(%q<yard>, [">= 0"])
-      s.add_dependency(%q<tilt>, [">= 0.4"])
+      s.add_dependency(%q<tilt>, [">= 0.5"])
       s.add_dependency(%q<mustache>, [">= 0.5.0"])
       s.add_dependency(%q<builder>, [">= 2.1.2"])
       s.add_dependency(%q<watch>, [">= 0.1.0"])
       s.add_dependency(%q<sinatra>, [">= 0.9.4"])
-      s.add_dependency(%q<rdiscount>, [">= 1.5.5"])
+      s.add_dependency(%q<maruku>, [">= 0.6.0"])
       s.add_dependency(%q<less>, [">= 1.2.17"])
       s.add_dependency(%q<rack>, [">= 1.1.0"])
       s.add_dependency(%q<launchy>, [">= 0.3.3"])
@@ -165,12 +169,12 @@ Gem::Specification.new do |s|
   else
     s.add_dependency(%q<rspec>, [">= 1.2.9"])
     s.add_dependency(%q<yard>, [">= 0"])
-    s.add_dependency(%q<tilt>, [">= 0.4"])
+    s.add_dependency(%q<tilt>, [">= 0.5"])
     s.add_dependency(%q<mustache>, [">= 0.5.0"])
     s.add_dependency(%q<builder>, [">= 2.1.2"])
     s.add_dependency(%q<watch>, [">= 0.1.0"])
     s.add_dependency(%q<sinatra>, [">= 0.9.4"])
-    s.add_dependency(%q<rdiscount>, [">= 1.5.5"])
+    s.add_dependency(%q<maruku>, [">= 0.6.0"])
     s.add_dependency(%q<less>, [">= 1.2.17"])
     s.add_dependency(%q<rack>, [">= 1.1.0"])
     s.add_dependency(%q<launchy>, [">= 0.3.3"])
