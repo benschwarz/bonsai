@@ -1,6 +1,13 @@
 require 'yaml'
-require 'rdiscount'
 require 'tilt'
+
+# Use RDiscount for those who care
+begin 
+  require 'rdiscount'
+  BlueCloth = RDiscount
+rescue LoadError
+  require 'maruku'
+end
 
 module Bonsai
   class Page
@@ -147,11 +154,19 @@ module Bonsai
       
       formatted_content.each do |k,v|
         if v.is_a?(String) and v =~ /\n/
-          formatted_content[k] = RDiscount.new(v, :smart).to_html
+          formatted_content[k] = to_markdown(v)
         end
       end
       
       formatted_content
+    end
+    
+    def to_markdown(content)
+      if defined? RDiscount
+        RDiscount.new(content, :smart).to_html
+      else
+        Maruku.new(content).to_html
+      end
     end
     
     # Creates methods for each sub-folder within the page's folder
