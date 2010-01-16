@@ -11,11 +11,12 @@ module Bonsai
     set :views, "#{File.dirname(__FILE__)}/webserver"
     
     get '/' do
-    begin
-      Page.find("index").render
-    rescue
-      @error = e.message
-      erb :error
+      begin
+        Page.find("index").render
+      rescue
+        @error = e.message
+        erb :error
+      end
     end
     
     get '/*' do
