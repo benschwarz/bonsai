@@ -39,7 +39,7 @@ module Bonsai
       end
       
       def cleanup
-        remove_less_from_public
+        remove_less_sass
       end
       
       def write_index
@@ -88,7 +88,7 @@ module Bonsai
       end
       
       def copy_public
-        generate_css_from_less
+        generate_css
         
         Bonsai.log "Copying public files"
         # Using system call because fileutils is inadequate
@@ -104,19 +104,19 @@ module Bonsai
         end
       end
       
-      def generate_css_from_less
-        Dir["#{Bonsai.root_dir}/public/**/*.less"].each do |lessfile|
-          css = File.open(lessfile) {|f| Less::Engine.new(f) }.to_css
-          path = "#{File.dirname(lessfile)}/#{File.basename(lessfile, ".less")}.css"
+      def generate_css
+        Dir["#{Bonsai.root_dir}/public/**/*.{less,sass}"].each do |cssfile|
+          css = Tilt.new(cssfile).render
+          path = "#{File.dirname(cssfile)}/#{File.basename(cssfile, ".*")}.css"
           
           File.open(path, "w") {|file| file.write(css) }
         end
       rescue Less::SyntaxError => exception
-        Bonsai.log "LessCSS Syntax error\n\n#{exception.message}"
+        Bonsai.log "CSS Syntax error\n\n#{exception.message}"
       end
       
-      def remove_less_from_public
-        Dir["#{path}/**/*.less"].each{|f| FileUtils.rm(f) }
+      def remove_less_sass
+        Dir["#{path}/**/*.{less,sass}"].each{|f| FileUtils.rm(f) }
       end
     end
   end
