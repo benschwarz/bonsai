@@ -1,0 +1,12 @@
+= 1.1.2 (19/01/2010)
+
+* Added Sass support
+  - You can use LessCSS or Sass
+  - Sass needs to be installed to work
+  - Thanks to Ryan Tomayko for writing Tilt and accepting my LessCSS addition
+
+* Removed RDiscount in favour of Maruku.
+  - Still uses RDiscount if you have it
+  - Maruku is pure Ruby, no native extensions required
+
+* Added support for JRuby and Macruby
