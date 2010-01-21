@@ -6,10 +6,10 @@ module Bonsai
       @app.call(env)
     end
   end
-  
+
   class DevelopmentServer < Sinatra::Base
     set :views, "#{File.dirname(__FILE__)}/webserver"
-    
+
     get '/' do
       begin
         Page.find("index").render
@@ -18,10 +18,10 @@ module Bonsai
         erb :error
       end
     end
-    
+
     get '/*' do
       begin
-        Page.find(params[:splat].to_s).render
+        Page.find(params[:splat].join).render
       rescue
         @error = e.message
         erb :error
