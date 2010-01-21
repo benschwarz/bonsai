@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
-  s.date = %q{2010-01-21}
+  s.date = %q{2010-01-22}
   s.default_executable = %q{bonsai}
   s.description = %q{A static site generator that uses the best toolset available}
   s.email = %q{ben.schwarz@gmail.com}
@@ -72,6 +72,7 @@ Gem::Specification.new do |s|
      "spec/spec.opts",
      "spec/spec_helper.rb",
      "spec/support/broken/content/broken_page/demo-template.yml",
+     "spec/support/broken/public/empty.txt",
      "spec/support/broken/site.yml",
      "spec/support/broken/templates/content/index/default.yml",
      "spec/support/broken/templates/public/.htaccess",
