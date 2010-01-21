@@ -83,7 +83,7 @@ module Bonsai
     end
 
     def parent
-      id = permalink[/\/(.+)\/#{slug}\/$/, 1]
+      id = permalink[/\/(.+\/)[^\/]*\/$/, 1]
       return nil if id.nil?
       
       parent = Page.find(id)
