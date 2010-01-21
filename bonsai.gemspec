@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
-  s.date = %q{2010-01-16}
+  s.date = %q{2010-01-21}
   s.default_executable = %q{bonsai}
   s.description = %q{A static site generator that uses the best toolset available}
   s.email = %q{ben.schwarz@gmail.com}
@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
     ".document",
      ".gitignore",
      ".kick",
+     "CHANGES",
      "LICENSE",
      "README.md",
      "Rakefile",
@@ -144,6 +145,7 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rspec>, [">= 1.2.9"])
       s.add_development_dependency(%q<yard>, [">= 0"])
+      s.add_development_dependency(%q<rdiscount>, [">= 0"])
       s.add_runtime_dependency(%q<tilt>, [">= 0.5"])
       s.add_runtime_dependency(%q<mustache>, [">= 0.5.0"])
       s.add_runtime_dependency(%q<builder>, [">= 2.1.2"])
@@ -156,6 +158,7 @@ Gem::Specification.new do |s|
     else
       s.add_dependency(%q<rspec>, [">= 1.2.9"])
       s.add_dependency(%q<yard>, [">= 0"])
+      s.add_dependency(%q<rdiscount>, [">= 0"])
       s.add_dependency(%q<tilt>, [">= 0.5"])
       s.add_dependency(%q<mustache>, [">= 0.5.0"])
       s.add_dependency(%q<builder>, [">= 2.1.2"])
@@ -169,6 +172,7 @@ Gem::Specification.new do |s|
   else
     s.add_dependency(%q<rspec>, [">= 1.2.9"])
     s.add_dependency(%q<yard>, [">= 0"])
+    s.add_dependency(%q<rdiscount>, [">= 0"])
     s.add_dependency(%q<tilt>, [">= 0.5"])
     s.add_dependency(%q<mustache>, [">= 0.5.0"])
     s.add_dependency(%q<builder>, [">= 2.1.2"])
