@@ -13,7 +13,7 @@ module Bonsai
     get '/' do
       begin
         Page.find("index").render
-      rescue
+      rescue Exception => e
         @error = e.message
         erb :error
       end
@@ -22,7 +22,7 @@ module Bonsai
     get '/*' do
       begin
         Page.find(params[:splat].join).render
-      rescue
+      rescue Exception => e
         @error = e.message
         erb :error
       end
