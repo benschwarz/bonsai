@@ -135,7 +135,7 @@ describe Bonsai::Page do
         @output.should_not be_nil
       end
       
-      it "should replace moustache variables with properties from the content file" do
+      it "should replace mustache variables with properties from the content file" do
         @output.should == "Hello from our template, named Contact\n\nGet in touch\n\n/about-us/contact/images/image001.jpg\n/about-us/contact/child\n/about-us/contact/magic/image001.jpg\n/about-us/contact/magic/image002.jpg\nThis content should be inserted!\n\n<p>&ldquo;A designer knows he has achieved perfection\nnot when there is nothing left to add,\nbut when there is nothing left to take away.&rdquo;</p>\n\n<p>– Antoine de Saint-Exupery</p>\n"
       end
       
