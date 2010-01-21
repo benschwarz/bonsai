@@ -13,7 +13,7 @@ describe Bonsai::Page do
   
   describe "instance" do
     before :all do
-      @page = Bonsai::Page.find("about-us/history")
+      @page = Bonsai::Page.find("about-us/history/")
     end
     
     it "should have a slug" do
@@ -25,7 +25,7 @@ describe Bonsai::Page do
     end
     
     it "should have a permalink" do
-      @page.permalink.should == "/about-us/history"
+      @page.permalink.should == "/about-us/history/"
     end
     
     it "should have a ctime" do
@@ -38,7 +38,7 @@ describe Bonsai::Page do
       @page.mtime.should be_an_instance_of(Time)
     end
     it "should remove numbers over 10 from the permalink" do
-      Bonsai::Page.find("many-pages").permalink.should == "/many-pages"
+      Bonsai::Page.find("many-pages").permalink.should == "/many-pages/"
     end
     
     it "should have a write_path" do
@@ -136,7 +136,7 @@ describe Bonsai::Page do
       end
       
       it "should replace mustache variables with properties from the content file" do
-        @output.should == "Hello from our template, named Contact\n\nGet in touch\n\n/about-us/contact/images/image001.jpg\n/about-us/contact/child\n/about-us/contact/magic/image001.jpg\n/about-us/contact/magic/image002.jpg\nThis content should be inserted!\n\n<p>&ldquo;A designer knows he has achieved perfection\nnot when there is nothing left to add,\nbut when there is nothing left to take away.&rdquo;</p>\n\n<p>– Antoine de Saint-Exupery</p>\n"
+        @output.should == "Hello from our template, named Contact\n\nGet in touch\n\n/about-us/contact/images/image001.jpg\n/about-us/contact/child/\n/about-us/contact/magic/image001.jpg\n/about-us/contact/magic/image002.jpg\nThis content should be inserted!\n\n<p>&ldquo;A designer knows he has achieved perfection\nnot when there is nothing left to add,\nbut when there is nothing left to take away.&rdquo;</p>\n\n<p>– Antoine de Saint-Exupery</p>\n"
       end
       
       it "should write in images" do

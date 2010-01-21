@@ -22,13 +22,13 @@ module Bonsai
         Dir["#{dir_path}/#{pattern}/*.yml"].map {|p| Page.new p }
       end
       
-      def find(permalink)        
+      def find(permalink)
         @@pages[permalink] ||= find!(permalink)
       end
       
       private
       def find!(permalink)
-        search_path = permalink.gsub(/\//, "/*")
+        search_path = permalink.gsub(/\/$/, '').gsub(/\//, "/*")
         disk_path = Dir["#{path}/*#{search_path}/*.yml"]
         if disk_path.any?
           return new disk_path.first
@@ -45,7 +45,7 @@ module Bonsai
     end
     
     def slug
-      permalink.split('/').pop
+      permalink.gsub(/\/$/, '').split('/').pop
     end
     
     def name
@@ -53,14 +53,14 @@ module Bonsai
     end
     
     def permalink
-      web_path(directory)
+      web_path(directory) + '/'
     end
     
     def ctime; File.ctime(disk_path); end
     def mtime; File.mtime(disk_path); end
     
     def write_path
-      "#{permalink}/index.html"
+      "#{permalink}index.html"
     end
     
     def template
@@ -81,9 +81,9 @@ module Bonsai
     def floating?
       !!(File.dirname(disk_path) =~ /\/[a-zA-z][\w-]+$/)
     end
-    
+
     def parent
-      id = permalink[/^\/(.+)\/[^\/]*$/, 1]
+      id = permalink[/\/(.+)\/#{slug}\/$/, 1]
       return nil if id.nil?
       
       parent = Page.find(id)
@@ -109,7 +109,7 @@ module Bonsai
       
       # Find pages up the permalink tree if possible
       while(page_ref) do
-        page_ref = page_ref[/(.+)\/[^\/]*$/, 1]
+        page_ref = page_ref[/(.+\/)[^\/]*\/$/, 1]
         ancestors << self.class.find(page_ref) rescue NotFound
       end
       
