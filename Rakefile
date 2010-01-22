@@ -1,6 +1,6 @@
 # coding: utf-8
 
-require 'rubygems'
+require File.dirname(__FILE__) + '/vendor/gems/environment'
 require 'rake'
 
 begin
@@ -25,17 +25,17 @@ begin
     gem.add_dependency "less", ">= 1.2.17"
     gem.add_dependency "rack", ">= 1.1.0"
     gem.add_dependency "launchy", ">= 0.3.3"
-    
+
     gem.post_install_message = %q{
 
       盆栽
       bonsai, tiny and beautiful
-      
-      
-      
+
+
+
       type `bonsai --help` to get started
     }
-    
+
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new

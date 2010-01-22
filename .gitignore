@@ -21,3 +21,13 @@ pkg
 ## PROJECT::SPECIFIC
 spec/support/output
 spec/support/public/stylesheets/base.css
+spec/tmp-generator/
+
+## BUNDLER
+bin/*
+vendor/gems/environment.rb
+vendor/gems/ruby/1.8/*
+!vendor/gems/ruby/1.8/cache/
+vendor/gems/ruby/1.9.1/*
+!vendor/gems/ruby/1.9.1/cache/
+config/build_options.yml
