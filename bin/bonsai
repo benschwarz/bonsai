@@ -14,7 +14,7 @@ banner = %q{
 opts = OptionParser.new do |opts|
   opts.banner = banner
   
-  opts.on("--plant [NAME]", "creates the directory structure for your site") do |name|
+  opts.on("-p", "--plant [NAME]", "creates the directory structure for your site") do |name|
     if name.nil?
       Bonsai.log "no site name given check `bonsai --help` for details" 
       exit 0
@@ -22,7 +22,7 @@ opts = OptionParser.new do |opts|
     Bonsai::Generate.new("#{Dir.pwd}/#{name}")
   end
   
-  opts.on("--cultivate", "run a local web server and process your files on save") do
+  opts.on("-c", "--cultivate", "run a local web server and process your files on save") do
     begin
       Bonsai.log banner
       Bonsai.log "Press Control+C to quit"
@@ -51,7 +51,7 @@ opts = OptionParser.new do |opts|
     end
   end
   
-  opts.on("--repot", "export your site to #{Dir.pwd}/output") do
+  opts.on("-r", "--repot", "export your site to #{Dir.pwd}/output") do
     Bonsai.root_dir = Dir.pwd
     Bonsai::Exporter.publish!
   end
