@@ -14,7 +14,7 @@ module Bonsai
       begin
         Page.find("index").render
       rescue Exception => e
-        @error = e.message
+        @error = e
         erb :error
       end
     end
@@ -23,7 +23,7 @@ module Bonsai
       begin
         Page.find(params[:splat].join).render
       rescue Exception => e
-        @error = e.message
+        @error = e
         erb :error
       end
     end
