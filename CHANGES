@@ -1,3 +1,20 @@
+= 1.1.3 (23/01/2010)
+
+* Fixes for UTF-8 url strings under Ruby 1.9
+  - Thanks Ralph (Added to Credits in README.md)
+
+* Added shortcuts to --plant, --cultivate and --repot
+  - -p for --plant
+  - -c for --cultivate
+  - -r for --repot
+  - Thanks somedumbme91 (Added to Credits in README.md)
+  
+* Permalinks now have a trailing slash to reduce server redirects
+  - Thanks dgoodlad (Added to Credits in README.md)
+
+* Added an error page for badly formatted YML files or other issues
+  - Rendered during --cultivate sessions for debugging
+
 = 1.1.2 (19/01/2010)
 
 * Added Sass support
