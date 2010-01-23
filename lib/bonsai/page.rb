@@ -129,7 +129,7 @@ module Bonsai
     def content
       YAML::load(File.read(disk_path)) || {}
     rescue ArgumentError
-      Bonsai.log "Page '#{permalink}' has badly formatted content"
+      raise "Page '#{permalink}' has badly formatted content"
     end
     
     # This hash is available to all templates, it will map common properties, 
