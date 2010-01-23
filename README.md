@@ -76,4 +76,4 @@ When I found something that didn't quite work, was too slow or perhaps not even 
 
 ## Copyright
 
-Copyright (c) 2009 Ben Schwarz. See LICENSE for details.
+Copyright (c) 2010 Ben Schwarz. See LICENSE for details.
