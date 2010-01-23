@@ -122,8 +122,6 @@ module Bonsai
     
     def render
       Tilt.new(template.path, :path => template.class.path).render(self, to_hash)
-    rescue => stack
-      raise "Issue rendering #{permalink}\n\n#{stack}"
     end
     
     def content
