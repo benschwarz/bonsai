@@ -3,8 +3,17 @@
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>Bonsai, an error occurred</title>
+    <style type="text/css" media="screen">
+      body { font-style: Times, "Times New Roman", serif; font-style: italic; text-shadow: white 1px 1px 1px; }
+      h1 { font-size: 1em; text-align: center; font-weight: normal; }
+      #main { width: 580px; margin: 0 auto; display: block; }
+      #circle { width: 145px; height: 145px; -moz-border-radius: 72px; -webkit-border-radius: 72px; border-radius: 72px; background-color: black; margin: 3em auto; }
+    </style>
   </head>
   <body id="error">
-    <h1><%= @error %></h1>
+    <section id="main">
+      <div id="circle"></div>
+      <h1><%= @error.to_s %></h1>
+    </section>
   </body>
 </html>
