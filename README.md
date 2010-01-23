@@ -59,8 +59,10 @@ When I found something that didn't quite work, was too slow or perhaps not even 
   * [Lincoln Stoll](http://github.com/lstoll) for reminding me to use the tools that I know best
   
 ## Credits
-  * [Rohit Arondekar](http://github.com/rohit) for figuring out an annoying Ubuntu filesystem issue
-
+  * [Rohit Arondekar](http://github.com/rohit)
+  * [Justin Ridgewell](git://github.com/somedumbme91)
+  * [Ralph von der Heyden](http://github.com/ralph)
+  * [David Goodlad](http://github.com/dgoodlad)
 
 ## Note on Patches/Pull Requests
  
