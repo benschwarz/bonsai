@@ -1,6 +1,18 @@
 # coding: utf-8
+begin
+  require File.dirname(__FILE__) + '/vendor/gems/environment'
+rescue LoadError
+  raise <<-HELP
+    Bonsai uses the gem bundler to handle its development dependencies under 
+    multiple environments. So if you're testing under 1.8, 1.9, jruby or otherwise
+    you should ensure that you have the `bundler` gem installed.
+    
+    Then run `gem bundle`. Following going through these steps you should
+    not see this error message. If you do, please contact me or raise an issue.
+      (http://github.com/benschwarz/bonsai/issues)
+  HELP
+end
 
-require File.dirname(__FILE__) + '/vendor/gems/environment'
 require 'rake'
 
 begin
@@ -13,7 +25,7 @@ begin
     gem.homepage = "http://github.com/benschwarz/bonsai"
     gem.authors = ["Ben Schwarz"]
     gem.executables = ['bonsai']
-    gem.add_development_dependency "rspec", ">= 1.2.9"
+    gem.add_development_dependency "rspec", ">= 1.3.0"
     gem.add_development_dependency "yard", ">= 0"
     gem.add_development_dependency "rdiscount"
     gem.add_dependency "tilt", ">= 0.5"
