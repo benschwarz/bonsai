@@ -1,7 +1,6 @@
 gem 'jeweler'
 gem 'rspec'
 gem 'yard'
-gem 'rdiscount'
 gem 'tilt'
 gem 'mustache'
 gem 'builder'

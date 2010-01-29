@@ -27,7 +27,6 @@ begin
     gem.executables = ['bonsai']
     gem.add_development_dependency "rspec", ">= 1.3.0"
     gem.add_development_dependency "yard", ">= 0"
-    gem.add_development_dependency "rdiscount"
     gem.add_dependency "tilt", ">= 0.5"
     gem.add_dependency "mustache", ">= 0.5.0"
     gem.add_dependency "builder", ">= 2.1.2"
