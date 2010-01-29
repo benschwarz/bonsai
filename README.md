@@ -35,6 +35,7 @@ The generator will provide you with a .htaccess file that will turn on gzip/defl
 
 Bonsai runs under a number of Ruby implementations:
   
+  * 1.8.6 (MRI)
   * 1.8.7 (MRI)
   * 1.9.1 (MRI)
   * JRuby
