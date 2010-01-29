@@ -1,0 +1,14 @@
+important:
+  match:
+    - '{'
+    - '}'
+  style:
+    - bold
+    - underline
+    - yellow
+
+warning:
+  match: '@'
+  style:
+    - red
+    

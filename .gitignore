@@ -30,4 +30,6 @@ vendor/gems/ruby/1.8/*
 !vendor/gems/ruby/1.8/cache/
 vendor/gems/ruby/1.9.1/*
 !vendor/gems/ruby/1.9.1/cache/
+vendor/gems/ruby/jruby/*
+!vendor/gems/ruby/jruby/cache/
 config/build_options.yml

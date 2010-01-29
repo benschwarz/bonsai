@@ -1,0 +1,29 @@
+bold:
+  match: ['<b>','</b>']
+  style:
+    - bold
+    
+underline:
+  match: ['<u>','</u>']
+  style:
+    - underline
+  
+inverse:
+  match: ['<i>','</i>']
+  style:
+    - inverse
+
+error:
+  match: ['<err>','</err>']
+  style:
+    - red
+    
+warning:
+  match: ['<warn>','</warn>']
+  style:
+    - yellow
+
+ok:
+  match: ['<ok>','</ok>']
+  style:
+    - green

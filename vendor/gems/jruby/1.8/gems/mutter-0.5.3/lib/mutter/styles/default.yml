@@ -1,0 +1,14 @@
+bold:
+  match: '*'
+  style:
+    - bold
+    
+underline:
+  match: '_'
+  style:
+    - underline
+  
+inverse:
+  match: ['[', ']']
+  style:
+    - inverse
