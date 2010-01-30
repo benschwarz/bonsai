@@ -142,7 +142,9 @@ module Bonsai
         :siblings     => siblings,
         :parent       => parent, 
         :ancestors    => ancestors,
-        :navigation   => Bonsai::Navigation.tree
+        :navigation   => Bonsai::Navigation.tree,
+        :updated_at   => mtime,
+        :created_at   => ctime
       }.merge(formatted_content).merge(disk_assets)
     end
     
