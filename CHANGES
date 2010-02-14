@@ -4,6 +4,10 @@
   - No need to install each gem under other ruby implementations
   - Thanks Ralph
 
+* Variables from `site.yml` are accessible to pages
+
+* Added analytics.mustache partial to the generated demo site
+
 = 1.1.3 (23/01/2010)
 
 * Fixes for UTF-8 url strings under Ruby 1.9
