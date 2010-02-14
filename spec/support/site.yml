@@ -1,4 +1,6 @@
-:site: 
-  :name: Bonsai
-  :url: http://tinytree.info
-  :copyright: 2010
+# The key value pairs found below are available within the templating language.
+# {{site_name}}, {{url}}, {{copyright}} and {{analytics_code}}
+:site_name: Bonsai
+:url: http://tinytree.info
+:copyright: 2010
+:analytics_code: UA-00000000-0
