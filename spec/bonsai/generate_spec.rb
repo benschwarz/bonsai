@@ -8,7 +8,7 @@ describe Bonsai::Generate do
     end
     
     it "should create base directories" do
-      %w(content content/index templates public public/docs public/docs/css public/docs/js).each do |dir|
+      %w(content content/index templates public public/css public/js).each do |dir|
         File.directory?("#{@path}/#{dir}").should be_true
       end
     end
@@ -18,7 +18,7 @@ describe Bonsai::Generate do
     end
     
     it "should copy the base.less file" do
-      File.exists?("#{@path}/public/docs/css/base.less").should be_true
+      File.exists?("#{@path}/public/css/base.less").should be_true
     end
     
     it "should copy an index page" do
@@ -37,12 +37,12 @@ describe Bonsai::Generate do
       File.exists?("#{@path}/site.yml").should be_true
     end
     
-    it "should generate 21 files" do
-      Dir.glob("#{@path}/**/*", File::FNM_DOTMATCH).select{|f| File.file?(f) }.size.should == 21
+    it "should generate 23 files" do
+      Dir.glob("#{@path}/**/*", File::FNM_DOTMATCH).select{|f| File.file?(f) }.size.should == 23
     end
     
-    it "should generate 16 directories" do
-      Dir.glob("#{@path}/**/*").select{|f| File.directory?(f) }.size.should == 16
+    it "should generate 15 directories" do
+      Dir.glob("#{@path}/**/*").select{|f| File.directory?(f) }.size.should == 15
     end
   end
 end
