@@ -33,3 +33,4 @@ vendor/gems/ruby/1.9.1/*
 vendor/gems/ruby/jruby/*
 !vendor/gems/ruby/jruby/cache/
 config/build_options.yml
+lib/bonsai/templates/public/css/base.css
