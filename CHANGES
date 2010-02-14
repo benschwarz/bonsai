@@ -1,4 +1,4 @@
-= x.x.x (??/??/??)
+= 1.1.4 (12/02/2010)
 
 * Using the gem bundler for development environments
   - No need to install each gem under other ruby implementations
