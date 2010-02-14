@@ -206,18 +206,6 @@ describe Bonsai::Page do
             @vars[:magic].size.should == 2
           end
         end
-        
-        describe "boolean" do
-          it "should be false" do
-            pending
-            @vars[:child?].should be_false
-          end
-          
-          it "should be true" do
-            pending
-            @vars[:magic?].should be_true
-          end
-        end
       end
     end
     
