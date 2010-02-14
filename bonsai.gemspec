@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bonsai}
-  s.version = "1.1.3"
+  s.version = "1.1.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
-  s.date = %q{2010-01-30}
+  s.date = %q{2010-02-14}
   s.default_executable = %q{bonsai}
   s.description = %q{A static site generator that uses the best toolset available}
   s.email = %q{ben.schwarz@gmail.com}
@@ -49,12 +49,12 @@ Gem::Specification.new do |s|
      "lib/bonsai/templates/output/docs/css/base.css",
      "lib/bonsai/templates/output/robots.txt",
      "lib/bonsai/templates/public/.htaccess",
-     "lib/bonsai/templates/public/docs/css/base.css",
-     "lib/bonsai/templates/public/docs/css/base.less",
+     "lib/bonsai/templates/public/css/base.less",
      "lib/bonsai/templates/public/robots.txt",
      "lib/bonsai/templates/site.yml",
      "lib/bonsai/templates/templates/default.mustache",
      "lib/bonsai/templates/templates/products.mustache",
+     "lib/bonsai/templates/templates/shared/analytics.mustache",
      "lib/bonsai/templates/templates/shared/breadcrumbs.mustache",
      "lib/bonsai/templates/templates/shared/footer.mustache",
      "lib/bonsai/templates/templates/shared/head.mustache",
