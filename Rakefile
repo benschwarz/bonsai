@@ -25,7 +25,7 @@ begin
     gem.homepage = "http://github.com/benschwarz/bonsai"
     gem.authors = ["Ben Schwarz"]
     gem.executables = ['bonsai']
-    
+    gem.has_rdoc = false
     gem.files.exclude 'vendor/gems'
     
     gem.add_development_dependency "rspec", ">= 1.3.0"
