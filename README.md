@@ -2,17 +2,28 @@
 
 Bonsai is a static web site generator, it uses the best tools available for site construction and adheres to best web practices.
 
+## What it does
+
+  * Provides a tiny HTML5, mustache driven template set.
+  * Implies a simple structure to get started faster.
+  * An inbuilt server for development. No setup required.
+  * Tasks to export the site to `output`. Upload the contents of `output`. Job done.
+  * Access to page hierarchy through `children`, `siblings`, `ancestors` and `navigation`.
+  * Generates `sitemap.xml` ready for search engines to spider your site.
+  * Generates `robots.txt` to be friendly to search engines.  
+  
 ## Getting started
 
   * Install bonsai 
-  
+
     `gem install bonsai --source http://gemcutter.org`
-  
+
   * Run the generator
-    
+
     `bonsai --plant [NAME]`
-    
+
 Type `bonsai --help` for any help with commands
+
 
 ## Development server
 
@@ -40,18 +51,18 @@ Bonsai runs under a number of Ruby implementations:
   * 1.9.1 (MRI)
   * JRuby
   * MacRuby
-
-## Technology used to make your site better
-
-  * [Tilt](http://github.com/rtomayko/tilt) - defaulting to [Mustache](http://github.com/defunkt/mustache)
-  * [Less CSS](http://lesscss.org/)
-  * [YUI CSS/Javascript compressor](http://developer.yahoo.com/yui/compressor/)
   
 ## Have you used this for a real job? 
 
 Yes. I built (and content filled) a web site with around 160 pages in 5 days.
 
 When I found something that didn't quite work, was too slow or perhaps not even possible I wrote a spec and implemented it later. Better software from real requirements. (I used every feature I implemented)
+
+## Links
+
+  * [Tilt](http://github.com/rtomayko/tilt) - defaulting to [Mustache](http://github.com/defunkt/mustache)
+  * [Less CSS](http://lesscss.org/)
+  * [YUI CSS/Javascript compressor](http://developer.yahoo.com/yui/compressor/)
 
 
 ## Thanks
