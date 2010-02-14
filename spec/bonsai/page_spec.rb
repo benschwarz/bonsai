@@ -180,6 +180,12 @@ describe Bonsai::Page do
         end
       end
       
+      it "should include global site variables from site.yml" do
+        @page.to_hash[:site_name].should == "Bonsai"
+        @page.to_hash[:url].should == "http://tinytree.info"
+        @page.to_hash[:copyright].should == 2010
+      end
+      
       describe "disk_assets" do
         before :all do
           @vars = @page.to_hash

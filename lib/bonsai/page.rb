@@ -145,7 +145,7 @@ module Bonsai
         :navigation   => Bonsai::Navigation.tree,
         :updated_at   => mtime,
         :created_at   => ctime
-      }.merge(formatted_content).merge(disk_assets)
+      }.merge(formatted_content).merge(disk_assets).merge(Bonsai.site)
     end
     
     private

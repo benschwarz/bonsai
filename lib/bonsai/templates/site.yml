@@ -1,4 +1,7 @@
-:site:
-  :name: Your website title
-  :url: http://yourdomain.com
-  :copyright: 2010
+# The key value pairs found below are available within the templates.
+# {{site_name}}, {{url}}, {{copyright}} and {{analytics_code}}
+
+:site_name: Your website title
+:url: http://yourdomain.com
+:copyright: 2010
+:analytics_code: UA-00000000-0
