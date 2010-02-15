@@ -5,13 +5,8 @@ require 'logger'
 $LOAD_PATH << "#{File.dirname(__FILE__)}/bonsai"
 
 module Bonsai
-  @@root_dir = nil
-  @@config = { :enable_logging => true }
-
   class << self
-    def root_dir
-      @@root_dir || Dir.pwd
-    end
+    attr_accessor :root_dir, :config
   
     def root_dir=(path)
       unless is_a_bonsai?(path)
@@ -19,7 +14,7 @@ module Bonsai
         exit 0
       end
       
-      @@root_dir = path
+      @root_dir = path
       
       Exporter.path = "#{path}/output"
       Page.path = "#{path}/content"
@@ -27,15 +22,11 @@ module Bonsai
     end
     
     def log(message)
-      puts message if @@config[:enable_logging]
+      puts message if config[:enable_logging]
     end
   
     def config
-      @@config 
-    end
-  
-    def configure(&block)
-      yield @@config
+      @config || { :enable_logging => true }
     end
     
     def version
