@@ -1,14 +1,13 @@
 module Bonsai
-  class Template
-    @@path = "templates"
-    
+  class Template    
     class NotFound < StandardError; end
     
+    # Class methods
     class << self
-      def path; @@path; end
-      
-      def path=(path)
-        @@path = path
+      attr_accessor :path
+
+      def path
+        @path || "templates"
       end
       
       def find(name)
@@ -22,6 +21,7 @@ module Bonsai
       end
     end
     
+    # Instance methods
     attr_reader :path
     
     def initialize(path)

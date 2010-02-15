@@ -11,19 +11,18 @@ end
 
 module Bonsai
   class Page
-    class NotFound < StandardError; end;
-    @@pages = {}
-    
-    class << self    
-      def path; @@path; end
-      def path=(path); @@path = path; end
+    class NotFound < StandardError; end;  
+    class << self
+      attr_accessor :path, :pages
+      
+      def pages; @pages || {} end
       
       def all(dir_path = path, pattern = "*/**")
         Dir["#{dir_path}/#{pattern}/*.yml"].map {|p| Page.new p }
       end
       
       def find(permalink)
-        @@pages[permalink] ||= find!(permalink)
+        pages[permalink] ||= find!(permalink)
       end
       
       private
@@ -202,7 +201,7 @@ module Bonsai
     end
     
     def web_path(path)
-      path.gsub(@@path, '').gsub(/\/\d+\./, '/')
+      path.gsub(self.class.path, '').gsub(/\/\d+\./, '/')
     end
   end
 end
