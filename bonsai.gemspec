@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bonsai}
-  s.version = "1.1.4"
+  s.version = "1.1.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
-  s.date = %q{2010-02-14}
+  s.date = %q{2010-02-15}
   s.default_executable = %q{bonsai}
   s.description = %q{A static site generator that uses the best toolset available}
   s.email = %q{ben.schwarz@gmail.com}
@@ -114,6 +114,7 @@ Gem::Specification.new do |s|
      "spec/support/templates/partials/inserted.mustache",
      "vendor/yui-compressor/yuicompressor-2.4.2.jar"
   ]
+  s.has_rdoc = false
   s.homepage = %q{http://github.com/benschwarz/bonsai}
   s.post_install_message = %q{
 
