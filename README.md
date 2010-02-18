@@ -24,6 +24,13 @@ Bonsai is a static web site generator, it uses the best tools available for site
 
 Type `bonsai --help` for any help with commands
 
+## Presentation
+
+* Introducing Bonsai - at Melbourne Ruby, January 2010
+
+  * [Video](http://vimeo.com/9537550) (with slides)
+  * [Slides](http://www.slideshare.net/benschwarz/introducing-bonsai)
+
 
 ## Development server
 
