@@ -1,25 +1,21 @@
 /* HTML resets */
-h1, h2, h3, h4, h5, h6, p, ol, ul { margin: 0; padding: 0; font-weight: normal; }
+h1, h2, h3, h4, h5, h6, p, ol, ul, li div, body, html, img, form, fieldset, input, textarea, p{ margin: 0; padding: 0; font-weight: normal; font-size: 100%; outline: none; border: none;}
 
 /* HTML5 block elements */
 header, section, article, footer, aside, nav { display: block; }
 
-
-
-
-
 /* Put your styles below here */
 #wrapper { margin: 0 auto; width: 660px; }
+
+body { font-family: "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif; }
 
 header { 
 	position: relative; margin-top: 5em;
 	
-	span { display: block; }
-	
 	#logo { 
-		width: 145px; height: 145px; -moz-border-radius: 72px; -webkit-border-radius: 72px; border-radius: 72px; background-color: black; color: white; position: relative; margin: 0 auto;
-		a { color: white; text-decoration: none; position: absolute; margin: 1em 0 0 1.5em; text-align: center; text-transform: lowercase; }
-	}
+		width: 145px; height: 145px; -moz-border-radius: 72px; -webkit-border-radius: 72px; background-color: black; color: white; margin: 0 auto; -webkit-box-shadow:0px 0px 10px #000;
+		a { font-weight: 100; color: white; text-transform: lowercase; text-decoration: none; position: absolute; margin: 1em 0 0em 1.5em; }
+}
 	
 	#navigation {
 		margin: 5em 0; text-transform: lowercase; text-align: center;  font-style: italic; font-size: 0.8em;
@@ -41,4 +37,14 @@ nav li { display: inline; list-style-type: none; }
 }
 
 nav, footer { margin: 1em 0; }
+
 h1, h2, h3, h4, h5, h6 { margin: 1.25em 0; }
+
+h1 { font-size: 2em; }
+h2 { font-size: 1.6em; }
+h3 { font-size: 1.4em; }
+h4 { font-size: 1.2em; }
+h5 { font-size: 1em; }
+h6 { font-size: 0.9em; }
+
+p { font-size: 0.8em; line-height: 140%; margin-bottom: 10px; }
