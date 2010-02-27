@@ -4,19 +4,20 @@
 <body id="{{slug}}">
   <section id="wrapper">
     {{> shared/header}}
-      <nav id="sub-navigation">
-	    <ol>
-		{{# children}}
-		  <li><a href="{{permalink}}">{{name}}</a></li>
-		{{/ children}}
-		</ol>
-      </nav>
-
+    
 	  <article>
 	  	<h2>{{headline}}</h2>
-        {{{body}}}
+      {{{body}}}
 	  </article>
-	
+	  
+	  <nav id="sub-navigation">
+      <ol>
+	      {{# children}}
+	        <li><a href="{{permalink}}">{{name}}</a></li>
+	      {{/ children}}
+	    </ol>
+    </nav>
+	  
     {{> shared/footer}}
   </section>
 </body>
