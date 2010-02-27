@@ -1,3 +1,17 @@
+= 1.1.6 (27/02/2010)
+
+* Updates to default templates
+  - Sans-serif rather than serif
+  - Bit cleaner
+  - Contains copyright info
+  - Thanks to Philip Harrison (Added to Credits in README.md)
+
+= 1.1.5 (16/02/2010)
+
+* Fixed an issue that affected v.1.1.4 only where an old
+  sitemap would cause the server to crash. All future updates
+  will contain this fix / warning.  
+
 = 1.1.4 (12/02/2010)
 
 * Using the gem bundler for development environments
