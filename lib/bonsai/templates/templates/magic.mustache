@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  {{> shared/head}}
+  <body id="{{slug}}">
+    <section id="wrapper" class="magic">
+      {{> shared/header}}	
+	  
+	    <article>
+	      <h2>{{headline}}</h2>
+		    {{{body}}}
+			<figure>
+			{{#images}} {{! renders files located in a "images" folder within you page content }}
+			  <img src="{{path}}" alt="{{name}}" />
+			{{/images}}
+			</figure>
+	    </article>
+		<aside>
+			{{{aside}}}
+		</aside>
+		<div class="clear"></div>
+      {{> shared/footer}}
+    </section>
+    {{> shared/analytics }}
+  </body>
+</html>
