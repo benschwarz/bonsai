@@ -82,6 +82,7 @@ When I found something that didn't quite work, was too slow or perhaps not even 
   * [Justin Ridgewell](git://github.com/somedumbme91)
   * [Ralph von der Heyden](http://github.com/ralph)
   * [David Goodlad](http://github.com/dgoodlad)
+  * [Philip Harrison](http://github.com/Harrison)
 
 ## Note on Patches/Pull Requests
  
