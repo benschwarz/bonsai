@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bonsai}
-  s.version = "1.1.6"
+  s.version = "1.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
-  s.date = %q{2010-02-27}
+  s.date = %q{2010-03-13}
   s.default_executable = %q{bonsai}
   s.description = %q{A static site generator that uses the best toolset available}
   s.email = %q{ben.schwarz@gmail.com}
@@ -41,6 +41,8 @@ Gem::Specification.new do |s|
      "lib/bonsai/template.rb",
      "lib/bonsai/templates/content/1.varieties/1.fig/default.yml",
      "lib/bonsai/templates/content/1.varieties/2.maple/default.yml",
+     "lib/bonsai/templates/content/1.varieties/3.magic/images/magic.jpg",
+     "lib/bonsai/templates/content/1.varieties/3.magic/magic.yml",
      "lib/bonsai/templates/content/1.varieties/products.yml",
      "lib/bonsai/templates/content/2.cultivation/default.yml",
      "lib/bonsai/templates/content/3.history/default.yml",
@@ -53,6 +55,7 @@ Gem::Specification.new do |s|
      "lib/bonsai/templates/public/robots.txt",
      "lib/bonsai/templates/site.yml",
      "lib/bonsai/templates/templates/default.mustache",
+     "lib/bonsai/templates/templates/magic.mustache",
      "lib/bonsai/templates/templates/products.mustache",
      "lib/bonsai/templates/templates/shared/analytics.mustache",
      "lib/bonsai/templates/templates/shared/breadcrumbs.mustache",
@@ -127,7 +130,7 @@ Gem::Specification.new do |s|
     }
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{A static site generator that uses the best toolset available}
   s.test_files = [
     "spec/bonsai/console_spec.rb",
