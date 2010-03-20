@@ -73,6 +73,8 @@ module Bonsai
       end
     end
     
+    # "Floating pages" are pages that are not prefixed with a numeric eg: 1.about-us
+    # These pages are not present in the `children` or other meta-content arrays
     def floating?
       !!(File.dirname(disk_path) =~ /\/[a-zA-z][\w-]+$/)
     end
@@ -163,8 +165,8 @@ module Bonsai
       end
     end
     
-    # Creates methods for each sub-folder within the page's folder
-    # that isn't a sub-page (a page object)
+    # Creates "methods" for each sub-folder within the page's folder
+    # that isn't itself, a child-page (a page object)
     def disk_assets
       assets = {}
       Dir["#{File.dirname(disk_path)}/**"].select{|p| File.directory?(p)}.reject {|p|
