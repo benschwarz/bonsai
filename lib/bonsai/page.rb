@@ -68,12 +68,8 @@ module Bonsai
     
     # This method is used for the exporter to copy assets
     def assets
-      Dir["#{directory}/**/*"].select{|p| !File.directory?(p) && !File.basename(p).include?("yml") }.map do |a|
-        {
-          :name       => File.basename(a),
-          :path       => web_path(a),
-          :disk_path  => a
-        }
+      Dir["#{directory}/**/*"].select{|path| !File.directory?(path) && !File.basename(path).include?("yml") }.map do |file|
+        file_to_hash(file)
       end
     end
     
@@ -183,11 +179,7 @@ module Bonsai
       
       {
         name.to_sym => Dir["#{path}/*"].map do |file|
-          {
-            :name       => File.basename(file),
-            :path       => web_path(file),
-            :disk_path  => file
-          }  
+          file_to_hash(file)  
         end
       }
     end
@@ -202,6 +194,14 @@ module Bonsai
     
     def web_path(path)
       path.gsub(self.class.path, '').gsub(/\/\d+\./, '/')
+    end
+    
+    def file_to_hash(file)
+      {
+        :name       => File.basename(file),
+        :path       => "#{web_path(File.dirname(file))}/#{File.basename(file)}",
+        :disk_path  => File.expand_path(file)
+      }
     end
   end
 end

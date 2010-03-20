@@ -48,10 +48,24 @@ describe Bonsai::Page do
     it "should respond to disk path" do
       @page.disk_path.should == "#{Bonsai.root_dir}/content/1.about-us/history/demo-template.yml"
     end
-        
-    it "should have assets" do
-      @page.assets.should be_an_instance_of(Array)
-      @page.assets.length.should == 6
+            
+    describe "assets" do
+      it "should have assets" do
+        @page.assets.should be_an_instance_of(Array)
+        @page.assets.length.should == 6
+      end
+      
+      it "should have the correct name" do
+        @page.assets.first[:name].should == "001.jpg"
+      end
+      
+      it "should have the correct path" do
+        @page.assets.first[:path].should == "/about-us/history/001.jpg"
+      end
+      
+      it "should have the correct disk_path" do
+        @page.assets.first[:disk_path].should == "/Users/ben/Documents/Projects/bonsai/spec/support/content/1.about-us/history/001.jpg"
+      end
     end
     
     it "should be equal" do
