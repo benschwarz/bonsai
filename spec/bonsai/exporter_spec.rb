@@ -120,7 +120,7 @@ describe Bonsai::Exporter do
       end
       
       it "should write a readme file to explain how the site was generated" do
-        File.exists?("#{Bonsai::Exporter.path}/ABOUT-THIS-SITE").should be_true
+        File.exists?("#{Bonsai::Exporter.path}/ABOUT-THIS-SITE.txt").should be_true
       end
       
       describe "asset compression" do

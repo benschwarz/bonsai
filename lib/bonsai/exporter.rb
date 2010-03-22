@@ -66,12 +66,15 @@ module Bonsai
         
         readme = <<-README
           This site was built using Bonsai (http://tinytree.info)
-          
-          To make changes to the site you will require the original source files.
+                
+          To make changes to the site using Bonsai you will require the original source files.
           Please contact the author of your site for details.
+          
+          It may also be a good idea to ensure that you've got Bonsai version #{Bonsai.version} or higher.
+          If you experience any unexplainable issues try uninstalling all versions of Bonsai (`gem uninstall bonsai`) and install version #{Bonsai.version} (`gem install bonsai -v #{Bonsai.version}`)
         README
         
-        File.open("#{path}/ABOUT-THIS-SITE", "w") {|file| file.write(readme) }
+        File.open("#{path}/ABOUT-THIS-SITE.txt", "w") {|file| file.write(readme) }
       end
       
       def copy_assets
