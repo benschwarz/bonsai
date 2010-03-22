@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
   {{> shared/head}}
-  <body id="{{slug}}" class="default">
+  <body id="{{slug}}">
     <section id="wrapper">
       {{> shared/header}}
-        
-      <ul id="sub-navigation">
-        {{# children}}
-          <li><a href="{{permalink}}">{{name}}</a></li>
-        {{/ children}}
-      </ul>
-      {{{body}}}
     
+  	  <article>
+  	  	<h2>{{headline}}</h2>
+        {{{body}}}
+  	  </article>
+	  
+  	  <nav id="sub-navigation">
+        <ol>
+  	      {{# children}}
+  	        <li><a href="{{permalink}}">{{name}}</a></li>
+  	      {{/ children}}
+  	    </ol>
+      </nav>
+	  
       {{> shared/footer}}
     </section>
   </body>

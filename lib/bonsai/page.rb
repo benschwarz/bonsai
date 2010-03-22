@@ -11,19 +11,18 @@ end
 
 module Bonsai
   class Page
-    class NotFound < StandardError; end;
-    @@pages = {}
-    
-    class << self    
-      def path; @@path; end
-      def path=(path); @@path = path; end
+    class NotFound < StandardError; end;  
+    class << self
+      attr_accessor :path, :pages
+      
+      def pages; @pages || {} end
       
       def all(dir_path = path, pattern = "*/**")
         Dir["#{dir_path}/#{pattern}/*.yml"].map {|p| Page.new p }
       end
       
       def find(permalink)
-        @@pages[permalink] ||= find!(permalink)
+        pages[permalink] ||= find!(permalink)
       end
       
       private
@@ -69,15 +68,13 @@ module Bonsai
     
     # This method is used for the exporter to copy assets
     def assets
-      Dir["#{directory}/**/*"].select{|p| !File.directory?(p) && !File.basename(p).include?("yml") }.map do |a|
-        {
-          :name       => File.basename(a),
-          :path       => web_path(a),
-          :disk_path  => a
-        }
+      Dir["#{directory}/**/*"].select{|path| !File.directory?(path) && !File.basename(path).include?("yml") }.map do |file|
+        file_to_hash(file)
       end
     end
     
+    # "Floating pages" are pages that are not prefixed with a numeric eg: 1.about-us
+    # These pages are not present in the `children` or other meta-content arrays
     def floating?
       !!(File.dirname(disk_path) =~ /\/[a-zA-z][\w-]+$/)
     end
@@ -168,8 +165,8 @@ module Bonsai
       end
     end
     
-    # Creates methods for each sub-folder within the page's folder
-    # that isn't a sub-page (a page object)
+    # Creates "methods" for each sub-folder within the page's folder
+    # that isn't itself, a child-page (a page object)
     def disk_assets
       assets = {}
       Dir["#{File.dirname(disk_path)}/**"].select{|p| File.directory?(p)}.reject {|p|
@@ -184,11 +181,7 @@ module Bonsai
       
       {
         name.to_sym => Dir["#{path}/*"].map do |file|
-          {
-            :name       => File.basename(file),
-            :path       => web_path(file),
-            :disk_path  => file
-          }  
+          file_to_hash(file)  
         end
       }
     end
@@ -202,7 +195,15 @@ module Bonsai
     end
     
     def web_path(path)
-      path.gsub(@@path, '').gsub(/\/\d+\./, '/')
+      path.gsub(self.class.path, '').gsub(/\/\d+\./, '/')
+    end
+    
+    def file_to_hash(file)
+      {
+        :name       => File.basename(file),
+        :path       => "#{web_path(File.dirname(file))}/#{File.basename(file)}",
+        :disk_path  => File.expand_path(file)
+      }
     end
   end
 end

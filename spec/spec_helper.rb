@@ -5,7 +5,7 @@ require 'spec'
 require 'spec/autorun'
 
 Spec::Runner.configure do |config|
-  Bonsai.configure {|config| config[:enable_logging] = false }
+  Bonsai.config = { :enable_logging => false }
   
   BONSAI_PATH = "#{File.dirname(__FILE__)}/support" unless defined? BONSAI_PATH
   Bonsai.root_dir = BONSAI_PATH

@@ -3,11 +3,9 @@ require 'less'
 
 module Bonsai
   class Exporter
-    @@path = "output"
-    
     class << self
-      def path; @@path; end
-      def path=(path); @@path = path; end
+      attr_accessor :path
+      def path; @path || "output"; end
       
       def process!
         setup

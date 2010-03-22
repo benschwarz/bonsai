@@ -25,6 +25,14 @@ module Bonsai
       end
       
       template.render
+    rescue NoMethodError
+      Bonsai.log <<-HELP
+      ! Can't write sitemap. Check that `site.yml` looks something like this:
+      
+      #{File.read(File.dirname(__FILE__) + "/templates/site.yml")}
+      HELP
+      
+      exit
     end
   end
 end

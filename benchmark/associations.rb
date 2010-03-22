@@ -2,7 +2,7 @@ require 'lib/bonsai'
 require 'benchmark'
 
 Bonsai.root_dir = File.dirname(__FILE__) + "/../spec/support"
-Bonsai.configure {|config| config[:enable_logging] = false }
+Bonsai.config = { :enable_logging => false }
 
 page = Bonsai::Page.find("about-us/history")
 

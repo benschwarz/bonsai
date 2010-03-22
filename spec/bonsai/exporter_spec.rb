@@ -104,7 +104,7 @@ describe Bonsai::Exporter do
       end
 
       it 'should copy the assets of each page to its directory' do    
-        File.exists?("#{Bonsai::Exporter.path}/about-us/history/a_file_asset.txt").should be_true
+        File.exists?("#{Bonsai::Exporter.path}/about-us/history/1_a_file_asset.txt").should be_true
       end
 
       it "should copy the contents of the public directory to the root export path" do
