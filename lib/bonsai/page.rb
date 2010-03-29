@@ -1,5 +1,6 @@
 require 'yaml'
 require 'tilt'
+require 'active_support/inflector'
 
 # Use RDiscount for those who care
 begin 
@@ -200,7 +201,7 @@ module Bonsai
     
     def file_to_hash(file)
       {
-        :name       => File.basename(file),
+        :name       => File.basename(file, ".*").titleize,
         :path       => "#{web_path(File.dirname(file))}/#{File.basename(file)}",
         :disk_path  => File.expand_path(file)
       }
