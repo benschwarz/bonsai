@@ -37,6 +37,7 @@ describe Bonsai::Page do
       @page.should respond_to :mtime
       @page.mtime.should be_an_instance_of(Time)
     end
+    
     it "should remove numbers over 10 from the permalink" do
       Bonsai::Page.find("many-pages").permalink.should == "/many-pages/"
     end
