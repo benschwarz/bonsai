@@ -56,7 +56,7 @@ describe Bonsai::Page do
       end
       
       it "should have the correct name" do
-        @page.assets.first[:name].should == "001.jpg"
+        @page.assets.first[:name].should == "001"
       end
       
       it "should have the correct path" do
@@ -65,6 +65,10 @@ describe Bonsai::Page do
       
       it "should have the correct disk_path" do
         @page.assets.first[:disk_path].should == "/Users/ben/Documents/Projects/bonsai/spec/support/content/1.about-us/history/001.jpg"
+      end
+      
+      it "should titleize the name attribute and remove the file extension" do
+        @page.assets[2][:name].should == "A File Asset"
       end
     end
     
