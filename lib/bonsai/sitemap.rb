@@ -13,7 +13,7 @@ module Bonsai
             	xml.changefreq(change_freq)
            	}
 
-            Bonsai::Page.all.delete_if{|p| p.permalink === "/index"}.each do |page|
+            Bonsai::Page.all.delete_if{|p| p.permalink === "/index/"}.each do |page|
               xml.url {
                 xml.loc(Bonsai.site[:url] + page.permalink)
               	xml.lastmod(page.mtime.utc.strftime("%Y-%m-%d"))
