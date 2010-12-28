@@ -24,7 +24,7 @@ begin
     gem.add_dependency "sinatra", ">= 0.9.4"
     gem.add_dependency "maruku", ">= 0.6.0"
     gem.add_dependency "less", ">= 1.2.17"
-    gem.add_dependency "rack", ">= 1.1.0"
+    gem.add_dependency "rack", ">= 1.2.1"
     gem.add_dependency "launchy", ">= 0.3.3"
     gem.add_dependency "activesupport", ">= 2.3.5"
 
