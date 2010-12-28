@@ -35,7 +35,7 @@ GEM
     sinatra (1.0)
       rack (>= 1.0)
     syntax (1.0.0)
-    tilt (0.5)
+    tilt (0.9)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     watch (0.1.0)
@@ -55,6 +55,6 @@ DEPENDENCIES
   mustache (~> 0.7.0)
   rspec (~> 2.3)
   sinatra
-  tilt (~> 0.5.0)
+  tilt (~> 0.9.0)
   watch
   yard
