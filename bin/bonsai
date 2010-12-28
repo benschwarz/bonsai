@@ -4,7 +4,7 @@
 require 'bundler/setup'
 
 require 'optparse'
-require 'bonsai'
+require File.join(File.dirname(File.dirname(__FILE__)), 'lib/bonsai')
 
 banner = %q{
   
