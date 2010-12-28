@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'jeweler'
-gem 'rspec'
+gem 'rspec', '~> 2.3'
 gem 'yard'
 
 gem 'tilt', '~> 0.5.0'

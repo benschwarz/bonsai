@@ -53,7 +53,7 @@ DEPENDENCIES
   less
   maruku
   mustache (~> 0.5.0)
-  rspec
+  rspec (~> 2.3)
   sinatra
   tilt (~> 0.5.0)
   watch
