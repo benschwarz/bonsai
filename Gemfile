@@ -5,7 +5,7 @@ gem 'rspec', '~> 2.3'
 gem 'yard'
 
 gem 'tilt', '~> 0.5.0'
-gem 'mustache', '~> 0.5.0'
+gem 'mustache', '~> 0.7.0'
 gem 'builder'
 gem 'watch'
 gem 'sinatra'

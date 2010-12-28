@@ -19,7 +19,7 @@ GEM
       treetop (>= 1.4.2)
     maruku (0.6.0)
       syntax (>= 1.0.0)
-    mustache (0.5.1)
+    mustache (0.7.0)
     mutter (0.5.3)
     polyglot (0.3.1)
     rack (1.2.1)
@@ -52,7 +52,7 @@ DEPENDENCIES
   launchy
   less
   maruku
-  mustache (~> 0.5.0)
+  mustache (~> 0.7.0)
   rspec (~> 2.3)
   sinatra
   tilt (~> 0.5.0)
