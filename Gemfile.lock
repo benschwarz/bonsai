@@ -1,16 +1,16 @@
 GEM
+  remote: http://rubygems.org/
   specs:
     activesupport (3.0.3)
     builder (3.0.0)
     configuration (1.2.0)
     diff-lcs (1.1.2)
-    gemcutter (0.6.1)
     git (1.2.5)
-    jeweler (1.4.0)
-      gemcutter (>= 0.1.0)
+    i18n (0.5.0)
+    jeweler (1.5.2)
+      bundler (~> 1.0.0)
       git (>= 1.2.5)
-      rubyforge (>= 2.0.0)
-    json_pure (1.4.6)
+      rake
     launchy (0.3.7)
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
@@ -19,7 +19,7 @@ GEM
       treetop (>= 1.4.2)
     maruku (0.6.0)
       syntax (>= 1.0.0)
-    mustache (0.12.0)
+    mustache (0.5.1)
     mutter (0.5.3)
     polyglot (0.3.1)
     rack (1.2.1)
@@ -32,13 +32,10 @@ GEM
     rspec-expectations (2.3.0)
       diff-lcs (~> 1.1.2)
     rspec-mocks (2.3.0)
-    rubyforge (2.0.4)
-      json_pure (>= 1.1.7)
-    sinatra (1.1.2)
-      rack (~> 1.1)
-      tilt (~> 1.2)
+    sinatra (1.0)
+      rack (>= 1.0)
     syntax (1.0.0)
-    tilt (1.2.1)
+    tilt (0.5)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     watch (0.1.0)
@@ -50,13 +47,14 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   builder
+  i18n
   jeweler
   launchy
   less
   maruku
-  mustache
+  mustache (~> 0.5.0)
   rspec
   sinatra
-  tilt
+  tilt (~> 0.5.0)
   watch
   yard
