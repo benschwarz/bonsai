@@ -1,4 +1,6 @@
-require 'lib/bonsai'
+$LOAD_PATH << File.dirname(__FILE__) + "/../lib"
+
+require 'bonsai'
 require 'benchmark'
 
 Bonsai.root_dir = File.dirname(__FILE__) + "/../spec/support"
