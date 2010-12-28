@@ -54,8 +54,6 @@ RSpec::Core::RakeTask.new('rcov') do |spec|
   spec.rcov_opts = %w[--exclude spec]
 end
 
-task :spec => :check_dependencies
-
 task :default => :spec
 
 begin
