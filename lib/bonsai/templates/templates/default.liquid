@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% include "shared/head" %}
+  <body id="{{slug}}">
+    <section id="wrapper">
+      {% include "shared/header" %}	
+	  
+	    <article>
+	      <h2>{{headline}}</h2>
+		    <section role="main">
+		      {{body}}
+		    </section>
+	    </article>
+	
+      {% include "shared/footer" %}
+    </section>
+    {% include "shared/analytics" %}
+  </body>
+</html>

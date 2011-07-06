@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% include "shared/head" %}
+  <body id="{{slug}}">
+    <section id="wrapper" class="magic">
+      {% include "shared/header" %}	
+	  
+	    <article>
+	      <h2>{{headline}}</h2>
+		    <section role="main">
+		      {{body}}
+		    </section>
+  			<figure>
+  			{% for image in images %}
+  			<!-- renders files located in a "images" folder within you page content -->
+  			  <img src="{{image.path}}" alt="{{image.name}}" />
+  			{% endfor %}
+  			</figure>
+	    </article>
+		<aside>
+			{{aside}}
+		</aside>
+		<div class="clear"></div>
+      {% include "shared/footer" %}
+    </section>
+    {% include "shared/analytics" %}
+  </body>
+</html>

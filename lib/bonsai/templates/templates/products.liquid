@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% include "shared/head" %}
+  <body id="{{slug}}">
+    <section id="wrapper">
+      {% include "shared/header" %}
+    
+  	  <article>
+  	  	<h2>{{headline}}</h2>
+        <section role="main">
+		      {{body}}
+		    </section>
+  	  </article>
+	  
+  	  <nav id="sub-navigation">
+        <ol>
+          {% for child in children %}
+  	        <li><a href="{{child.permalink}}">{{child.name}}</a></li>
+  	      {% endfor %}
+  	    </ol>
+      </nav>
+	  
+      {% include "shared/footer" %}
+    </section>
+  </body>
+  {% include "shared/analytics" %}
+</html>
