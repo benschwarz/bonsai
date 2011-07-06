@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'fileutils'
 require 'logger'
+require 'active_support/core_ext/hash/keys'
 
 $LOAD_PATH << "#{File.dirname(__FILE__)}/bonsai"
 
@@ -10,7 +11,7 @@ module Bonsai
   
     def root_dir=(path)
       unless is_a_bonsai?(path)
-        log "no bonsai site found - are you in the right directory?" 
+        log "no bonsai site found - are you in the right directory?"
         exit 0
       end
       
@@ -19,12 +20,13 @@ module Bonsai
       Exporter.path = "#{path}/output"
       Page.path = "#{path}/content"
       Template.path = "#{path}/templates"
+      Liquid::Template.file_system = Liquid::LocalFileSystem.new(Template.path)
     end
     
     def log(message)
       puts message if config[:enable_logging]
     end
-  
+    
     def config
       @config || { :enable_logging => true }
     end

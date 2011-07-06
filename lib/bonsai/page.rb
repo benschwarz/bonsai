@@ -1,5 +1,6 @@
 require 'yaml'
 require 'tilt'
+require 'liquid'
 require 'active_support/inflector'
 
 # Use RDiscount for those who care
@@ -12,7 +13,7 @@ end
 
 module Bonsai
   class Page
-    class NotFound < StandardError; end;  
+    class NotFound < StandardError; end;
     class << self
       attr_accessor :path, :pages
       
@@ -132,7 +133,7 @@ module Bonsai
     # content file results, as well as any "magic" hashes for file 
     # system contents
     def to_hash
-      {
+      hash = {
         :slug         => slug, 
         :permalink    => permalink, 
         :name         => name, 
@@ -144,11 +145,16 @@ module Bonsai
         :updated_at   => mtime,
         :created_at   => ctime
       }.merge(formatted_content).merge(disk_assets).merge(Bonsai.site)
+      
+      hash.stringify_keys
     end
     
+    alias to_liquid to_hash
+    
     private
+    # This method ensures that multiline strings are run through markdown and smartypants
     def formatted_content
-      formatted_content = content      
+      formatted_content = content
       formatted_content.each do |k,v|
         if v.is_a?(String) and v =~ /\n/
           formatted_content[k] = to_markdown(v)
@@ -181,8 +187,8 @@ module Bonsai
       name = File.basename(path)
       
       {
-        name.to_sym => Dir["#{path}/*"].map do |file|
-          file_to_hash(file)  
+        name => Dir["#{path}/*"].map do |file|
+          file_to_hash(file)
         end
       }
     end
@@ -204,7 +210,7 @@ module Bonsai
         :name       => File.basename(file, ".*").titleize,
         :path       => "#{web_path(File.dirname(file))}/#{File.basename(file)}",
         :disk_path  => File.expand_path(file)
-      }
+      }.stringify_keys
     end
   end
 end
