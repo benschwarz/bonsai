@@ -1,5 +1,5 @@
 require 'fileutils'
-require 'less'
+require 'sass'
 
 module Bonsai
   class Exporter
@@ -80,10 +80,10 @@ module Bonsai
         Page.all.each do |page|
           page.assets.each do |asset|      
             # Create the path to the asset by the export path of the page + File.dirname(asset permalink)
-            FileUtils.mkdir_p "#{path}#{File.dirname(asset[:path])}"
+            FileUtils.mkdir_p "#{path}#{File.dirname(asset['path'])}"
             
             # Copy the the asset from its disk path to File.dirname(asset permalink)
-            FileUtils.cp asset[:disk_path], "#{path}#{asset[:path]}"            
+            FileUtils.cp asset['disk_path'], "#{path}#{asset['path']}"
           end
         end
       end
@@ -106,13 +106,13 @@ module Bonsai
       end
       
       def generate_css
-        Dir["#{Bonsai.root_dir}/public/**/*.{less,sass}"].each do |cssfile|
+        Dir["#{Bonsai.root_dir}/public/**/*.{less,sass,scss}"].each do |cssfile|
           css = Tilt.new(cssfile).render
           path = "#{File.dirname(cssfile)}/#{File.basename(cssfile, ".*")}.css"
           
           File.open(path, "w") {|file| file.write(css) }
         end
-      rescue Less::SyntaxError => exception
+      rescue Sass::SyntaxError => exception
         Bonsai.log "CSS Syntax error\n\n#{exception.message}"
       end
       
