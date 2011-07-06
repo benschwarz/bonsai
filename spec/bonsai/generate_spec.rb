@@ -17,8 +17,8 @@ describe Bonsai::Generate do
       File.exists?("#{@path}/public/.htaccess").should be_true
     end
     
-    it "should copy the base.less file" do
-      File.exists?("#{@path}/public/css/base.less").should be_true
+    it "should copy the base.scss file" do
+      File.exists?("#{@path}/public/css/base.scss").should be_true
     end
     
     it "should copy an index page" do
@@ -26,7 +26,7 @@ describe Bonsai::Generate do
     end
     
     it "should copy a default template" do
-      File.exists?("#{@path}/templates/default.mustache").should be_true
+      File.exists?("#{@path}/templates/default.liquid").should be_true
     end
     
     it "should create a robots.txt" do
