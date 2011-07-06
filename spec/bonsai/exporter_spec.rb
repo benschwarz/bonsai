@@ -16,17 +16,13 @@ describe Bonsai::Exporter do
   end
   
   shared_examples_for "css generators" do      
-    it "should process .less files to .css" do
-      File.exists?("#{Bonsai::Exporter.path}/stylesheets/lesscss.css").should be_true
-    end
-    
-    it "should process .sass files to .css" do
+    it "should process .scss files to .css" do
       File.exists?("#{Bonsai::Exporter.path}/stylesheets/sassy.css").should be_true
     end
         
     it "should log an error when badly formatted less is supplied (and not raise an exception)" do
       Bonsai.should_receive(:log)
-      lambda { Bonsai::Exporter.send(:generate_css) }.should_not raise_error(Less::SyntaxError)
+      lambda { Bonsai::Exporter.send(:generate_css) }.should_not raise_error(Sass::SyntaxError)
     end
   end
   
@@ -40,10 +36,6 @@ describe Bonsai::Exporter do
       it_should_behave_like "css generators"
       
       # Uncompressed CSS
-      it "should be processed with less" do
-        File.read("#{Bonsai::Exporter.path}/stylesheets/lesscss.css").should == ".mymixin, #content { display: block; }\n"
-      end
-      
       it "should be processed with sass" do
         File.read("#{Bonsai::Exporter.path}/stylesheets/sassy.css").should == "#content {\n  display: block; }\n"
       end
@@ -77,17 +69,9 @@ describe Bonsai::Exporter do
       
       it_should_behave_like "css generators"
       
-      # Compressed CSS
-      it "should be processed with less" do
-        File.read("#{Bonsai::Exporter.path}/stylesheets/lesscss.css").should == ".mymixin,#content{display:block;}"
-      end
-      
+      # Compressed CSS      
       it "should be processed with sass" do
         File.read("#{Bonsai::Exporter.path}/stylesheets/sassy.css").should == "#content{display:block;}"
-      end
-      
-      it "should not export the base.less file" do
-        File.exists?("#{Bonsai::Exporter.path}/stylesheets/base.less").should be_false
       end
 
       it "should create the output directory" do
@@ -125,7 +109,7 @@ describe Bonsai::Exporter do
       
       describe "asset compression" do
         it "should compress the css file" do
-          File.read("#{Bonsai::Exporter.path}/stylesheets/lesscss.css").should == ".mymixin,#content{display:block;}"
+          File.read("#{Bonsai::Exporter.path}/stylesheets/sassy.css").should == "#content{display:block;}"
         end
         
         it "should compress the css file" do
