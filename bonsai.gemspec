@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bonsai}
-  s.version = "1.3.0"
+  s.version = "1.4.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
-  s.date = %q{2010-12-28}
+  s.date = %q{2011-09-17}
   s.default_executable = %q{bonsai}
   s.description = %q{A static site generator that uses the best toolset available}
   s.email = %q{ben.schwarz@gmail.com}
@@ -21,7 +21,8 @@ Gem::Specification.new do |s|
   s.files = [
     ".bundle/config",
     ".document",
-    ".kick",
+    ".rspec",
+    ".rvmrc",
     "CHANGES",
     "Gemfile",
     "Gemfile.lock",
@@ -50,18 +51,18 @@ Gem::Specification.new do |s|
     "lib/bonsai/templates/content/3.history/default.yml",
     "lib/bonsai/templates/content/index/default.yml",
     "lib/bonsai/templates/public/.htaccess",
-    "lib/bonsai/templates/public/css/base.less",
+    "lib/bonsai/templates/public/css/base.scss",
     "lib/bonsai/templates/public/robots.txt",
     "lib/bonsai/templates/site.yml",
-    "lib/bonsai/templates/templates/default.mustache",
-    "lib/bonsai/templates/templates/magic.mustache",
-    "lib/bonsai/templates/templates/products.mustache",
-    "lib/bonsai/templates/templates/shared/analytics.mustache",
-    "lib/bonsai/templates/templates/shared/breadcrumbs.mustache",
-    "lib/bonsai/templates/templates/shared/footer.mustache",
-    "lib/bonsai/templates/templates/shared/head.mustache",
-    "lib/bonsai/templates/templates/shared/header.mustache",
-    "lib/bonsai/templates/templates/shared/nav.mustache",
+    "lib/bonsai/templates/templates/default.liquid",
+    "lib/bonsai/templates/templates/magic.liquid",
+    "lib/bonsai/templates/templates/products.liquid",
+    "lib/bonsai/templates/templates/shared/_analytics.liquid",
+    "lib/bonsai/templates/templates/shared/_breadcrumbs.liquid",
+    "lib/bonsai/templates/templates/shared/_footer.liquid",
+    "lib/bonsai/templates/templates/shared/_head.liquid",
+    "lib/bonsai/templates/templates/shared/_header.liquid",
+    "lib/bonsai/templates/templates/shared/_nav.liquid",
     "lib/bonsai/webserver.rb",
     "lib/bonsai/webserver/error.erb",
     "lib/core_ext/string.rb",
@@ -86,7 +87,6 @@ Gem::Specification.new do |s|
     "spec/support/content/1.about-us/1.contact/1.child/a_file_asset.txt",
     "spec/support/content/1.about-us/1.contact/1.child/demo-template.yml",
     "spec/support/content/1.about-us/1.contact/demo-template.yml",
-    "spec/support/content/1.about-us/1.contact/images/image001.jpg",
     "spec/support/content/1.about-us/1.contact/magic/image001.jpg",
     "spec/support/content/1.about-us/1.contact/magic/image002.jpg",
     "spec/support/content/1.about-us/demo-template.yml",
@@ -104,20 +104,21 @@ Gem::Specification.new do |s|
     "spec/support/content/2.products/demo-template.yml",
     "spec/support/content/index/demo-template.yml",
     "spec/support/content/legals/terms-and-conditions/demo-template.yml",
+    "spec/support/content/render/image-spec/images.yml",
+    "spec/support/content/render/image-spec/images/image001.jpg",
     "spec/support/public/.htaccess",
     "spec/support/public/js/script.js",
-    "spec/support/public/stylesheets/brokenless.less",
     "spec/support/public/stylesheets/brokensass.sass",
-    "spec/support/public/stylesheets/lesscss.css",
-    "spec/support/public/stylesheets/lesscss.less",
     "spec/support/public/stylesheets/sassy.css",
-    "spec/support/public/stylesheets/sassy.sass",
+    "spec/support/public/stylesheets/sassy.scss",
     "spec/support/site.yml",
-    "spec/support/templates/demo-template.mustache",
-    "spec/support/templates/partials/inserted.mustache",
+    "spec/support/templates/children.liquid",
+    "spec/support/templates/demo-template.liquid",
+    "spec/support/templates/images.liquid",
+    "spec/support/templates/partials/_inserted.liquid",
+    "spec/support/templates/partials/_magic.liquid",
     "vendor/yui-compressor/yuicompressor-2.4.2.jar"
   ]
-  s.has_rdoc = false
   s.homepage = %q{http://github.com/benschwarz/bonsai}
   s.post_install_message = %q{
 
@@ -129,7 +130,7 @@ Gem::Specification.new do |s|
       type `bonsai --help` to get started
     }
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.7}
+  s.rubygems_version = %q{1.6.2}
   s.summary = %q{A static site generator that uses the best toolset available}
   s.test_files = [
     "spec/bonsai/console_spec.rb",
@@ -144,88 +145,87 @@ Gem::Specification.new do |s|
   ]
 
   if s.respond_to? :specification_version then
-    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<jeweler>, [">= 0"])
-      s.add_runtime_dependency(%q<rspec>, [">= 0"])
+      s.add_runtime_dependency(%q<rspec>, ["~> 2.3"])
       s.add_runtime_dependency(%q<yard>, [">= 0"])
-      s.add_runtime_dependency(%q<tilt>, ["~> 0.5.0"])
-      s.add_runtime_dependency(%q<mustache>, ["~> 0.5.0"])
-      s.add_runtime_dependency(%q<builder>, [">= 0"])
-      s.add_runtime_dependency(%q<watch>, [">= 0"])
-      s.add_runtime_dependency(%q<sinatra>, [">= 0"])
-      s.add_runtime_dependency(%q<maruku>, [">= 0"])
-      s.add_runtime_dependency(%q<less>, [">= 0"])
-      s.add_runtime_dependency(%q<launchy>, [">= 0"])
-      s.add_runtime_dependency(%q<activesupport>, [">= 0"])
-      s.add_runtime_dependency(%q<i18n>, [">= 0"])
+      s.add_runtime_dependency(%q<tilt>, ["= 1.3"])
+      s.add_runtime_dependency(%q<liquid>, ["= 2.2.2"])
+      s.add_runtime_dependency(%q<builder>, ["= 3.0.0"])
+      s.add_runtime_dependency(%q<watch>, ["= 0.1.0"])
+      s.add_runtime_dependency(%q<sinatra>, ["= 1.0"])
+      s.add_runtime_dependency(%q<maruku>, ["= 0.6.0"])
+      s.add_runtime_dependency(%q<sass>, ["= 3.1.4"])
+      s.add_runtime_dependency(%q<launchy>, ["= 0.3.7"])
+      s.add_runtime_dependency(%q<activesupport>, ["= 3.0.3"])
+      s.add_runtime_dependency(%q<i18n>, ["= 0.5.0"])
       s.add_development_dependency(%q<rspec>, [">= 1.3.0"])
       s.add_development_dependency(%q<yard>, [">= 0"])
-      s.add_runtime_dependency(%q<tilt>, [">= 0.5"])
-      s.add_runtime_dependency(%q<mustache>, [">= 0.5.0"])
-      s.add_runtime_dependency(%q<builder>, [">= 2.1.2"])
+      s.add_runtime_dependency(%q<rack>, [">= 0"])
+      s.add_runtime_dependency(%q<sinatra>, [">= 1.0"])
+      s.add_runtime_dependency(%q<tilt>, [">= 1.3"])
+      s.add_runtime_dependency(%q<liquid>, [">= 2.2.2"])
+      s.add_runtime_dependency(%q<builder>, [">= 3.0.0"])
       s.add_runtime_dependency(%q<watch>, [">= 0.1.0"])
-      s.add_runtime_dependency(%q<sinatra>, [">= 0.9.4"])
       s.add_runtime_dependency(%q<maruku>, [">= 0.6.0"])
-      s.add_runtime_dependency(%q<less>, [">= 1.2.17"])
-      s.add_runtime_dependency(%q<rack>, [">= 1.2.1"])
-      s.add_runtime_dependency(%q<launchy>, [">= 0.3.3"])
-      s.add_runtime_dependency(%q<activesupport>, [">= 2.3.5"])
+      s.add_runtime_dependency(%q<launchy>, [">= 0.3.7"])
+      s.add_runtime_dependency(%q<activesupport>, [">= 3.0.3"])
+      s.add_runtime_dependency(%q<sass>, [">= 0"])
     else
       s.add_dependency(%q<jeweler>, [">= 0"])
-      s.add_dependency(%q<rspec>, [">= 0"])
+      s.add_dependency(%q<rspec>, ["~> 2.3"])
       s.add_dependency(%q<yard>, [">= 0"])
-      s.add_dependency(%q<tilt>, ["~> 0.5.0"])
-      s.add_dependency(%q<mustache>, ["~> 0.5.0"])
-      s.add_dependency(%q<builder>, [">= 0"])
-      s.add_dependency(%q<watch>, [">= 0"])
-      s.add_dependency(%q<sinatra>, [">= 0"])
-      s.add_dependency(%q<maruku>, [">= 0"])
-      s.add_dependency(%q<less>, [">= 0"])
-      s.add_dependency(%q<launchy>, [">= 0"])
-      s.add_dependency(%q<activesupport>, [">= 0"])
-      s.add_dependency(%q<i18n>, [">= 0"])
+      s.add_dependency(%q<tilt>, ["= 1.3"])
+      s.add_dependency(%q<liquid>, ["= 2.2.2"])
+      s.add_dependency(%q<builder>, ["= 3.0.0"])
+      s.add_dependency(%q<watch>, ["= 0.1.0"])
+      s.add_dependency(%q<sinatra>, ["= 1.0"])
+      s.add_dependency(%q<maruku>, ["= 0.6.0"])
+      s.add_dependency(%q<sass>, ["= 3.1.4"])
+      s.add_dependency(%q<launchy>, ["= 0.3.7"])
+      s.add_dependency(%q<activesupport>, ["= 3.0.3"])
+      s.add_dependency(%q<i18n>, ["= 0.5.0"])
       s.add_dependency(%q<rspec>, [">= 1.3.0"])
       s.add_dependency(%q<yard>, [">= 0"])
-      s.add_dependency(%q<tilt>, [">= 0.5"])
-      s.add_dependency(%q<mustache>, [">= 0.5.0"])
-      s.add_dependency(%q<builder>, [">= 2.1.2"])
+      s.add_dependency(%q<rack>, [">= 0"])
+      s.add_dependency(%q<sinatra>, [">= 1.0"])
+      s.add_dependency(%q<tilt>, [">= 1.3"])
+      s.add_dependency(%q<liquid>, [">= 2.2.2"])
+      s.add_dependency(%q<builder>, [">= 3.0.0"])
       s.add_dependency(%q<watch>, [">= 0.1.0"])
-      s.add_dependency(%q<sinatra>, [">= 0.9.4"])
       s.add_dependency(%q<maruku>, [">= 0.6.0"])
-      s.add_dependency(%q<less>, [">= 1.2.17"])
-      s.add_dependency(%q<rack>, [">= 1.2.1"])
-      s.add_dependency(%q<launchy>, [">= 0.3.3"])
-      s.add_dependency(%q<activesupport>, [">= 2.3.5"])
+      s.add_dependency(%q<launchy>, [">= 0.3.7"])
+      s.add_dependency(%q<activesupport>, [">= 3.0.3"])
+      s.add_dependency(%q<sass>, [">= 0"])
     end
   else
     s.add_dependency(%q<jeweler>, [">= 0"])
-    s.add_dependency(%q<rspec>, [">= 0"])
+    s.add_dependency(%q<rspec>, ["~> 2.3"])
     s.add_dependency(%q<yard>, [">= 0"])
-    s.add_dependency(%q<tilt>, ["~> 0.5.0"])
-    s.add_dependency(%q<mustache>, ["~> 0.5.0"])
-    s.add_dependency(%q<builder>, [">= 0"])
-    s.add_dependency(%q<watch>, [">= 0"])
-    s.add_dependency(%q<sinatra>, [">= 0"])
-    s.add_dependency(%q<maruku>, [">= 0"])
-    s.add_dependency(%q<less>, [">= 0"])
-    s.add_dependency(%q<launchy>, [">= 0"])
-    s.add_dependency(%q<activesupport>, [">= 0"])
-    s.add_dependency(%q<i18n>, [">= 0"])
+    s.add_dependency(%q<tilt>, ["= 1.3"])
+    s.add_dependency(%q<liquid>, ["= 2.2.2"])
+    s.add_dependency(%q<builder>, ["= 3.0.0"])
+    s.add_dependency(%q<watch>, ["= 0.1.0"])
+    s.add_dependency(%q<sinatra>, ["= 1.0"])
+    s.add_dependency(%q<maruku>, ["= 0.6.0"])
+    s.add_dependency(%q<sass>, ["= 3.1.4"])
+    s.add_dependency(%q<launchy>, ["= 0.3.7"])
+    s.add_dependency(%q<activesupport>, ["= 3.0.3"])
+    s.add_dependency(%q<i18n>, ["= 0.5.0"])
     s.add_dependency(%q<rspec>, [">= 1.3.0"])
     s.add_dependency(%q<yard>, [">= 0"])
-    s.add_dependency(%q<tilt>, [">= 0.5"])
-    s.add_dependency(%q<mustache>, [">= 0.5.0"])
-    s.add_dependency(%q<builder>, [">= 2.1.2"])
+    s.add_dependency(%q<rack>, [">= 0"])
+    s.add_dependency(%q<sinatra>, [">= 1.0"])
+    s.add_dependency(%q<tilt>, [">= 1.3"])
+    s.add_dependency(%q<liquid>, [">= 2.2.2"])
+    s.add_dependency(%q<builder>, [">= 3.0.0"])
     s.add_dependency(%q<watch>, [">= 0.1.0"])
-    s.add_dependency(%q<sinatra>, [">= 0.9.4"])
     s.add_dependency(%q<maruku>, [">= 0.6.0"])
-    s.add_dependency(%q<less>, [">= 1.2.17"])
-    s.add_dependency(%q<rack>, [">= 1.2.1"])
-    s.add_dependency(%q<launchy>, [">= 0.3.3"])
-    s.add_dependency(%q<activesupport>, [">= 2.3.5"])
+    s.add_dependency(%q<launchy>, [">= 0.3.7"])
+    s.add_dependency(%q<activesupport>, [">= 3.0.3"])
+    s.add_dependency(%q<sass>, [">= 0"])
   end
 end
 
