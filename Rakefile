@@ -15,18 +15,20 @@ begin
     gem.has_rdoc = false
     gem.files.exclude 'vendor/gems'
     
-    gem.add_development_dependency "rspec", ">= 1.3.0"
+    gem.add_development_dependency "rspec", "~> 2.3"
     gem.add_development_dependency "yard", ">= 0"
+    
+    gem.add_dependency "rack"
+    gem.add_dependency "sinatra", ">= 1.0"
     gem.add_dependency "tilt", ">= 1.3"
     gem.add_dependency "liquid", ">= 2.2.2"
     gem.add_dependency "builder", ">= 3.0.0"
     gem.add_dependency "watch", ">= 0.1.0"
-    gem.add_dependency "sinatra", ">= 1.0"
     gem.add_dependency "maruku", ">= 0.6.0"
-    gem.add_dependency "rack", ">= 1.2.1"
     gem.add_dependency "launchy", ">= 0.3.7"
     gem.add_dependency "activesupport", ">= 3.0.3"
-    gem.add_dependency "sass", "3.1.4"
+    gem.add_dependency "i18n", ">= 0.5.0"
+    gem.add_dependency "sass"
     
     gem.post_install_message = %q{
 
