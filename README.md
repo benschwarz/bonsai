@@ -4,7 +4,7 @@ Bonsai is a static web site generator, it uses the best tools available for site
 
 ## What it does
 
-  * Provides a tiny HTML5, mustache driven template set.
+  * Provides a tiny HTML5, [liquid](http://liquidmarkup.org/) driven template set.
   * Implies a simple structure to get started faster.
   * An inbuilt server for development. No setup required.
   * Tasks to export the site to `output`. Upload the contents of `output`. Job done.
@@ -36,7 +36,7 @@ Type `bonsai --help` for any help with commands
 
 Unlike other static generators, bonsai provides you with a built in web server. Once you've generated the necessary files (generator included) you can simply start developing. Type `bonsai --cultivate` in the root of the generated site, a web server (rack, with thin) will start up. 
 
-It will also watch for when you save files - taking care of processing your [lesscss](http://lesscss.org/) files - kind of like [autotest](http://www.zenspider.com/ZSS/Products/ZenTest/).
+It will also watch for when you save files - taking care of processing your [sass](http://sass-lang.com/) files - kind of like [autotest](http://www.zenspider.com/ZSS/Products/ZenTest/).
 
 ## Production server
 
@@ -67,8 +67,8 @@ When I found something that didn't quite work, was too slow or perhaps not even 
 
 ## Links
 
-  * [Tilt](http://github.com/rtomayko/tilt) - defaulting to [Mustache](http://github.com/defunkt/mustache)
-  * [Less CSS](http://lesscss.org/)
+  * [Tilt](http://github.com/rtomayko/tilt)
+  * [SASS](http://sass-lang.com/)
   * [YUI CSS/Javascript compressor](http://developer.yahoo.com/yui/compressor/)
 
 
