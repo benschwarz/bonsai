@@ -1,9 +1,13 @@
 require 'yaml'
+
+if RUBY_VERSION =~ /^1.9./
+  YAML::ENGINE.yamler = 'syck'
+end
+
 require 'tilt'
 require 'liquid'
 require 'active_support/inflector'
 
-# Use RDiscount for those who care
 begin 
   require 'rdiscount'
   BlueCloth = RDiscount
