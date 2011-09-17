@@ -1,16 +1,3 @@
 source 'http://rubygems.org'
 
-gem 'jeweler'
-gem 'rspec', '~> 2.3'
-gem 'yard'
-
-gem 'tilt', '1.3'
-gem 'liquid', '2.2.2'
-gem 'builder', '3.0.0'
-gem 'watch', '0.1.0'
-gem 'sinatra', '1.0'
-gem 'maruku', '0.6.0'
-gem 'sass', '3.1.4'
-gem 'launchy', '0.3.7'
-gem 'activesupport', '3.0.3'
-gem 'i18n', '0.5.0'
+gemspec
