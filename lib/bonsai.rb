@@ -54,7 +54,6 @@ module Bonsai
   autoload :Template,           "template"
   autoload :Generate,           "generate"
   autoload :Navigation,         "navigation"
-  autoload :PagePresenter,      "page_presenter"
   autoload :StaticPassThrough,  "webserver"
   autoload :DevelopmentServer,  "webserver"
 end
