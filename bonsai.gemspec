@@ -4,15 +4,15 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{bonsai}
-  s.version = "1.4.3"
+  s.name = "bonsai"
+  s.version = "1.4.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Ben Schwarz}]
-  s.date = %q{2011-09-21}
-  s.description = %q{A static site generator that uses the best toolset available}
-  s.email = %q{ben.schwarz@gmail.com}
-  s.executables = [%q{bonsai}]
+  s.authors = ["Ben Schwarz"]
+  s.date = "2011-10-07"
+  s.description = "A static site generator that uses the best toolset available"
+  s.email = "ben.schwarz@gmail.com"
+  s.executables = ["bonsai"]
   s.extra_rdoc_files = [
     "LICENSE",
     "README.md"
@@ -118,24 +118,30 @@ Gem::Specification.new do |s|
     "spec/support/templates/partials/_magic.liquid",
     "vendor/yui-compressor/yuicompressor-2.4.2.jar"
   ]
-  s.homepage = %q{http://github.com/benschwarz/bonsai}
-  s.post_install_message = %q{
-
-      盆栽
-      bonsai, tiny and beautiful
-
-
-
-      type `bonsai --help` to get started
-    }
-  s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.8}
-  s.summary = %q{A static site generator that uses the best toolset available}
+  s.homepage = "http://github.com/benschwarz/bonsai"
+  s.post_install_message = "\n\n      \u{76c6}\u{683d}\n      bonsai, tiny and beautiful\n\n\n\n      type `bonsai --help` to get started\n    "
+  s.require_paths = ["lib"]
+  s.rubygems_version = "1.8.11"
+  s.summary = "A static site generator that uses the best toolset available"
+  s.test_files = [
+    "spec/bonsai/console_spec.rb",
+    "spec/bonsai/exporter_spec.rb",
+    "spec/bonsai/generate_spec.rb",
+    "spec/bonsai/navigation_spec.rb",
+    "spec/bonsai/page_spec.rb",
+    "spec/bonsai/sitemap_spec.rb",
+    "spec/bonsai/template_spec.rb",
+    "spec/bonsai_spec.rb",
+    "spec/spec_helper.rb",
+    "spec/support/extensions.rb"
+  ]
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+      s.add_development_dependency(%q<yard>, [">= 0"])
+      s.add_development_dependency(%q<rspec>, ["~> 2.3"])
       s.add_development_dependency(%q<yard>, [">= 0"])
       s.add_development_dependency(%q<rspec>, ["~> 2.3"])
       s.add_development_dependency(%q<yard>, [">= 0"])
@@ -166,6 +172,8 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<yard>, [">= 0"])
       s.add_dependency(%q<rspec>, ["~> 2.3"])
       s.add_dependency(%q<yard>, [">= 0"])
+      s.add_dependency(%q<rspec>, ["~> 2.3"])
+      s.add_dependency(%q<yard>, [">= 0"])
       s.add_dependency(%q<rack>, [">= 0"])
       s.add_dependency(%q<sinatra>, [">= 1.0"])
       s.add_dependency(%q<tilt>, [">= 1.3"])
@@ -179,6 +187,8 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<sass>, [">= 0"])
     end
   else
+    s.add_dependency(%q<yard>, [">= 0"])
+    s.add_dependency(%q<rspec>, ["~> 2.3"])
     s.add_dependency(%q<yard>, [">= 0"])
     s.add_dependency(%q<rspec>, ["~> 2.3"])
     s.add_dependency(%q<yard>, [">= 0"])

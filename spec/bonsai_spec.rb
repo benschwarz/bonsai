@@ -19,6 +19,12 @@ describe Bonsai do
     Bonsai.version.should =~ /\d+.\d+.\d+/
   end
   
+  it "should load extensions.rb" do
+    Bonsai.root_dir = "spec/support"
+
+    # Test the module was created
+    Extensions.class.should == Module
+  end
   
   describe "site yml" do
     describe "working" do

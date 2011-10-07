@@ -17,10 +17,7 @@ module Bonsai
       
       @root_dir = path
       
-      Exporter.path = "#{path}/output"
-      Page.path = "#{path}/content"
-      Template.path = "#{path}/templates"
-      Liquid::Template.file_system = Liquid::LocalFileSystem.new(Template.path)
+      init
     end
     
     def log(message)
@@ -36,12 +33,32 @@ module Bonsai
     end
     
     def site
-      YAML::load(File.read("#{Bonsai.root_dir}/site.yml")) || {}
+      YAML::load(File.read("#{@root_dir}/site.yml")) || {}
     rescue ArgumentError
       Bonsai.log "Badly formatted site.yml"
     end
     
     private
+    def init
+      set_paths
+      load_extensions
+    end
+    
+    def set_paths
+      Exporter.path = "#{@root_dir}/output"
+      Page.path = "#{@root_dir}/content"
+      Template.path = "#{@root_dir}/templates"
+      Liquid::Template.file_system = Liquid::LocalFileSystem.new(Template.path)
+    end
+    
+    def load_extensions
+      extension_path = "#{@root_dir}/extensions.rb"
+       
+      if File.exists?(extension_path)
+        require File.expand_path(extension_path)
+      end
+    end
+    
     def is_a_bonsai?(path)
       File.directory?("#{path}/content") && File.directory?("#{path}/public") && File.directory?("#{path}/templates")
     end
