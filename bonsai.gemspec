@@ -106,6 +106,7 @@ Gem::Specification.new do |s|
     "spec/support/content/legals/terms-and-conditions/demo-template.yml",
     "spec/support/content/render/image-spec/images.yml",
     "spec/support/content/render/image-spec/images/image001.jpg",
+    "spec/support/extensions.rb",
     "spec/support/public/.htaccess",
     "spec/support/public/js/script.js",
     "spec/support/public/stylesheets/brokensass.sass",
@@ -122,7 +123,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/benschwarz/bonsai"
   s.post_install_message = "\n\n      \u{76c6}\u{683d}\n      bonsai, tiny and beautiful\n\n\n\n      type `bonsai --help` to get started\n    "
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.11"
+  s.rubygems_version = "1.8.10"
   s.summary = "A static site generator that uses the best toolset available"
   s.test_files = [
     "spec/bonsai/console_spec.rb",
@@ -143,20 +144,21 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<bonsai>, [">= 0"])
       s.add_development_dependency(%q<yard>, [">= 0"])
-      s.add_development_dependency(%q<rspec>, ["~> 2.3"])
       s.add_development_dependency(%q<yard>, [">= 0"])
-      s.add_development_dependency(%q<rspec>, ["~> 2.3"])
       s.add_development_dependency(%q<yard>, [">= 0"])
-      s.add_development_dependency(%q<rspec>, ["~> 2.3"])
       s.add_development_dependency(%q<yard>, [">= 0"])
-      s.add_development_dependency(%q<rspec>, ["~> 2.3"])
       s.add_development_dependency(%q<yard>, [">= 0"])
-      s.add_development_dependency(%q<rspec>, ["~> 2.3"])
       s.add_development_dependency(%q<yard>, [">= 0"])
-      s.add_development_dependency(%q<rspec>, ["~> 2.3"])
       s.add_development_dependency(%q<rake>, [">= 0"])
       s.add_development_dependency(%q<yard>, [">= 0"])
-      s.add_development_dependency(%q<rspec>, ["~> 2.3"])
+      s.add_development_dependency(%q<rake>, [">= 0"])
+      s.add_development_dependency(%q<yard>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, ["= 1.5.2"])
+      s.add_development_dependency(%q<rspec>, ["~> 2.4"])
+      s.add_development_dependency(%q<rake>, [">= 0"])
+      s.add_development_dependency(%q<yard>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, ["= 1.5.2"])
+      s.add_development_dependency(%q<rspec>, ["~> 2.8.0"])
       s.add_development_dependency(%q<rake>, [">= 0"])
       s.add_development_dependency(%q<yard>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, ["= 1.5.2"])
@@ -174,20 +176,21 @@ Gem::Specification.new do |s|
     else
       s.add_dependency(%q<bonsai>, [">= 0"])
       s.add_dependency(%q<yard>, [">= 0"])
-      s.add_dependency(%q<rspec>, ["~> 2.3"])
       s.add_dependency(%q<yard>, [">= 0"])
-      s.add_dependency(%q<rspec>, ["~> 2.3"])
       s.add_dependency(%q<yard>, [">= 0"])
-      s.add_dependency(%q<rspec>, ["~> 2.3"])
       s.add_dependency(%q<yard>, [">= 0"])
-      s.add_dependency(%q<rspec>, ["~> 2.3"])
       s.add_dependency(%q<yard>, [">= 0"])
-      s.add_dependency(%q<rspec>, ["~> 2.3"])
       s.add_dependency(%q<yard>, [">= 0"])
-      s.add_dependency(%q<rspec>, ["~> 2.3"])
       s.add_dependency(%q<rake>, [">= 0"])
       s.add_dependency(%q<yard>, [">= 0"])
-      s.add_dependency(%q<rspec>, ["~> 2.3"])
+      s.add_dependency(%q<rake>, [">= 0"])
+      s.add_dependency(%q<yard>, [">= 0"])
+      s.add_dependency(%q<jeweler>, ["= 1.5.2"])
+      s.add_dependency(%q<rspec>, ["~> 2.4"])
+      s.add_dependency(%q<rake>, [">= 0"])
+      s.add_dependency(%q<yard>, [">= 0"])
+      s.add_dependency(%q<jeweler>, ["= 1.5.2"])
+      s.add_dependency(%q<rspec>, ["~> 2.8.0"])
       s.add_dependency(%q<rake>, [">= 0"])
       s.add_dependency(%q<yard>, [">= 0"])
       s.add_dependency(%q<jeweler>, ["= 1.5.2"])
@@ -206,20 +209,21 @@ Gem::Specification.new do |s|
   else
     s.add_dependency(%q<bonsai>, [">= 0"])
     s.add_dependency(%q<yard>, [">= 0"])
-    s.add_dependency(%q<rspec>, ["~> 2.3"])
     s.add_dependency(%q<yard>, [">= 0"])
-    s.add_dependency(%q<rspec>, ["~> 2.3"])
     s.add_dependency(%q<yard>, [">= 0"])
-    s.add_dependency(%q<rspec>, ["~> 2.3"])
     s.add_dependency(%q<yard>, [">= 0"])
-    s.add_dependency(%q<rspec>, ["~> 2.3"])
     s.add_dependency(%q<yard>, [">= 0"])
-    s.add_dependency(%q<rspec>, ["~> 2.3"])
     s.add_dependency(%q<yard>, [">= 0"])
-    s.add_dependency(%q<rspec>, ["~> 2.3"])
     s.add_dependency(%q<rake>, [">= 0"])
     s.add_dependency(%q<yard>, [">= 0"])
-    s.add_dependency(%q<rspec>, ["~> 2.3"])
+    s.add_dependency(%q<rake>, [">= 0"])
+    s.add_dependency(%q<yard>, [">= 0"])
+    s.add_dependency(%q<jeweler>, ["= 1.5.2"])
+    s.add_dependency(%q<rspec>, ["~> 2.4"])
+    s.add_dependency(%q<rake>, [">= 0"])
+    s.add_dependency(%q<yard>, [">= 0"])
+    s.add_dependency(%q<jeweler>, ["= 1.5.2"])
+    s.add_dependency(%q<rspec>, ["~> 2.8.0"])
     s.add_dependency(%q<rake>, [">= 0"])
     s.add_dependency(%q<yard>, [">= 0"])
     s.add_dependency(%q<jeweler>, ["= 1.5.2"])
