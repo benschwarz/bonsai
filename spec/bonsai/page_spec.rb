@@ -131,7 +131,7 @@ describe Bonsai::Page do
       
       it { should_not be_nil }
 
-      it "should replace mustache variables with properties from the content file" do
+      it "should replace liquid variables with properties from the content file" do
         page.should == "Hello from our template, named Contact\n\nGet in touch\n<p>&#8220;A designer knows he has achieved perfection not when there is nothing left to add, but when there is nothing left to take away.&#8221;</p>\n\n<p>– Antoine de Saint-Exupery</p>\n\nThis content should be inserted!"
       end
       

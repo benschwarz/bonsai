@@ -74,7 +74,7 @@ module Bonsai
     
     # This method is used for the exporter to copy assets
     def assets
-      Dir["#{directory}/**/*"].select{|path| !File.directory?(path) && !File.basename(path).include?("yml") }.map do |file|
+      Dir["#{directory}/**/*"].sort.select{|path| !File.directory?(path) && !File.basename(path).include?("yml") }.map do |file|
         file_to_hash(file)
       end
     end
