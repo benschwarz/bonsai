@@ -1,5 +1,7 @@
 # bonsai
 
+![Build status](https://secure.travis-ci.org/benschwarz/bonsai.png?branch=master "Build status")
+
 Bonsai is a static web site generator, it uses the best tools available for site construction and adheres to best web practices.
 
 ## What it does
