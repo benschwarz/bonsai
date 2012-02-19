@@ -18,6 +18,8 @@ begin
     gem.add_development_dependency "rspec", "~> 2.3"
     gem.add_development_dependency "rake"
     gem.add_development_dependency "yard", ">= 0"
+    gem.add_development_dependency "jeweler", "1.5.2"
+    
     
     gem.add_dependency "rack"
     gem.add_dependency "sinatra", ">= 1.0"
