@@ -16,6 +16,7 @@ begin
     gem.files.exclude 'vendor/gems'
     
     gem.add_development_dependency "rspec", "~> 2.3"
+    gem.add_development_dependency "rake"
     gem.add_development_dependency "yard", ">= 0"
     
     gem.add_dependency "rack"

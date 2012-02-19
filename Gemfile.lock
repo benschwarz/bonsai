@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bonsai (1.4.3)
+    bonsai (1.4.4)
       activesupport (>= 3.0.3)
       builder (>= 3.0.0)
       i18n (>= 0.5.0)
