@@ -48,19 +48,13 @@ The generator will provide you with a .htaccess file that will turn on gzip/defl
 
 ### Deployment
   * Run `bonsai --repot`
-  * Upload the contents of `site-root/output` to your producton server
+  * Upload the contents of `site-root/output` to your production server
     * For example: `rsync -ave ssh ./output/ tinytree.info:/var/www/tinytree.info`
     
 ## Ruby implementations
 
-Bonsai runs under a number of Ruby implementations:
-  
-  * 1.8.6 (MRI)
-  * 1.8.7 (MRI)
-  * 1.9.1 (MRI)
-  * JRuby
-  * MacRuby
-  
+Bonsai runs under a number of Ruby implementations, MRI (1.8.7, 1.9.1, 1.9.2, 1.9.3), RBX (1.8 mode), JRuby (1.8 mode, 1.9 mode). Check [travis](http://travis-ci.org/#!/benschwarz/bonsai) to see the specifics. 
+
 ## Have you used this for a real job? 
 
 Yes. I built (and content filled) a web site with around 160 pages in 5 days.
