@@ -56,6 +56,12 @@ opts = OptionParser.new do |opts|
     Bonsai::Exporter.publish!
   end
   
+  opts.on("--repot-assets", "only process the public, css and javascript, leave everything else as is") do
+    Bonsai.root_dir = Dir.pwd
+    Bonsai::Exporter.copy_public
+    Bonsai::Exporter.compress_assets
+  end
+  
   opts.on("-v", "--version") do
     Bonsai.log "Version: #{Bonsai.version}"
   end

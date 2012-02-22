@@ -27,6 +27,23 @@ module Bonsai
         cleanup
       end
       
+      def copy_public
+        generate_css
+        
+        Bonsai.log "Copying public files"
+        # Using system call because fileutils is inadequate
+        system("cp -fR '#{Bonsai.root_dir}/public/.' '#{path}/.'")
+      end
+      
+      def compress_assets
+        yui_compressor = File.expand_path("#{File.dirname(__FILE__)}/../../vendor/yui-compressor/yuicompressor-2.4.2.jar")
+        
+        Bonsai.log "Compressing javascript and stylesheets"
+        Dir["#{path}/**/*.{js,css}"].each do |asset|
+          system "java -jar #{yui_compressor} #{File.expand_path(asset)} -o #{File.expand_path(asset)}"
+        end
+      end
+      
       protected 
       def teardown
         FileUtils.rm_rf path
@@ -85,23 +102,6 @@ module Bonsai
             # Copy the the asset from its disk path to File.dirname(asset permalink)
             FileUtils.cp asset['disk_path'], "#{path}#{asset['path']}"
           end
-        end
-      end
-      
-      def copy_public
-        generate_css
-        
-        Bonsai.log "Copying public files"
-        # Using system call because fileutils is inadequate
-        system("cp -fR '#{Bonsai.root_dir}/public/.' '#{path}/.'")
-      end
-      
-      def compress_assets
-        yui_compressor = File.expand_path("#{File.dirname(__FILE__)}/../../vendor/yui-compressor/yuicompressor-2.4.2.jar")
-        
-        Bonsai.log "Compressing javascript and stylesheets"
-        Dir["#{path}/**/*.{js,css}"].each do |asset|
-          system "java -jar #{yui_compressor} #{File.expand_path(asset)} -o #{File.expand_path(asset)}"
         end
       end
       
