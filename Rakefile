@@ -19,6 +19,7 @@ begin
     gem.add_development_dependency "rake"
     gem.add_development_dependency "yard", "~> 0.7.5"
     gem.add_development_dependency "jeweler", "1.8.4"
+    gem.add_development_dependency "rdoc-data"
     
     
     gem.add_dependency "rack"
