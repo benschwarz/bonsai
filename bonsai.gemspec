@@ -4,15 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{bonsai}
-  s.version = "1.4.5"
+  s.name = "bonsai"
+  s.version = "1.4.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Schwarz"]
-  s.date = %q{2012-02-22}
-  s.default_executable = %q{bonsai}
-  s.description = %q{A static site generator that uses the best toolset available}
-  s.email = %q{ben.schwarz@gmail.com}
+  s.date = "2012-06-24"
+  s.description = "A static site generator that uses the best toolset available"
+  s.email = "ben.schwarz@gmail.com"
   s.executables = ["bonsai"]
   s.extra_rdoc_files = [
     "LICENSE",
@@ -122,19 +121,11 @@ Gem::Specification.new do |s|
     "spec/support/templates/partials/_magic.liquid",
     "vendor/yui-compressor/yuicompressor-2.4.2.jar"
   ]
-  s.homepage = %q{http://github.com/benschwarz/bonsai}
-  s.post_install_message = %q{
-
-      盆栽
-      bonsai, tiny and beautiful
-
-
-
-      type `bonsai --help` to get started
-    }
+  s.homepage = "http://github.com/benschwarz/bonsai"
+  s.post_install_message = "\n\n      \u{76c6}\u{683d}\n      bonsai, tiny and beautiful\n\n\n\n      type `bonsai --help` to get started\n    "
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.7}
-  s.summary = %q{A static site generator that uses the best toolset available}
+  s.rubygems_version = "1.8.11"
+  s.summary = "A static site generator that uses the best toolset available"
   s.test_files = [
     "spec/bonsai/console_spec.rb",
     "spec/bonsai/exporter_spec.rb",
@@ -149,10 +140,10 @@ Gem::Specification.new do |s|
   ]
 
   if s.respond_to? :specification_version then
-    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<bonsai>, [">= 0"])
       s.add_development_dependency(%q<rake>, [">= 0"])
       s.add_development_dependency(%q<rake>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, ["= 1.5.2"])
@@ -160,6 +151,14 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, ["= 1.5.2"])
       s.add_development_dependency(%q<rspec>, ["~> 2.8.0"])
       s.add_development_dependency(%q<rake>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, ["= 1.5.2"])
+      s.add_development_dependency(%q<rspec>, ["~> 2.8.0"])
+      s.add_development_dependency(%q<rake>, [">= 0"])
+      s.add_development_dependency(%q<yard>, ["~> 0.7.5"])
+      s.add_development_dependency(%q<jeweler>, ["= 1.5.2"])
+      s.add_development_dependency(%q<rspec>, ["~> 2.8.0"])
+      s.add_development_dependency(%q<rake>, [">= 0"])
+      s.add_development_dependency(%q<yard>, ["~> 0.7.5"])
       s.add_development_dependency(%q<jeweler>, ["= 1.5.2"])
       s.add_development_dependency(%q<rspec>, ["~> 2.8.0"])
       s.add_development_dependency(%q<rake>, [">= 0"])
@@ -185,7 +184,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<i18n>, [">= 0.5.0"])
       s.add_runtime_dependency(%q<sass>, [">= 0"])
     else
-      
+      s.add_dependency(%q<bonsai>, [">= 0"])
       s.add_dependency(%q<rake>, [">= 0"])
       s.add_dependency(%q<rake>, [">= 0"])
       s.add_dependency(%q<jeweler>, ["= 1.5.2"])
@@ -193,6 +192,14 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<jeweler>, ["= 1.5.2"])
       s.add_dependency(%q<rspec>, ["~> 2.8.0"])
       s.add_dependency(%q<rake>, [">= 0"])
+      s.add_dependency(%q<jeweler>, ["= 1.5.2"])
+      s.add_dependency(%q<rspec>, ["~> 2.8.0"])
+      s.add_dependency(%q<rake>, [">= 0"])
+      s.add_dependency(%q<yard>, ["~> 0.7.5"])
+      s.add_dependency(%q<jeweler>, ["= 1.5.2"])
+      s.add_dependency(%q<rspec>, ["~> 2.8.0"])
+      s.add_dependency(%q<rake>, [">= 0"])
+      s.add_dependency(%q<yard>, ["~> 0.7.5"])
       s.add_dependency(%q<jeweler>, ["= 1.5.2"])
       s.add_dependency(%q<rspec>, ["~> 2.8.0"])
       s.add_dependency(%q<rake>, [">= 0"])
@@ -219,7 +226,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<sass>, [">= 0"])
     end
   else
-    
+    s.add_dependency(%q<bonsai>, [">= 0"])
     s.add_dependency(%q<rake>, [">= 0"])
     s.add_dependency(%q<rake>, [">= 0"])
     s.add_dependency(%q<jeweler>, ["= 1.5.2"])
@@ -227,6 +234,14 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<jeweler>, ["= 1.5.2"])
     s.add_dependency(%q<rspec>, ["~> 2.8.0"])
     s.add_dependency(%q<rake>, [">= 0"])
+    s.add_dependency(%q<jeweler>, ["= 1.5.2"])
+    s.add_dependency(%q<rspec>, ["~> 2.8.0"])
+    s.add_dependency(%q<rake>, [">= 0"])
+    s.add_dependency(%q<yard>, ["~> 0.7.5"])
+    s.add_dependency(%q<jeweler>, ["= 1.5.2"])
+    s.add_dependency(%q<rspec>, ["~> 2.8.0"])
+    s.add_dependency(%q<rake>, [">= 0"])
+    s.add_dependency(%q<yard>, ["~> 0.7.5"])
     s.add_dependency(%q<jeweler>, ["= 1.5.2"])
     s.add_dependency(%q<rspec>, ["~> 2.8.0"])
     s.add_dependency(%q<rake>, [">= 0"])
