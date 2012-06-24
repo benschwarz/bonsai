@@ -102,7 +102,7 @@ module Bonsai
     end
     
     def children
-      self.class.all(File.dirname(disk_path), "*").delete_if{|p| p.floating? }
+      self.class.all(File.dirname(disk_path), "*").delete_if{|p| p.floating? }.sort_by{|p| p.disk_path }
     end
     
     def ancestors
