@@ -22,7 +22,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec", "~> 2.8.0"
   s.add_development_dependency "rake"
   s.add_development_dependency "yard", "~> 0.7.5"
-  s.add_development_dependency "jeweler", "1.8.4"
   s.add_development_dependency "rdoc-data"
   
   s.add_dependency "rack"
