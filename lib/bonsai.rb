@@ -30,10 +30,6 @@ module Bonsai
       @config || { :enable_logging => true }
     end
     
-    def version
-      File.read("#{File.dirname(__FILE__)}/../VERSION")
-    end
-    
     def site
       YAML::load(File.read("#{@root_dir}/site.yml")) || {}
     rescue ArgumentError

@@ -16,7 +16,7 @@ describe Bonsai do
   end
   
   it "should know the version" do
-    Bonsai.version.should =~ /\d+.\d+.\d+/
+    Bonsai::VERSION.should =~ /\d+.\d+.\d+/
   end
   
   it "should load extensions.rb" do

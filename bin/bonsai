@@ -63,7 +63,7 @@ opts = OptionParser.new do |opts|
   end
   
   opts.on("-v", "--version") do
-    Bonsai.log "Version: #{Bonsai.version}"
+    Bonsai.log "Version: #{Bonsai::VERSION}"
   end
   
   opts.on("--console", "start an IRB console session giving you access to your bonsai environment") do
