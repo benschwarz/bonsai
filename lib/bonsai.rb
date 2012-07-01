@@ -5,6 +5,8 @@ require 'active_support/core_ext/hash/keys'
 
 $LOAD_PATH << "#{File.dirname(__FILE__)}/bonsai"
 
+require 'version'
+
 module Bonsai
   class << self
     attr_accessor :root_dir, :config
