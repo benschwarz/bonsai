@@ -28,7 +28,7 @@ module Bonsai
       end
       
       def copy_public
-        generate_css
+        generate_assets
         
         Bonsai.log "Copying public files"
         # Using system call because fileutils is inadequate
@@ -54,7 +54,7 @@ module Bonsai
       end
       
       def cleanup
-        remove_less_sass
+        remove_processed_assets
       end
       
       def write_index
@@ -105,19 +105,19 @@ module Bonsai
         end
       end
       
-      def generate_css
-        Dir["#{Bonsai.root_dir}/public/**/*.{less,sass,scss}"].each do |cssfile|
-          css = Tilt.new(cssfile).render
-          path = "#{File.dirname(cssfile)}/#{File.basename(cssfile, ".*")}.css"
+      def generate_assets
+        Dir["#{Bonsai.root_dir}/public/**/*.{less,sass,scss,coffee}"].each do |file|
+          compiled = Tilt.new(file).render
+          path = "#{File.dirname(file)}/#{File.basename(file, ".*")}.#{File.extname(file) == '.coffee' ? 'js' : 'css'}"
           
-          File.open(path, "w") {|file| file.write(css) }
+          File.open(path, "w") {|file| file.write(compiled) }
         end
       rescue Sass::SyntaxError => exception
         Bonsai.log "CSS Syntax error\n\n#{exception.message}"
       end
       
-      def remove_less_sass
-        Dir["#{path}/**/*.{less,sass}"].each{|f| FileUtils.rm(f) }
+      def remove_processed_assets
+        Dir["#{path}/**/*.{less,sass,coffee}"].each{|f| FileUtils.rm(f) }
       end
     end
   end
