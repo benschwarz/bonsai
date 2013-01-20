@@ -3,10 +3,8 @@ rvm:
   - 1.8.7
   - 1.9.2
   - 1.9.3
-  - jruby-18mode
-  - jruby-19mode
   - rbx-18mode
-  
+
 # These implementations are failing as of writing  
 #  - rbx-19mode # Has an encoding issue.
 #  - ruby-head  # Has a YAML parser issue.
