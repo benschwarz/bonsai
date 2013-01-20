@@ -1,5 +1,6 @@
 require 'fileutils'
 require 'sass'
+require 'yui/compressor'
 
 module Bonsai
   class Exporter
@@ -36,15 +37,21 @@ module Bonsai
       end
       
       def compress_assets
-        yui_compressor = File.expand_path("#{File.dirname(__FILE__)}/../../vendor/yui-compressor/yuicompressor-2.4.2.jar")
-        
         Bonsai.log "Compressing javascript and stylesheets"
-        Dir["#{path}/**/*.{js,css}"].each do |asset|
-          system "java -jar #{yui_compressor} #{File.expand_path(asset)} -o #{File.expand_path(asset)}"
-        end
+        compress_asset_path("#{path}/**/*.js", YUI::JavaScriptCompressor.new)
+        compress_asset_path("#{path}/**/*.css", YUI::CssCompressor.new)
       end
       
       protected 
+      def compress_asset_path(paths, compressor)
+        Dir[paths].each do |path|
+          uncompressed = File.read(path)
+          File.open(path, "w") do |buffer|
+            buffer << compressor.compress(uncompressed)
+          end
+        end
+      end
+
       def teardown
         FileUtils.rm_rf path
       end

@@ -71,7 +71,7 @@ describe Bonsai::Exporter do
       
       # Compressed CSS      
       it "should be processed with sass" do
-        File.read("#{Bonsai::Exporter.path}/stylesheets/sassy.css").should == "#content{display:block;}"
+        File.read("#{Bonsai::Exporter.path}/stylesheets/sassy.css").should == "#content{display:block}"
       end
 
       it "should create the output directory" do
@@ -109,15 +109,11 @@ describe Bonsai::Exporter do
       
       describe "asset compression" do
         it "should compress the css file" do
-          File.read("#{Bonsai::Exporter.path}/stylesheets/sassy.css").should == "#content{display:block;}"
-        end
-        
-        it "should compress the css file" do
-          File.read("#{Bonsai::Exporter.path}/stylesheets/sassy.css").should == "#content{display:block;}"
+          File.read("#{Bonsai::Exporter.path}/stylesheets/sassy.css").should == "#content{display:block}"
         end
         
         it "should compress the js file" do
-          File.read("#{Bonsai::Exporter.path}/js/script.js").should == "$(function(){$(\".default-value\").each(function(){var a=this.value;$(this).focus(function(){if(this.value==a){this.value=\"\"}});$(this).blur(function(){if(this.value==\"\"){this.value=a}})});$(\".details dd:empty\").hide().prev(\"dt\").hide()});"
+          File.read("#{Bonsai::Exporter.path}/js/script.js").should == "$(function(){$(\".default-value\").each(function(){var default_value=this.value;$(this).focus(function(){if(this.value==default_value){this.value=\"\"}});$(this).blur(function(){if(this.value==\"\"){this.value=default_value}})});$(\".details dd:empty\").hide().prev(\"dt\").hide()});"
         end
       end
     end

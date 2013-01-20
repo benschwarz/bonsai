@@ -22,7 +22,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec", "~> 2.8.0"
   s.add_development_dependency "rake"
   s.add_development_dependency "yard", "~> 0.7.5"
-  s.add_development_dependency "rdoc-data"
   
   s.add_dependency "rack"
   s.add_dependency "sinatra", ">= 1.0"
@@ -34,6 +33,7 @@ Gem::Specification.new do |s|
   s.add_dependency "launchy", ">= 0.3.7"
   s.add_dependency "activesupport", ">= 3.0.3"
   s.add_dependency "i18n", ">= 0.5.0"
+  s.add_dependency "yui-compressor"
   s.add_dependency "sass"
   
   s.post_install_message = %q{
