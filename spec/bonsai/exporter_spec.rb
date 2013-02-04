@@ -14,15 +14,19 @@ describe Bonsai::Exporter do
     Bonsai::Exporter.path.should == 'support/exporter/test'
     Bonsai::Exporter.path = BONSAI_PATH + "/output"
   end
-  
-  shared_examples_for "css generators" do      
+
+  shared_examples_for "asset generators" do
     it "should process .scss files to .css" do
       File.exists?("#{Bonsai::Exporter.path}/stylesheets/sassy.css").should be_true
     end
-        
+
+    it "should process .coffee files to .js" do
+      File.exists?("#{Bonsai::Exporter.path}/js/hot.js").should be_true
+    end
+
     it "should log an error when badly formatted less is supplied (and not raise an exception)" do
       Bonsai.should_receive(:log)
-      lambda { Bonsai::Exporter.send(:generate_css) }.should_not raise_error(Sass::SyntaxError)
+      lambda { Bonsai::Exporter.send(:generate_assets) }.should_not raise_error(Sass::SyntaxError)
     end
   end
   
@@ -32,9 +36,9 @@ describe Bonsai::Exporter do
         FileUtils.rm_rf Bonsai::Exporter.path
         Bonsai::Exporter.process!
       end
-      
-      it_should_behave_like "css generators"
-      
+
+      it_should_behave_like "asset generators"
+
       # Uncompressed CSS
       it "should be processed with sass" do
         File.read("#{Bonsai::Exporter.path}/stylesheets/sassy.css").should == "#content {\n  display: block; }\n"
@@ -55,8 +59,8 @@ describe Bonsai::Exporter do
       end
 
       it "should generate css via lesscss" do
-        Bonsai::Exporter.should_receive(:generate_css)
-      end      
+        Bonsai::Exporter.should_receive(:generate_assets)
+      end
     end
   end
 
@@ -66,10 +70,10 @@ describe Bonsai::Exporter do
         FileUtils.rm_rf Bonsai::Exporter.path
         Bonsai::Exporter.publish!
       end
-      
-      it_should_behave_like "css generators"
-      
-      # Compressed CSS      
+
+      it_should_behave_like "asset generators"
+
+      # Compressed CSS
       it "should be processed with sass" do
         File.read("#{Bonsai::Exporter.path}/stylesheets/sassy.css").should == "#content{display:block}"
       end
@@ -111,9 +115,10 @@ describe Bonsai::Exporter do
         it "should compress the css file" do
           File.read("#{Bonsai::Exporter.path}/stylesheets/sassy.css").should == "#content{display:block}"
         end
-        
-        it "should compress the js file" do
+
+        it "should compress the js files" do
           File.read("#{Bonsai::Exporter.path}/js/script.js").should == "$(function(){$(\".default-value\").each(function(){var default_value=this.value;$(this).focus(function(){if(this.value==default_value){this.value=\"\"}});$(this).blur(function(){if(this.value==\"\"){this.value=default_value}})});$(\".details dd:empty\").hide().prev(\"dt\").hide()});"
+          File.read("#{Bonsai::Exporter.path}/js/hot.js").should == "(function(){this.foo=function(){return alert(\"bar\")}}).call(this);"
         end
       end
     end
@@ -128,7 +133,7 @@ describe Bonsai::Exporter do
       end
       
       it "should process css with less or sass" do
-        Bonsai::Exporter.should_receive(:generate_css)
+        Bonsai::Exporter.should_receive(:generate_assets)
       end
 
       it "should compress assets" do

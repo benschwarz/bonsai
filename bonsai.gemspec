@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rake"
   s.add_development_dependency "yard", "~> 0.7.5"
   
+  s.add_development_dependency "coffee-script", ">= 2.2.0"
   s.add_dependency "rack"
   s.add_dependency "sinatra", ">= 1.0"
   s.add_dependency "tilt", ">= 1.3"
