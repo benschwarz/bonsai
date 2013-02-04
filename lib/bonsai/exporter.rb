@@ -128,7 +128,7 @@ module Bonsai
       end
 
       def remove_processed_assets
-        Dir["#{path}/**/*.{less,sass,coffee}"].each{|f| FileUtils.rm(f) }
+        Dir["#{path}/**/*.{less,sass,scss,coffee}"].each{|f| FileUtils.rm(f) }
       end
     end
   end
