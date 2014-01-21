@@ -22,7 +22,9 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec", "~> 2.8.0"
   s.add_development_dependency "rake"
   s.add_development_dependency "yard", "~> 0.7.5"
-  
+  s.add_development_dependency "coffee-script", ">= 2.2.0"
+  s.add_development_dependency "therubyracer", ">= 0.11.3"
+  s.add_development_dependency "less", ">= 2.2.2"
   s.add_dependency "rack"
   s.add_dependency "sinatra", ">= 1.0"
   s.add_dependency "tilt", ">= 1.3"
@@ -35,7 +37,7 @@ Gem::Specification.new do |s|
   s.add_dependency "i18n", ">= 0.5.0"
   s.add_dependency "yui-compressor"
   s.add_dependency "sass"
-  
+
   s.post_install_message = %q{
 
     盆栽
