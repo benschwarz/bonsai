@@ -18,7 +18,7 @@ Bonsai is a static web site generator, it uses the best tools available for site
 
   * Install bonsai 
 
-    `gem install bonsai --source http://gemcutter.org`
+    `gem install bonsai`
 
   * Run the generator
 
